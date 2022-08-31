@@ -1,0 +1,697 @@
+# CAPÍTULO N° 2 - Modelamiento Estadístico
+
+**Capítulo N° 2 recuperado de [Estadísticas modernas para la biología moderna](https://web.stanford.edu/class/bios221/book/Chap-Models.html)**
+
+Hay dos partes en el procedimiento de modelado. Primero se  necesita una distribución para modelar el proceso de generación de datos. Los datos de conteo discretos pueden modelarse mediante distribuciones de probabilidad simples, como las distribuciones binomial, multinomial o de Poisson.
+
+**Paquetes**
+
+```{r}
+#install.packages("pacman")
+library(pacman)
+p_load("vcd", "Biostrings","HardyWeinberg","seqLogo","markovchain","igraph","Biostrings","BSgenome",
+       "BSgenome.Ecoli.NCBI.20080805","Renext","BSgenome.Hsapiens.UCSC.hg19","Gviz")
+
+```
+
+## Un ejemplo simple de modelado estadístico 
+
+Descargar el conjunto de datos de [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/e100.RData)
+
+```{r}
+#Cargar el archivo "e100.RData"
+
+load("../data/e100.RData")
+e99 = e100[-which.max(e100)]
+barplot(table(e99), space = 0.8, col = "chartreuse4")
+```
+
+Rootograma que muestra la raíz cuadrada de los valores teóricos como puntos rojos y la raíz cuadrada de las frecuencias observadas como rectángulos desplegables
+
+```{r}
+#library("vcd")
+gf1 = goodfit( e99, "poisson")
+rootogram(gf1, xlab = "", rect_gp = gpar(fill = "chartreuse4"))
+```
+
+
+### Estimación del parámetro de la distribución de Poisson 
+
+```{r}
+#Cantidad de datos por categoria 
+table(e100)
+```
+
+Se prueba diferentes valores para la media de Poisson y se cuál se ajusta mejor datos.
+
+```{r}
+table(rpois(100, 3))
+
+prod(dpois(c(0, 1, 2, 7), lambda = 3))
+```
+
+
+### Función de verosimilitud de λ 
+
+```{r}
+loglikelihood  =  function(lambda, data = e100) {
+  sum(log(dpois(data, lambda)))
+}
+
+lambdas = seq(0.05, 0.95, length = 100)
+loglik = vapply(lambdas, loglikelihood, numeric(1))
+m0 = mean(e100)
+m0
+```
+
+
+```{r}
+plot(lambdas, loglik, type = "l", col = "red", ylab = "", lwd = 2,
+     xlab = expression(lambda))
+abline(v = m0, col = "blue", lwd = 2)
+abline(h = loglikelihood(m0), col = "purple", lwd = 2)
+```
+
+La curva roja es la función logarítmica de verosimilitud. La línea vertical muestra el valor de m (la media) y la línea horizontal el log-verosimilitud de m.
+
+
+```{r}
+gf  =  goodfit(e100, "poisson")
+names(gf)
+gf$par
+```
+La salida de goodfites un objeto compuesto llamado lista. Uno de sus componentes se llama par y contiene los valores de los parámetros ajustados para la distribución estudiada. En este caso es solo un número, la estimación de λ . 
+
+## Distribuciones binomiales y máxima verosimilitud 
+
+```{r}
+cb  =  c(rep(0, 110), rep(1, 10))
+table(cb)
+mean(cb)
+```
+
+
+Si se calcula la probabilidad de muchos posibles p , Se puede trazar y ver dónde cae su máximo. 
+
+```{r}
+probs  =  seq(0, 0.3, by = 0.005)
+likelihood = dbinom(sum(cb), prob = probs, size = length(cb))
+plot(probs, likelihood, pch = 16, xlab = "probability of success",
+       ylab = "likelihood", cex=0.6)
+probs[which.max(likelihood)]
+```
+
+```{r}
+stopifnot(abs(probs[which.max(likelihood)]-1/12) < diff(probs[1:2]))
+```
+
+
+```{r}
+#verosimilitud 
+
+loglikelihood = function(theta, n = 300, k = 40) {
+  115 + k * log(theta) + (n - k) * log(1 - theta)
+}
+
+thetas = seq(0, 1, by = 0.001)
+plot(thetas, loglikelihood(thetas), xlab = expression(theta),
+  ylab = expression(paste("log f(", theta, " | y)")),type = "l")
+```
+
+## Más casillas:datos multinomiales 
+
+### Sesgo de nucleótidos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+```{r}
+p_load("Biostrings")
+staph = readDNAStringSet("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/staphsequence.ffn.txt", "fasta")
+staph
+
+```
+
+```{r}
+#primer gen
+staph[1]
+```
+
+```{r}
+letterFrequency(staph[[1]], letters = "ACGT", OR = 0)
+```
+
+```{r}
+letterFrq = vapply(staph, letterFrequency, FUN.VALUE = numeric(4),
+         letters = "ACGT", OR = 0)
+colnames(letterFrq) = paste0("gene", seq(along = staph))
+tab10 = letterFrq[, 1:10]
+computeProportions = function(x) { x/sum(x) }
+prop10 = apply(tab10, 2, computeProportions)
+round(prop10, digits = 2)
+```
+
+```{r}
+p0 = rowMeans(prop10)
+p0
+
+cs = colSums(tab10)
+cs
+
+expectedtab10 = outer(p0, cs, FUN = "*")
+round(expectedtab10)
+
+randomtab10 = sapply(cs, function(s) { rmultinom(1, s, p0) } )
+all(colSums(randomtab10) == cs)
+```
+
+```{r}
+stat = function(obsvd, exptd = 20 * pvec) {
+   sum((obsvd - exptd)^2 / exptd)
+}
+B = 1000
+simulstat = replicate(B, {
+  randomtab10 = sapply(cs, function(s) { rmultinom(1, s, p0) })
+  stat(randomtab10, expectedtab10)
+})
+S1 = stat(tab10, expectedtab10)
+sum(simulstat >= S1)
+```
+
+```{r}
+hist(simulstat, col = "lavender", breaks = seq(0, 75, length.out=50))
+abline(v = S1, col = "red")
+abline(v = quantile(simulstat, probs = c(0.95, 0.99)),
+       col = c("darkgreen", "blue"), lty = 2)
+```
+
+## La distribución Chi-Cuadrado
+
+### Intermezzo: cuantiles y gráfico cuantil-cuantil 
+
+```{r}
+qs = ppoints(100)
+quantile(simulstat, qs)
+quantile(qchisq(qs, df = 30), qs)
+```
+
+¿Cómo se calcula el cuantil para cualquier número entre 0 y 1, incluidos los que no son múltiplos de 1 / n?
+
+```{r}
+qqplot(qchisq(ppoints(B), df = 30), simulstat, main = "",
+  xlab = expression(chi[nu==30]^2), asp = 1, cex = 0.5, pch = 16)
+abline(a = 0, b = 1, col = "red")
+```
+```{r}
+1 - pchisq(S1, df = 30)
+```
+
+## Regla de Chargaff
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/ChargaffTable.RData)
+
+```{r}
+load("../data/ChargaffTable.RData")
+ChargaffTable
+```
+
+```{r}
+stopifnot(nrow(ChargaffTable) == 8)
+mycolors = c("chocolate", "aquamarine4", "cadetblue4", "coral3",
+            "chartreuse4","darkgoldenrod4","darkcyan","brown4")
+par(mfrow=c(2, 4), mai = c(0, 0.7, 0.7, 0))
+for (i in 1:8) {
+  cbp = barplot(ChargaffTable[i, ], horiz = TRUE, axes = FALSE, axisnames = FALSE, col = mycolors[i])
+  ax = axis(3, las = 2, labels = FALSE, col = mycolors[i], cex = 0.5, at = c(0, 10, 20))
+  mtext(side = 3, at = ax,  text = paste(ax), col = mycolors[i], line = 0, las = 1, cex = 0.9)
+  mtext(side = 2, at = cbp, text = colnames(ChargaffTable), col = mycolors[i], line = 0, las = 2, cex = 1)
+  title(paste(rownames(ChargaffTable)[i]), col = mycolors[i], cex = 1.1)
+}
+```
+
+### Dos variables categóricas 
+
+```{r}
+statChf = function(x){
+  sum((x[, "C"] - x[, "G"])^2 + (x[, "A"] - x[, "T"])^2)
+}
+chfstat = statChf(ChargaffTable)
+permstat = replicate(100000, {
+     permuted = t(apply(ChargaffTable, 1, sample))
+     colnames(permuted) = colnames(ChargaffTable)
+     statChf(permuted)
+})
+pChf = mean(permstat <= chfstat)
+pChf
+hist(permstat, breaks = 100, main = "", col = "lavender")
+abline(v = chfstat, lwd = 2, col = "red")
+```
+
+```{r}
+# tabla de contingencia 
+HairEyeColor[,, "Female"]
+str(HairEyeColor)
+```
+
+### **Daltonismo y sexo**
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/Deuteranopia.RData)
+
+```{r}
+#browseURL("https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/Deuteranopia.RData")
+
+load("../data/Deuteranopia.RData")
+Deuteranopia
+
+```
+
+Se postula el modelo nulo con dos binomios independientes: uno para sexo y otro para daltonismo. Bajo este modelo se puede estimar todas las probabilidades multinomiales de las celdas y se puede comparar los conteos observados con los esperados. 
+
+```{r}
+chisq.test(Deuteranopia)
+```
+
+### Un multinomio especial: equilibrio de Hardy-Weinberg 
+
+
+```{r}
+library("HardyWeinberg")
+data("Mourant")
+Mourant[214:216,]
+```
+
+```{r}
+nMM = Mourant$MM[216]
+nMN = Mourant$MN[216]
+nNN = Mourant$NN[216]
+loglik = function(p, q = 1 - p) {
+  2 * nMM * log(p) + nMN * log(2*p*q) + 2 * nNN * log(q)
+}
+xv = seq(0.01, 0.99, by = 0.01)
+yv = loglik(xv)
+plot(x = xv, y = yv, type = "l", lwd = 2,
+     xlab = "p", ylab = "log-likelihood")
+imax = which.max(yv)
+abline(v = xv[imax], h = yv[imax], lwd = 1.5, col = "blue")
+abline(h = yv[imax], lwd = 1.5, col = "purple")
+```
+
+```{r}
+#utilizando el affunción del HardyWeinberg
+phat  =  af(c(nMM, nMN, nNN))
+phat
+
+pMM   =  phat^2
+qhat  =  1 - phat
+
+#Los valores esperados bajo el equilibrio de Hardy-Weinberg son entonces 
+
+pHW = c(MM = phat^2, MN = 2*phat*qhat, NN = qhat^2)
+sum(c(nMM, nMN, nNN)) * pHW
+
+```
+
+### Comparación visual con el equilibrio de Hardy-Weinberg 
+
+```{r}
+pops = c(1, 69, 128, 148, 192)
+genotypeFrequencies = as.matrix(Mourant[, c("MM", "MN", "NN")])
+HWTernaryPlot(genotypeFrequencies[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+```
+
+```{r}
+HWTernaryPlot(genotypeFrequencies[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+HWTernaryPlot(genotypeFrequencies[-pops, ], alpha = 0.0001,
+   newframe = FALSE, cex = 0.5)
+```
+
+```{r}
+newgf = round(genotypeFrequencies / 50)
+HWTernaryPlot(newgf[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+```
+
+
+### Concatenación de varios multinomios: motivos de secuencia y logos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/kozak.RData)
+
+```{r}
+library("seqLogo")
+load("../data/kozak.RData")
+kozak
+```
+
+Aquí hay un diagrama llamado logotipo de secuencia para el multinomio dependiente de la posición que se usa para modelar el motivo Kozak. Codifica la cantidad de variación en cada una de las posiciones en una escala logarítmica. Las letras grandes representan posiciones en las que no hay incertidumbre sobre qué nucleótido se produce.
+
+```{r}
+pwm = makePWM(kozak)
+seqLogo(pwm, ic.scale = FALSE)
+```
+
+## Modelado de dependencias secuenciales: cadenas de Markov 
+
+```{r}
+library("markovchain")
+library("igraph")
+sequence = toupper(c("a", "c", "a", "c", "g", "t", "t", "t", "t", "c",
+"c", "a", "c", "g", "t", "a", "c","c","c","a","a","a","t","a",
+"c","g","g","c","a","t","g","t","g","t","g","a","g","c","t","g"))
+mcFit   =  markovchainFit(data = sequence)
+MCgraph =  markovchain:::.getNet(mcFit$estimate, round = TRUE)
+edgelab =  round(E(MCgraph)$weight / 100, 2)
+par(mai=c(0,0,0,0))
+plot.igraph(MCgraph, edge.label = edgelab,
+       vertex.size = 40, xlim = c(-1, 1.25))
+```
+
+## Pensamiento bayesiano 
+
+### Haplotipos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/haplotype6.txt)
+
+```{r}
+haplo6=read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/haplotype6.txt",header = TRUE)
+haplo6
+```
+
+### Estudio de simulación del paradigma bayesiano para el binomio
+
+```{r}
+library(ggplot2)
+dfbetas = data.frame(
+  p = rep(thetas, 3),
+  dbeta = c(dbeta(thetas,  10,  30),
+            dbeta(thetas,  20,  60), 
+            dbeta(thetas,  50, 150)),
+  pars = rep(c("Beta(10,30)", "Beta(20,60)", "Beta(50,150)"), each = length(thetas)))
+ggplot(dfbetas) +
+  geom_line(aes(x = p, y = dbeta, colour = pars)) +
+  theme(legend.title = element_blank()) +
+  geom_vline(aes(xintercept = 0.25), colour = "#990000", linetype = "dashed")
+
+```
+
+### La distribución de Y 
+
+```{r}
+rtheta = rbeta(100000, 50, 350)
+y = vapply(rtheta, function(th) {
+  rbinom(1, prob = th, size = 300)
+}, numeric(1))
+hist(y, breaks = 50, col = "orange", main = "", xlab = "")
+```
+
+```{r}
+thetaPostEmp = rtheta[ y == 40 ]
+hist(thetaPostEmp, breaks = 40, col = "chartreuse4", main = "",
+  probability = TRUE, xlab = expression("posterior"~theta))
+densPostTheory  =  dbeta(thetas, 90, 610)
+lines(thetas, densPostTheory, type="l", lwd = 3)
+```
+
+```{r}
+mean(thetaPostEmp)
+dtheta = thetas[2]-thetas[1]
+sum(thetas * densPostTheory * dtheta)
+```
+
+```{r}
+thetaPostMC = rbeta(n = 1e6, 90, 610)
+mean(thetaPostMC)
+```
+
+```{r}
+qqplot(thetaPostMC, thetaPostEmp, type = "l", asp = 1)
+abline(a = 0, b = 1, col = "blue")
+```
+
+### La distribución posterior también es una beta. 
+
+```{r}
+densPost2 = dbeta(thetas, 115, 735)
+mcPost2   = rbeta(1e6, 115, 735)
+
+sum(thetas * densPost2 * dtheta)  # media por integración númerica
+
+mean(mcPost2) 
+
+thetas[which.max(densPost2)]    # MAP estimate
+```
+
+### Declaraciones de confianza para el parámetro de proporción
+
+```{r}
+quantile(mcPost2, c(0.025, 0.975))
+```
+
+## Ejemplo: aparición de un patrón de nucleótidos en un genoma 
+
+```{r}
+library("Biostrings")
+
+library("BSgenome")
+ag = available.genomes()
+length(ag)
+ag[1:2]
+```
+
+```{r}
+# ocurrencia de la AGGAGGTmotivo
+library("BSgenome.Ecoli.NCBI.20080805")
+Ecoli
+shineDalgarno = "AGGAGGT"
+ecoli = Ecoli$NC_010473
+```
+
+```{r}
+#contar la ocurrencia del patrón en ventanas de ancho 50000 
+
+window = 50000
+starts = seq(1, length(ecoli) - window, by = window)
+ends   = starts + window - 1
+numMatches = vapply(seq_along(starts), function(i) {
+  countPattern(shineDalgarno, ecoli[starts[i]:ends[i]],
+               max.mismatch = 0)
+  }, numeric(1))
+table(numMatches)
+```
+
+```{r}
+sdMatches = matchPattern(shineDalgarno, ecoli, max.mismatch = 0)
+```
+
+Escribir sdMatchesen la línea de comando R para obtener un resumen de este objeto. Contiene las ubicaciones de las 65 coincidencias de patrones, representadas como un conjunto de las llamadas vistas de la secuencia original.
+
+```{r}
+betweenmotifs = gaps(sdMatches)
+```
+
+```{r}
+library("Renext")
+expplot(width(betweenmotifs), rate = 1/mean(width(betweenmotifs)),
+        labels = "fit")
+```
+
+### Modelado en el caso de dependencias 
+
+```{r}
+library("BSgenome.Hsapiens.UCSC.hg19")
+
+chr8  =  Hsapiens$chr8
+CpGtab = read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/model-based-cpg-islands-hg19.txt",
+                    header = TRUE)
+nrow(CpGtab)
+head(CpGtab)
+```
+
+```{r}
+irCpG = with(dplyr::filter(CpGtab, chr == "chr8"),
+         IRanges(start = start, end = end))
+grCpG = GRanges(ranges = irCpG, seqnames = "chr8", strand = "+")
+genome(grCpG) = "hg19"
+```
+
+
+```{r}
+library("Gviz")
+ideo = IdeogramTrack(genome = "hg19", chromosome = "chr8")
+plotTracks(
+  list(GenomeAxisTrack(),
+    AnnotationTrack(grCpG, name = "CpG"), ideo),
+    from = 2200000, to = 5800000,
+    shape = "box", fill = "#006400", stacking = "dense")
+```
+
+```{r}
+CGIview    = Views(unmasked(Hsapiens$chr8), irCpG)
+NonCGIview = Views(unmasked(Hsapiens$chr8), gaps(irCpG))
+```
+
+```{r}
+seqCGI      = as(CGIview, "DNAStringSet")
+seqNonCGI   = as(NonCGIview, "DNAStringSet")
+dinucCpG    = sapply(seqCGI, dinucleotideFrequency)
+dinucNonCpG = sapply(seqNonCGI, dinucleotideFrequency)
+dinucNonCpG[, 1]
+```
+
+```{r}
+NonICounts = rowSums(dinucNonCpG)
+IslCounts  = rowSums(dinucCpG)
+```
+
+```{r}
+#cadena de Markov de cuatro estados
+TI  = matrix( IslCounts, ncol = 4, byrow = TRUE)
+TnI = matrix(NonICounts, ncol = 4, byrow = TRUE)
+dimnames(TI) = dimnames(TnI) =
+  list(c("A", "C", "G", "T"), c("A", "C", "G", "T"))
+```
+
+```{r}
+MI = TI /rowSums(TI)
+MI
+MN = TnI / rowSums(TnI)
+MN
+```
+
+```{r}
+#relación logarítmica de verosimilitud
+freqIsl = alphabetFrequency(seqCGI, baseOnly = TRUE,collapse = TRUE)[1:4]
+freqIsl / sum(freqIsl)
+freqNon = alphabetFrequency(seqNonCGI, baseOnly = TRUE, collapse = TRUE)[1:4]
+freqNon / sum(freqNon)
+
+alpha = log((freqIsl/sum(freqIsl)) / (freqNon/sum(freqNon)))
+beta  = log(MI / MN)
+
+x = "ACGTTATACTACG"
+scorefun = function(x) {
+  s = unlist(strsplit(x, ""))
+  score = alpha[s[1]]
+  if (length(s) >= 2)
+    for (j in 2:length(s))
+      score = score + beta[s[j-1], s[j]]
+  score
+}
+scorefun(x)
+```
+
+```{r}
+generateRandomScores = function(s, len = 100, B = 1000) {
+  alphFreq = alphabetFrequency(s)
+  isGoodSeq = rowSums(alphFreq[, 5:ncol(alphFreq)]) == 0
+  s = s[isGoodSeq]
+  slen = sapply(s, length)
+  prob = pmax(slen - len, 0)
+  prob = prob / sum(prob)
+  idx  = sample(length(s), B, replace = TRUE, prob = prob)
+  ssmp = s[idx]
+  start = sapply(ssmp, function(x) sample(length(x) - len, 1))
+  scores = sapply(seq_len(B), function(i)
+    scorefun(as.character(ssmp[[i]][start[i]+(1:len)]))
+  )
+  scores / len
+}
+scoresCGI    = generateRandomScores(seqCGI)
+scoresNonCGI = generateRandomScores(seqNonCGI)
+```
+
+```{r}
+br = seq(-0.6, 0.8, length.out = 50)
+h1 = hist(scoresCGI,    breaks = br, plot = FALSE)
+h2 = hist(scoresNonCGI, breaks = br, plot = FALSE)
+plot(h1, col = rgb(0, 0, 1, 1/4), xlim = c(-0.5, 0.5), ylim=c(0,120))
+plot(h2, col = rgb(1, 0, 0, 1/4), add = TRUE)
+```
+
+## Resumen de este capítulo
+
+En este capítulo experimentamos el yoga básico de la estadística: cómo volver de los datos a las posibles distribuciones generadoras y cómo estimar los parámetros que definen estas distribuciones. Modelos estadísticos Mostramos algunos modelos estadísticos específicos para experimentos con resultados categóricos (binomial y multinomial).
+
+* **Bondad de ajuste:** Se uso diferentes visualizaciones y mostramos cómo ejecutar experimentos de simulación para probar si los datos podrían ajustarse a un modelo multinomial justo de cuatro cajas. Se encontró la estadística chi-cuadrado y vimos cómo comparar la simulación y la teoría usando un gráfico qq.
+
+* **Estimación:** Se explicó los procedimientos de estimación de máxima verosimilitud y bayesianos. Estos enfoques se ilustraron con ejemplos relacionados con el descubrimiento de patrones de nucleótidos y estimaciones de haplotipos.
+
+* **Distribuciones anteriores y posteriores:** Al evaluar datos de un tipo que se ha estudiado previamente, como los haplotipos, puede ser beneficioso calcular la distribución posterior de los datos. Esto permite incorporar la incertidumbre en la toma de decisiones, mediante un simple cálculo. La elección del anterior tiene poco efecto en el resultado siempre que haya suficientes datos.
+
+* **Islas CpG y cadenas de Markov:** Se vio cómo las transiciones de la cadena de Markov pueden modelar las dependencias a lo largo de las secuencias de ADN. Esto se uso para generar puntajes basados en proporciones de probabilidad que nos permiten ver si las secuencias largas de ADN provienen de islas CpG o no. Cuando se hizó el histograma de puntajes, se vio una característica notable: parecía estar hecho de dos piezas.
+
+## Ejercicios 
+
+### Pregunta N° 1
+
+Una secuencia de tres nucleótidos (un codón ) tomada en una región codificante de un gen se puede transcribir en uno de los 20 aminoácidos posibles. Decimos que el código genético es redundante: hay varias formas de deletrear cada aminoácido.
+
+La multiplicidad (el número de codones que codifican para el mismo aminoácido) varía de 2 a 6. Las diferentes grafías de codones de cada aminoácido no ocurren con las mismas probabilidades. Veamos los datos de la cepa de laboratorio estándar de tuberculosis (H37Rv): 
+El conjunto de datos se encuentra disponible en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+
+```{r}
+mtb = read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/M_tuberculosis.txt", header = TRUE)
+head(mtb, n = 4)
+```
+
+Los codones para el aminoácido prolina son de la forma $C |C| ∗ ⊕ $, y ocurren con las siguientes frecuencias en Mycobacterium turberculosis: 
+
+```{r}
+pro  =  mtb[ mtb$AmAcid == "Pro", "Number"]
+pro/sum(pro)
+```
+
+a) Explorar los datos mtbusando tablepara tabular las AmAcid y Codon .
+b) ¿Cómo fue el PerThousvariable creada?
+c) Escriba una función R que pueda aplicar a la tabla para encontrar cuál de los aminoácidos muestra el sesgo de codón , es decir, la desviación más fuerte de la distribución uniforme entre sus posibles grafías. 
+
+### pregunta N° 2
+
+Muestre el contenido de GC en una ventana en ejecución a lo largo de la secuencia de Staphylococcus Aureus . Leer en una fasta de un archivo.
+
+El conjunto de datos se encuentra disponible en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+
+```{r}
+staph = readDNAStringSet("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/staphsequence.ffn.txt", "fasta")
+```
+
+a) Mirar el completo staphobjeto y luego mostrar las primeras tres secuencias en el conjunto. 
+
+```{r}
+staph[1:3, ]
+staph
+```
+
+b) Encuentre el contenido de GC en tsequence windows de ancho 100. 
+
+```{r}
+letterFrequency(staph[[1]], letters = "ACGT", OR = 0)
+
+GCstaph = data.frame(
+  ID = names(staph),
+  GC = rowSums(alphabetFrequency(staph)[, 2:3] / width(staph)) * 100
+)
+```
+
+c) Muestre el contenido de GC en una ventana deslizante como una fracción.
+
+```{r}
+window = 100
+gc = rowSums( letterFrequencyInSlidingView(staph[[364]], window,
+      c("G","C")))/window
+plot(x = seq(along = gc), y = gc, type = "l")
+```
+
+d) ¿Cómo podríamos visualizar las tendencias generales de estas proporciones a lo largo de la secuencia? 
+
+```{r}
+plot(x = seq(along = gc), y = gc, type = "l")
+lines(lowess(x = seq(along = gc), y = gc, f = 0.2), col = 2)
+
+```
+

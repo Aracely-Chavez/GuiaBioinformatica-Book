@@ -1,0 +1,1855 @@
+--- 
+title: "Guía de Bioestadistica"
+author: ""
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Introdución 
+
+
+
+
+<!--chapter:end:index.Rmd-->
+
+# CAPÍTULO N° 2 - Modelamiento Estadístico
+
+**Capítulo N° 2 recuperado de [Estadísticas modernas para la biología moderna](https://web.stanford.edu/class/bios221/book/Chap-Models.html)**
+
+Hay dos partes en el procedimiento de modelado. Primero se  necesita una distribución para modelar el proceso de generación de datos. Los datos de conteo discretos pueden modelarse mediante distribuciones de probabilidad simples, como las distribuciones binomial, multinomial o de Poisson.
+
+**Paquetes**
+
+```{r}
+#install.packages("pacman")
+library(pacman)
+p_load("vcd", "Biostrings","HardyWeinberg","seqLogo","markovchain","igraph","Biostrings","BSgenome",
+       "BSgenome.Ecoli.NCBI.20080805","Renext","BSgenome.Hsapiens.UCSC.hg19","Gviz")
+
+```
+
+## Un ejemplo simple de modelado estadístico 
+
+Descargar el conjunto de datos de [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/e100.RData)
+
+```{r}
+#Cargar el archivo "e100.RData"
+
+load("../data/e100.RData")
+e99 = e100[-which.max(e100)]
+barplot(table(e99), space = 0.8, col = "chartreuse4")
+```
+
+Rootograma que muestra la raíz cuadrada de los valores teóricos como puntos rojos y la raíz cuadrada de las frecuencias observadas como rectángulos desplegables
+
+```{r}
+#library("vcd")
+gf1 = goodfit( e99, "poisson")
+rootogram(gf1, xlab = "", rect_gp = gpar(fill = "chartreuse4"))
+```
+
+
+### Estimación del parámetro de la distribución de Poisson 
+
+```{r}
+#Cantidad de datos por categoria 
+table(e100)
+```
+
+Se prueba diferentes valores para la media de Poisson y se cuál se ajusta mejor datos.
+
+```{r}
+table(rpois(100, 3))
+
+prod(dpois(c(0, 1, 2, 7), lambda = 3))
+```
+
+
+### Función de verosimilitud de λ 
+
+```{r}
+loglikelihood  =  function(lambda, data = e100) {
+  sum(log(dpois(data, lambda)))
+}
+
+lambdas = seq(0.05, 0.95, length = 100)
+loglik = vapply(lambdas, loglikelihood, numeric(1))
+m0 = mean(e100)
+m0
+```
+
+
+```{r}
+plot(lambdas, loglik, type = "l", col = "red", ylab = "", lwd = 2,
+     xlab = expression(lambda))
+abline(v = m0, col = "blue", lwd = 2)
+abline(h = loglikelihood(m0), col = "purple", lwd = 2)
+```
+
+La curva roja es la función logarítmica de verosimilitud. La línea vertical muestra el valor de m (la media) y la línea horizontal el log-verosimilitud de m.
+
+
+```{r}
+gf  =  goodfit(e100, "poisson")
+names(gf)
+gf$par
+```
+La salida de goodfites un objeto compuesto llamado lista. Uno de sus componentes se llama par y contiene los valores de los parámetros ajustados para la distribución estudiada. En este caso es solo un número, la estimación de λ . 
+
+## Distribuciones binomiales y máxima verosimilitud 
+
+```{r}
+cb  =  c(rep(0, 110), rep(1, 10))
+table(cb)
+mean(cb)
+```
+
+
+Si se calcula la probabilidad de muchos posibles p , Se puede trazar y ver dónde cae su máximo. 
+
+```{r}
+probs  =  seq(0, 0.3, by = 0.005)
+likelihood = dbinom(sum(cb), prob = probs, size = length(cb))
+plot(probs, likelihood, pch = 16, xlab = "probability of success",
+       ylab = "likelihood", cex=0.6)
+probs[which.max(likelihood)]
+```
+
+```{r}
+stopifnot(abs(probs[which.max(likelihood)]-1/12) < diff(probs[1:2]))
+```
+
+
+```{r}
+#verosimilitud 
+
+loglikelihood = function(theta, n = 300, k = 40) {
+  115 + k * log(theta) + (n - k) * log(1 - theta)
+}
+
+thetas = seq(0, 1, by = 0.001)
+plot(thetas, loglikelihood(thetas), xlab = expression(theta),
+  ylab = expression(paste("log f(", theta, " | y)")),type = "l")
+```
+
+## Más casillas:datos multinomiales 
+
+### Sesgo de nucleótidos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+```{r}
+p_load("Biostrings")
+staph = readDNAStringSet("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/staphsequence.ffn.txt", "fasta")
+staph
+
+```
+
+```{r}
+#primer gen
+staph[1]
+```
+
+```{r}
+letterFrequency(staph[[1]], letters = "ACGT", OR = 0)
+```
+
+```{r}
+letterFrq = vapply(staph, letterFrequency, FUN.VALUE = numeric(4),
+         letters = "ACGT", OR = 0)
+colnames(letterFrq) = paste0("gene", seq(along = staph))
+tab10 = letterFrq[, 1:10]
+computeProportions = function(x) { x/sum(x) }
+prop10 = apply(tab10, 2, computeProportions)
+round(prop10, digits = 2)
+```
+
+```{r}
+p0 = rowMeans(prop10)
+p0
+
+cs = colSums(tab10)
+cs
+
+expectedtab10 = outer(p0, cs, FUN = "*")
+round(expectedtab10)
+
+randomtab10 = sapply(cs, function(s) { rmultinom(1, s, p0) } )
+all(colSums(randomtab10) == cs)
+```
+
+```{r}
+stat = function(obsvd, exptd = 20 * pvec) {
+   sum((obsvd - exptd)^2 / exptd)
+}
+B = 1000
+simulstat = replicate(B, {
+  randomtab10 = sapply(cs, function(s) { rmultinom(1, s, p0) })
+  stat(randomtab10, expectedtab10)
+})
+S1 = stat(tab10, expectedtab10)
+sum(simulstat >= S1)
+```
+
+```{r}
+hist(simulstat, col = "lavender", breaks = seq(0, 75, length.out=50))
+abline(v = S1, col = "red")
+abline(v = quantile(simulstat, probs = c(0.95, 0.99)),
+       col = c("darkgreen", "blue"), lty = 2)
+```
+
+## La distribución Chi-Cuadrado
+
+### Intermezzo: cuantiles y gráfico cuantil-cuantil 
+
+```{r}
+qs = ppoints(100)
+quantile(simulstat, qs)
+quantile(qchisq(qs, df = 30), qs)
+```
+
+¿Cómo se calcula el cuantil para cualquier número entre 0 y 1, incluidos los que no son múltiplos de 1 / n?
+
+```{r}
+qqplot(qchisq(ppoints(B), df = 30), simulstat, main = "",
+  xlab = expression(chi[nu==30]^2), asp = 1, cex = 0.5, pch = 16)
+abline(a = 0, b = 1, col = "red")
+```
+```{r}
+1 - pchisq(S1, df = 30)
+```
+
+## Regla de Chargaff
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/ChargaffTable.RData)
+
+```{r}
+load("../data/ChargaffTable.RData")
+ChargaffTable
+```
+
+```{r}
+stopifnot(nrow(ChargaffTable) == 8)
+mycolors = c("chocolate", "aquamarine4", "cadetblue4", "coral3",
+            "chartreuse4","darkgoldenrod4","darkcyan","brown4")
+par(mfrow=c(2, 4), mai = c(0, 0.7, 0.7, 0))
+for (i in 1:8) {
+  cbp = barplot(ChargaffTable[i, ], horiz = TRUE, axes = FALSE, axisnames = FALSE, col = mycolors[i])
+  ax = axis(3, las = 2, labels = FALSE, col = mycolors[i], cex = 0.5, at = c(0, 10, 20))
+  mtext(side = 3, at = ax,  text = paste(ax), col = mycolors[i], line = 0, las = 1, cex = 0.9)
+  mtext(side = 2, at = cbp, text = colnames(ChargaffTable), col = mycolors[i], line = 0, las = 2, cex = 1)
+  title(paste(rownames(ChargaffTable)[i]), col = mycolors[i], cex = 1.1)
+}
+```
+
+### Dos variables categóricas 
+
+```{r}
+statChf = function(x){
+  sum((x[, "C"] - x[, "G"])^2 + (x[, "A"] - x[, "T"])^2)
+}
+chfstat = statChf(ChargaffTable)
+permstat = replicate(100000, {
+     permuted = t(apply(ChargaffTable, 1, sample))
+     colnames(permuted) = colnames(ChargaffTable)
+     statChf(permuted)
+})
+pChf = mean(permstat <= chfstat)
+pChf
+hist(permstat, breaks = 100, main = "", col = "lavender")
+abline(v = chfstat, lwd = 2, col = "red")
+```
+
+```{r}
+# tabla de contingencia 
+HairEyeColor[,, "Female"]
+str(HairEyeColor)
+```
+
+### **Daltonismo y sexo**
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/Deuteranopia.RData)
+
+```{r}
+#browseURL("https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/Deuteranopia.RData")
+
+load("../data/Deuteranopia.RData")
+Deuteranopia
+
+```
+
+Se postula el modelo nulo con dos binomios independientes: uno para sexo y otro para daltonismo. Bajo este modelo se puede estimar todas las probabilidades multinomiales de las celdas y se puede comparar los conteos observados con los esperados. 
+
+```{r}
+chisq.test(Deuteranopia)
+```
+
+### Un multinomio especial: equilibrio de Hardy-Weinberg 
+
+
+```{r}
+library("HardyWeinberg")
+data("Mourant")
+Mourant[214:216,]
+```
+
+```{r}
+nMM = Mourant$MM[216]
+nMN = Mourant$MN[216]
+nNN = Mourant$NN[216]
+loglik = function(p, q = 1 - p) {
+  2 * nMM * log(p) + nMN * log(2*p*q) + 2 * nNN * log(q)
+}
+xv = seq(0.01, 0.99, by = 0.01)
+yv = loglik(xv)
+plot(x = xv, y = yv, type = "l", lwd = 2,
+     xlab = "p", ylab = "log-likelihood")
+imax = which.max(yv)
+abline(v = xv[imax], h = yv[imax], lwd = 1.5, col = "blue")
+abline(h = yv[imax], lwd = 1.5, col = "purple")
+```
+
+```{r}
+#utilizando el affunción del HardyWeinberg
+phat  =  af(c(nMM, nMN, nNN))
+phat
+
+pMM   =  phat^2
+qhat  =  1 - phat
+
+#Los valores esperados bajo el equilibrio de Hardy-Weinberg son entonces 
+
+pHW = c(MM = phat^2, MN = 2*phat*qhat, NN = qhat^2)
+sum(c(nMM, nMN, nNN)) * pHW
+
+```
+
+### Comparación visual con el equilibrio de Hardy-Weinberg 
+
+```{r}
+pops = c(1, 69, 128, 148, 192)
+genotypeFrequencies = as.matrix(Mourant[, c("MM", "MN", "NN")])
+HWTernaryPlot(genotypeFrequencies[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+```
+
+```{r}
+HWTernaryPlot(genotypeFrequencies[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+HWTernaryPlot(genotypeFrequencies[-pops, ], alpha = 0.0001,
+   newframe = FALSE, cex = 0.5)
+```
+
+```{r}
+newgf = round(genotypeFrequencies / 50)
+HWTernaryPlot(newgf[pops, ],
+        markerlab = Mourant$Country[pops],
+        alpha = 0.0001, curvecols = c("red", rep("purple", 4)),
+        mcex = 0.75, vertex.cex = 1)
+```
+
+
+### Concatenación de varios multinomios: motivos de secuencia y logos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/kozak.RData)
+
+```{r}
+library("seqLogo")
+load("../data/kozak.RData")
+kozak
+```
+
+Aquí hay un diagrama llamado logotipo de secuencia para el multinomio dependiente de la posición que se usa para modelar el motivo Kozak. Codifica la cantidad de variación en cada una de las posiciones en una escala logarítmica. Las letras grandes representan posiciones en las que no hay incertidumbre sobre qué nucleótido se produce.
+
+```{r}
+pwm = makePWM(kozak)
+seqLogo(pwm, ic.scale = FALSE)
+```
+
+## Modelado de dependencias secuenciales: cadenas de Markov 
+
+```{r}
+library("markovchain")
+library("igraph")
+sequence = toupper(c("a", "c", "a", "c", "g", "t", "t", "t", "t", "c",
+"c", "a", "c", "g", "t", "a", "c","c","c","a","a","a","t","a",
+"c","g","g","c","a","t","g","t","g","t","g","a","g","c","t","g"))
+mcFit   =  markovchainFit(data = sequence)
+MCgraph =  markovchain:::.getNet(mcFit$estimate, round = TRUE)
+edgelab =  round(E(MCgraph)$weight / 100, 2)
+par(mai=c(0,0,0,0))
+plot.igraph(MCgraph, edge.label = edgelab,
+       vertex.size = 40, xlim = c(-1, 1.25))
+```
+
+## Pensamiento bayesiano 
+
+### Haplotipos 
+
+El conjunto de datos se encuentra en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/haplotype6.txt)
+
+```{r}
+haplo6=read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/haplotype6.txt",header = TRUE)
+haplo6
+```
+
+### Estudio de simulación del paradigma bayesiano para el binomio
+
+```{r}
+library(ggplot2)
+dfbetas = data.frame(
+  p = rep(thetas, 3),
+  dbeta = c(dbeta(thetas,  10,  30),
+            dbeta(thetas,  20,  60), 
+            dbeta(thetas,  50, 150)),
+  pars = rep(c("Beta(10,30)", "Beta(20,60)", "Beta(50,150)"), each = length(thetas)))
+ggplot(dfbetas) +
+  geom_line(aes(x = p, y = dbeta, colour = pars)) +
+  theme(legend.title = element_blank()) +
+  geom_vline(aes(xintercept = 0.25), colour = "#990000", linetype = "dashed")
+
+```
+
+### La distribución de Y 
+
+```{r}
+rtheta = rbeta(100000, 50, 350)
+y = vapply(rtheta, function(th) {
+  rbinom(1, prob = th, size = 300)
+}, numeric(1))
+hist(y, breaks = 50, col = "orange", main = "", xlab = "")
+```
+
+```{r}
+thetaPostEmp = rtheta[ y == 40 ]
+hist(thetaPostEmp, breaks = 40, col = "chartreuse4", main = "",
+  probability = TRUE, xlab = expression("posterior"~theta))
+densPostTheory  =  dbeta(thetas, 90, 610)
+lines(thetas, densPostTheory, type="l", lwd = 3)
+```
+
+```{r}
+mean(thetaPostEmp)
+dtheta = thetas[2]-thetas[1]
+sum(thetas * densPostTheory * dtheta)
+```
+
+```{r}
+thetaPostMC = rbeta(n = 1e6, 90, 610)
+mean(thetaPostMC)
+```
+
+```{r}
+qqplot(thetaPostMC, thetaPostEmp, type = "l", asp = 1)
+abline(a = 0, b = 1, col = "blue")
+```
+
+### La distribución posterior también es una beta. 
+
+```{r}
+densPost2 = dbeta(thetas, 115, 735)
+mcPost2   = rbeta(1e6, 115, 735)
+
+sum(thetas * densPost2 * dtheta)  # media por integración númerica
+
+mean(mcPost2) 
+
+thetas[which.max(densPost2)]    # MAP estimate
+```
+
+### Declaraciones de confianza para el parámetro de proporción
+
+```{r}
+quantile(mcPost2, c(0.025, 0.975))
+```
+
+## Ejemplo: aparición de un patrón de nucleótidos en un genoma 
+
+```{r}
+library("Biostrings")
+
+library("BSgenome")
+ag = available.genomes()
+length(ag)
+ag[1:2]
+```
+
+```{r}
+# ocurrencia de la AGGAGGTmotivo
+library("BSgenome.Ecoli.NCBI.20080805")
+Ecoli
+shineDalgarno = "AGGAGGT"
+ecoli = Ecoli$NC_010473
+```
+
+```{r}
+#contar la ocurrencia del patrón en ventanas de ancho 50000 
+
+window = 50000
+starts = seq(1, length(ecoli) - window, by = window)
+ends   = starts + window - 1
+numMatches = vapply(seq_along(starts), function(i) {
+  countPattern(shineDalgarno, ecoli[starts[i]:ends[i]],
+               max.mismatch = 0)
+  }, numeric(1))
+table(numMatches)
+```
+
+```{r}
+sdMatches = matchPattern(shineDalgarno, ecoli, max.mismatch = 0)
+```
+
+Escribir sdMatchesen la línea de comando R para obtener un resumen de este objeto. Contiene las ubicaciones de las 65 coincidencias de patrones, representadas como un conjunto de las llamadas vistas de la secuencia original.
+
+```{r}
+betweenmotifs = gaps(sdMatches)
+```
+
+```{r}
+library("Renext")
+expplot(width(betweenmotifs), rate = 1/mean(width(betweenmotifs)),
+        labels = "fit")
+```
+
+### Modelado en el caso de dependencias 
+
+```{r}
+library("BSgenome.Hsapiens.UCSC.hg19")
+
+chr8  =  Hsapiens$chr8
+CpGtab = read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/model-based-cpg-islands-hg19.txt",
+                    header = TRUE)
+nrow(CpGtab)
+head(CpGtab)
+```
+
+```{r}
+irCpG = with(dplyr::filter(CpGtab, chr == "chr8"),
+         IRanges(start = start, end = end))
+grCpG = GRanges(ranges = irCpG, seqnames = "chr8", strand = "+")
+genome(grCpG) = "hg19"
+```
+
+
+```{r}
+library("Gviz")
+ideo = IdeogramTrack(genome = "hg19", chromosome = "chr8")
+plotTracks(
+  list(GenomeAxisTrack(),
+    AnnotationTrack(grCpG, name = "CpG"), ideo),
+    from = 2200000, to = 5800000,
+    shape = "box", fill = "#006400", stacking = "dense")
+```
+
+```{r}
+CGIview    = Views(unmasked(Hsapiens$chr8), irCpG)
+NonCGIview = Views(unmasked(Hsapiens$chr8), gaps(irCpG))
+```
+
+```{r}
+seqCGI      = as(CGIview, "DNAStringSet")
+seqNonCGI   = as(NonCGIview, "DNAStringSet")
+dinucCpG    = sapply(seqCGI, dinucleotideFrequency)
+dinucNonCpG = sapply(seqNonCGI, dinucleotideFrequency)
+dinucNonCpG[, 1]
+```
+
+```{r}
+NonICounts = rowSums(dinucNonCpG)
+IslCounts  = rowSums(dinucCpG)
+```
+
+```{r}
+#cadena de Markov de cuatro estados
+TI  = matrix( IslCounts, ncol = 4, byrow = TRUE)
+TnI = matrix(NonICounts, ncol = 4, byrow = TRUE)
+dimnames(TI) = dimnames(TnI) =
+  list(c("A", "C", "G", "T"), c("A", "C", "G", "T"))
+```
+
+```{r}
+MI = TI /rowSums(TI)
+MI
+MN = TnI / rowSums(TnI)
+MN
+```
+
+```{r}
+#relación logarítmica de verosimilitud
+freqIsl = alphabetFrequency(seqCGI, baseOnly = TRUE,collapse = TRUE)[1:4]
+freqIsl / sum(freqIsl)
+freqNon = alphabetFrequency(seqNonCGI, baseOnly = TRUE, collapse = TRUE)[1:4]
+freqNon / sum(freqNon)
+
+alpha = log((freqIsl/sum(freqIsl)) / (freqNon/sum(freqNon)))
+beta  = log(MI / MN)
+
+x = "ACGTTATACTACG"
+scorefun = function(x) {
+  s = unlist(strsplit(x, ""))
+  score = alpha[s[1]]
+  if (length(s) >= 2)
+    for (j in 2:length(s))
+      score = score + beta[s[j-1], s[j]]
+  score
+}
+scorefun(x)
+```
+
+```{r}
+generateRandomScores = function(s, len = 100, B = 1000) {
+  alphFreq = alphabetFrequency(s)
+  isGoodSeq = rowSums(alphFreq[, 5:ncol(alphFreq)]) == 0
+  s = s[isGoodSeq]
+  slen = sapply(s, length)
+  prob = pmax(slen - len, 0)
+  prob = prob / sum(prob)
+  idx  = sample(length(s), B, replace = TRUE, prob = prob)
+  ssmp = s[idx]
+  start = sapply(ssmp, function(x) sample(length(x) - len, 1))
+  scores = sapply(seq_len(B), function(i)
+    scorefun(as.character(ssmp[[i]][start[i]+(1:len)]))
+  )
+  scores / len
+}
+scoresCGI    = generateRandomScores(seqCGI)
+scoresNonCGI = generateRandomScores(seqNonCGI)
+```
+
+```{r}
+br = seq(-0.6, 0.8, length.out = 50)
+h1 = hist(scoresCGI,    breaks = br, plot = FALSE)
+h2 = hist(scoresNonCGI, breaks = br, plot = FALSE)
+plot(h1, col = rgb(0, 0, 1, 1/4), xlim = c(-0.5, 0.5), ylim=c(0,120))
+plot(h2, col = rgb(1, 0, 0, 1/4), add = TRUE)
+```
+
+## Resumen de este capítulo
+
+En este capítulo experimentamos el yoga básico de la estadística: cómo volver de los datos a las posibles distribuciones generadoras y cómo estimar los parámetros que definen estas distribuciones. Modelos estadísticos Mostramos algunos modelos estadísticos específicos para experimentos con resultados categóricos (binomial y multinomial).
+
+* **Bondad de ajuste:** Se uso diferentes visualizaciones y mostramos cómo ejecutar experimentos de simulación para probar si los datos podrían ajustarse a un modelo multinomial justo de cuatro cajas. Se encontró la estadística chi-cuadrado y vimos cómo comparar la simulación y la teoría usando un gráfico qq.
+
+* **Estimación:** Se explicó los procedimientos de estimación de máxima verosimilitud y bayesianos. Estos enfoques se ilustraron con ejemplos relacionados con el descubrimiento de patrones de nucleótidos y estimaciones de haplotipos.
+
+* **Distribuciones anteriores y posteriores:** Al evaluar datos de un tipo que se ha estudiado previamente, como los haplotipos, puede ser beneficioso calcular la distribución posterior de los datos. Esto permite incorporar la incertidumbre en la toma de decisiones, mediante un simple cálculo. La elección del anterior tiene poco efecto en el resultado siempre que haya suficientes datos.
+
+* **Islas CpG y cadenas de Markov:** Se vio cómo las transiciones de la cadena de Markov pueden modelar las dependencias a lo largo de las secuencias de ADN. Esto se uso para generar puntajes basados en proporciones de probabilidad que nos permiten ver si las secuencias largas de ADN provienen de islas CpG o no. Cuando se hizó el histograma de puntajes, se vio una característica notable: parecía estar hecho de dos piezas.
+
+## Ejercicios 
+
+### Pregunta N° 1
+
+Una secuencia de tres nucleótidos (un codón ) tomada en una región codificante de un gen se puede transcribir en uno de los 20 aminoácidos posibles. Decimos que el código genético es redundante: hay varias formas de deletrear cada aminoácido.
+
+La multiplicidad (el número de codones que codifican para el mismo aminoácido) varía de 2 a 6. Las diferentes grafías de codones de cada aminoácido no ocurren con las mismas probabilidades. Veamos los datos de la cepa de laboratorio estándar de tuberculosis (H37Rv): 
+El conjunto de datos se encuentra disponible en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+
+```{r}
+mtb = read.table("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/M_tuberculosis.txt", header = TRUE)
+head(mtb, n = 4)
+```
+
+Los codones para el aminoácido prolina son de la forma $C |C| ∗ ⊕ $, y ocurren con las siguientes frecuencias en Mycobacterium turberculosis: 
+
+```{r}
+pro  =  mtb[ mtb$AmAcid == "Pro", "Number"]
+pro/sum(pro)
+```
+
+a) Explorar los datos mtbusando tablepara tabular las AmAcid y Codon .
+b) ¿Cómo fue el PerThousvariable creada?
+c) Escriba una función R que pueda aplicar a la tabla para encontrar cuál de los aminoácidos muestra el sesgo de codón , es decir, la desviación más fuerte de la distribución uniforme entre sus posibles grafías. 
+
+### pregunta N° 2
+
+Muestre el contenido de GC en una ventana en ejecución a lo largo de la secuencia de Staphylococcus Aureus . Leer en una fasta de un archivo.
+
+El conjunto de datos se encuentra disponible en [este link](https://github.com/unalmdei/GuiaBioinformatica/blob/master/Datos/Cap2/staphsequence.ffn.txt)
+
+```{r}
+staph = readDNAStringSet("https://raw.githubusercontent.com/unalmdei/GuiaBioinformatica/master/Datos/Cap2/staphsequence.ffn.txt", "fasta")
+```
+
+a) Mirar el completo staphobjeto y luego mostrar las primeras tres secuencias en el conjunto. 
+
+```{r}
+staph[1:3, ]
+staph
+```
+
+b) Encuentre el contenido de GC en tsequence windows de ancho 100. 
+
+```{r}
+letterFrequency(staph[[1]], letters = "ACGT", OR = 0)
+
+GCstaph = data.frame(
+  ID = names(staph),
+  GC = rowSums(alphabetFrequency(staph)[, 2:3] / width(staph)) * 100
+)
+```
+
+c) Muestre el contenido de GC en una ventana deslizante como una fracción.
+
+```{r}
+window = 100
+gc = rowSums( letterFrequencyInSlidingView(staph[[364]], window,
+      c("G","C")))/window
+plot(x = seq(along = gc), y = gc, type = "l")
+```
+
+d) ¿Cómo podríamos visualizar las tendencias generales de estas proporciones a lo largo de la secuencia? 
+
+```{r}
+plot(x = seq(along = gc), y = gc, type = "l")
+lines(lowess(x = seq(along = gc), y = gc, f = 0.2), col = 2)
+
+```
+
+
+<!--chapter:end:01-C2-Modelamiento-Estadistico.Rmd-->
+
+# CAPÍTULO N° 3 - Gráficos de alta calidad en R
+
+## Objetivos del capítulo
+
+* Aprenda a explorar conjuntos de datos de forma rápida y flexible mediante visualización.
+
+* Cree tramas hermosas e intuitivas para presentaciones y publicaciones científicas.
+
+* Revise los conceptos básicos del trazado de base R.
+
+* Comprender la lógica detrás de la de gráficos concepto
+
+* Introducir ggplot2 _ ggplotfunción.
+
+* Vea cómo trazar datos en una, dos o incluso de tres a cinco dimensiones, y explore las facetas.
+
+* Cree gráficos "a lo largo del genoma" para datos de biología molecular (oa lo largo de otras secuencias, por ejemplo, péptidos).
+
+* Discuta algunas de nuestras opciones de gráficos interactivos.
+    
+**Paquetes** 
+
+```{r}
+library(pacman)
+p_load("xkcd","showtext","sysfonts","tibble")
+```
+
+##  Trazado base R 
+
+En el siguiente código, cuya salida se muestra en la Figura 3.2 , se utiliza para trazar datos de un ensayo de inmunoabsorción ligado a enzimas (ELISA). El ensayo se utilizó para cuantificar la actividad de la enzima desoxirribonucleasa (DNasa), que degrada el ADN.
+
+
+```{r}
+head(DNase)
+plot(DNase$conc, DNase$density)
+```
+
+
+Gráfica de concentración frente a densidad para un ensayo ELISA de DNasa. 
+
+```{r}
+plot(DNase$conc, DNase$density,
+  ylab = attr(DNase, "labels")$y,
+  xlab = paste(attr(DNase, "labels")$x, attr(DNase, "units")$x),
+  pch = 3,
+  col = "blue")
+```
+
+**Pregunta 3.1**
+
+Anotar columnas de marcos de datos con "metadatos", como descripciones más largas, unidades físicas, información de procedencia, etc., parece una función útil. ¿Es esta forma de almacenar dicha información, como en el DNaseobjeto, estandarizado o común en todo el ecosistema R? ¿Hay otras formas estandarizadas o comunes para hacer esto? 
+
+**Solución**
+
+```{r}
+hist(DNase$density, breaks=25, main = "")
+boxplot(density ~ Run, data = DNase)
+```
+
+Los diagramas de caja son convenientes para mostrar múltiples distribuciones una al lado de la otra en un espacio compacto.
+
+## Un conjunto de datos de ejemplo 
+
+Se usará un conjunto de datos de microarrays de expresión génica que informa los transcriptomas de alrededor de 100 células individuales de embriones de ratón en diferentes momentos del desarrollo temprano. El embrión de mamífero comienza como una sola célula, el óvulo fertilizado. A través de ondas sincronizadas de divisiones celulares, el óvulo se multiplica en un grupo de células que al principio no muestran diferencias perceptibles entre ellas. Sin embargo, en algún momento, las células eligen diferentes linajes. Mediante una especificación cada vez mayor, surgen los diferentes tipos de células y tejidos que se necesitan para un organismo completo. El objetivo del experimento, fue investigar los cambios en la expresión génica asociados con el primer evento de ruptura de simetría en el embrión.
+
+Más detalles del documento en [Hiiragi 2013](https://bioconductor.org/packages/release/data/experiment/html/Hiiragi2013.html)
+
+```{r, warning=FALSE, message=FALSE}
+p_load("Hiiragi2013")
+data("x")
+dim(Biobase::exprs(x))
+```
+Echando un vistazo a la información disponible sobre las muestras.
+
+```{r}
+head(pData(x), n = 2)
+```
+
+La información proporcionada es una combinación de información sobre las células (es decir, edad, tamaño y genotipo del embrión del que se obtuvieron) e información técnica (fecha de escaneo, nombre del archivo de datos sin procesar). Por convención, el tiempo de desarrollo del embrión de ratón se mide en días. Además, en el artículo los autores dividieron las células en 8 grupos biológicos ( sampleGroup), en función de la edad, el genotipo y el linaje, y definieron un esquema de colores para representar estos grupos ( sampleColour )
+
+```{r}
+p_load("dplyr")
+groups = group_by(pData(x), sampleGroup) %>%
+  summarise(n = n(), color = unique(sampleColour))
+groups
+```
+
+```{r}
+## f(x) %>% g(y) %>% h
+## h(g(f(x), y))
+```
+
+## ggplot2
+
+```{r}
+p_load("ggplot2")
+ggplot(DNase, aes(x = conc, y = density)) + geom_point()
+```
+
+Ahora pasemos a los datos de una sola celda del ratón y tracemos el número de muestras para cada uno de los 8 grupos usando el ggplotfunción.
+
+```{r}
+ggplot(groups, aes(x = sampleGroup, y = n)) +
+  geom_bar(stat = "identity")
+```
+
+### Estética
+
+```{r}
+groupColor = setNames(groups$color, groups$sampleGroup)
+ggplot(groups, aes(x = sampleGroup, y = n, fill = sampleGroup)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = groupColor, name = "Groups") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+Además añadimos una llamada al scale_fill_manualfunción, que toma como entrada un mapa de colores, es decir, el mapeo de los valores posibles de una variable a los colores asociados, como un vector con nombre. Si hubiéramos omitido la llamada a scale_fill_manual, ggplot2 habría usado su elección de colores predeterminados. También agregamos una llamada a theme indicando que queremos la x -etiquetas de eje giradas 90 grados y alineadas a la derecha ( hjust; el valor predeterminado sería al centro). 
+
+### Flujo de datos 
+
+```{r}
+gg = ggplot(DNase, aes(x = conc, y = density)) + geom_point()
+gg
+print(gg)
+```
+
+### Guardar cifras 
+ggplot2 tiene una función integrada para guardar gráficos llamada ggsave:
+
+```{r}
+ggplot2::ggsave("DNAse-histogram-demo.pdf", plot = gg)
+```
+
+
+```{r}
+file.remove("DNAse-histogram-demo.pdf")
+```
+
+## La gramática de los gráficos 
+
+```{r}
+p_load("mouse4302.db")
+```
+
+
+```{r}
+dftx = data.frame(t(Biobase::exprs(x)), pData(x))
+ggplot( dftx, aes( x = X1426642_at, y = X1418765_at)) +
+  geom_point( shape = 1 ) +
+  geom_smooth( method = "loess" )
+```
+
+Usando colores:
+
+```{r, message=FALSE, warning=FALSE}
+stopifnot(is(dftx, "data.frame"))
+ggplot( dftx, aes( x = X1426642_at, y = X1418765_at ))  +
+  geom_point( aes( color = sampleColour), shape = 19 ) +
+  geom_smooth( method = "loess" ) +
+  scale_color_discrete( guide = "none" )
+```
+
+**Pregunta 3.3**
+
+¿Siempre tiene sentido visualizar los datos del diagrama de dispersión junto con una línea de regresión como en las Figuras 3.9 y 3.10 ?
+
+Aparte, si queremos averiguar qué genes son el objetivo de estos identificadores de sonda y qué podrían hacer, podemos llamar: 
+
+```{r}
+p_load("mouse4302.db")
+AnnotationDbi::select(mouse4302.db,
+   keys = c("1426642_at", "1418765_at"), keytype = "PROBEID",
+   columns = c("SYMBOL", "GENENAME"))
+```
+
+
+```{r}
+dfx = as.data.frame(Biobase::exprs(x))
+ggplot(dfx, aes(x = `20 E3.25`)) + geom_histogram(binwidth = 0.2)
+```
+
+**Pregunta 3.4**
+
+¿Cuál es la diferencia entre los objetos dfxy dftx? ¿Por qué necesitábamos crearlos a ambos?
+
+Volvamos al ejemplo anterior del gráfico de barras. 
+
+```{r}
+pb = ggplot(groups, aes(x = sampleGroup, y = n))
+```
+
+```{r}
+class(pb)
+pb
+```
+
+Ahora podemos simplemente agregar los otros componentes de nuestra trama usando el "+":
+
+```{r}
+pb = pb + geom_bar(stat = "identity")
+pb = pb + aes(fill = sampleGroup)
+pb = pb + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+pb = pb + scale_fill_manual(values = groupColor, name = "Groups")
+pb
+```
+
+
+```{r}
+pb.polar = pb + coord_polar() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 1),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank()) +
+  xlab("") + ylab("")
+pb.polar
+```
+
+## Visualización de datos en 1D 
+
+```{r}
+selectedProbes = c( Fgf4 = "1420085_at", Gata4 = "1418863_at",
+                   Gata6 = "1425463_at",  Sox2 = "1416967_at")
+```
+
+
+```{r}
+p_load("reshape2")
+genes = melt(Biobase::exprs(x)[selectedProbes, ],
+             varnames = c("probe", "sample"))
+```
+
+Por si acaso, también agregamos una columna que proporciona el símbolo del gen junto con los identificadores de la sonda.
+
+```{r}
+genes$gene =
+  names(selectedProbes)[match(genes$probe, selectedProbes)]
+head(genes)
+```
+
+### Diagramas de barras 
+
+```{r}
+ggplot(genes, aes(x = gene, y = value)) +
+  stat_summary(fun = mean, geom = "bar")
+```
+
+
+```{r}
+p_load("Hmisc")
+ggplot(genes, aes( x = gene, y = value, fill = gene)) +
+  stat_summary(fun = mean, geom = "bar") +
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar",
+               width = 0.25)
+```
+
+Gráficos de barras con barras de error que indican el error estándar de la media. 
+
+### Diagramas de caja 
+
+```{r}
+p = ggplot(genes, aes( x = gene, y = value, fill = gene))
+p + geom_boxplot()
+p + geom_dotplot(binaxis = "y", binwidth = 1/6,
+       stackdir = "center", stackratio = 0.75,
+       aes(color = gene))
+p_load("ggbeeswarm")
+p + geom_beeswarm(aes(color = gene))
+```
+
+### violín 
+
+```{r}
+p + geom_violin()
+```
+### Diagramas de densidad 
+
+```{r}
+ggplot(genes, aes( x = value, color = gene)) + geom_density()
+```
+
+```{r}
+p_load("ggridges")
+ggplot(genes, aes(x = value, y = gene, fill = gene)) + 
+  geom_density_ridges()
+```
+
+### Gráficos ECDF 
+
+```{r}
+simdata = rnorm(70)
+tibble(index = seq(along = simdata),
+          sx = sort(simdata)) %>%
+ggplot(aes(x = sx, y = index)) + geom_step()
+```
+
+```{r}
+ggplot(genes, aes( x = value, color = gene)) + stat_ecdf()
+```
+
+Funciones de distribución acumulativa empírica (ECDF).
+
+### El efecto de las transformaciones sobre las densidades
+
+```{r}
+ggplot(dfx, aes(x = `64 E4.5 (EPI)`)) + geom_histogram(bins = 100)
+ggplot(dfx, aes(x = 2 ^ `64 E4.5 (EPI)`)) + 
+  geom_histogram(binwidth = 20) + xlim(0, 1500)
+```
+
+## Visualización de datos en 2D: diagramas de dispersión 
+
+```{r}
+scp = ggplot(dfx, aes(x = `59 E4.5 (PE)` ,
+                      y = `92 E4.5 (FGF4-KO)`))
+scp + geom_point()
+```
+
+```{r}
+scp  + geom_point(alpha = 0.1)
+```
+
+### Representada como un gráfico de contorno de la estimación de densidad 2D.
+
+```{r}
+scp + geom_density2d()
+```
+
+ 
+```{r}
+scp + geom_density2d(h = 0.5, bins = 60)
+```
+
+
+```{r}
+p_load("RColorBrewer")
+colorscale = scale_fill_gradientn(
+    colors = rev(brewer.pal(9, "YlGnBu")),
+    values = c(0, exp(seq(-5, 0, length.out = 100))))
+scp + stat_density2d(h = 0.5, bins = 60,
+          aes( fill = ..level..), geom = "polygon") +
+  colorscale + coord_fixed()
+
+scp + geom_hex() + coord_fixed()
+scp + geom_hex(binwidth = c(0.2, 0.2)) + colorscale +
+  coord_fixed()
+```
+
+### Trazar formas 
+
+```{r}
+p_load("ggthemes")
+sunsp = tibble(year   = time(sunspot.year),
+               number = as.numeric(sunspot.year))
+sp = ggplot(sunsp, aes(x = year, y = number)) + geom_line()
+sp
+ratio = with(sunsp, bank_slopes(year, number))
+sp + coord_fixed(ratio = ratio)
+```
+
+## Visualización de más de dos dimensiones 
+
+### Facetado 
+
+```{r}
+p_load("magrittr")
+dftx$lineage %<>% sub("^$", "no", .)
+dftx$lineage %<>% factor(levels = c("no", "EPI", "PE", "FGF4-KO"))
+ggplot(dftx, aes( x = X1426642_at, y = X1418765_at)) +
+  geom_point() + facet_grid( . ~ lineage )
+```
+
+
+```{r}
+ggplot( dftx,
+  aes( x = X1426642_at, y = X1418765_at)) + geom_point() +
+   facet_grid( Embryonic.day ~ lineage )
+```
+
+
+```{r}
+ggplot(mutate(dftx, Tdgf1 = cut(X1450989_at, breaks = 4)),
+   aes( x = X1426642_at, y = X1418765_at)) + geom_point() +
+   facet_wrap( ~ Tdgf1, ncol = 2 )
+```
+
+### Gráficos interactivos 
+
+```{r}
+p_load("plotly")
+plot_ly(economics, x = ~ date, y = ~ unemploy / pop)
+```
+
+```{r, message=FALSE, warning=FALSE}
+data("volcano")
+volcanoData = list(
+  x = 10 * seq_len(nrow(volcano)),
+  y = 10 * seq_len(ncol(volcano)),
+  z = volcano,
+  col = terrain.colors(500)[cut(volcano, breaks = 500)]
+)
+```
+
+## Color 
+
+```{r, message=FALSE, warning=FALSE}
+p_load("rgl")
+par(mai = rep(0,4))
+pie(rep(1, 8), col=1:8)
+## pie(rep(1, 8), col=1:8)
+```
+
+
+```{r}
+#display.brewer.all()
+head(brewer.pal.info)
+table(brewer.pal.info$category)
+```
+Las paletas se dividen en tres categorías:
+
+    cualitativo: para propiedades categóricas que no tienen un orden intrínseco. los Pairedpalette admite hasta 6 categorías, cada una de las cuales se divide en dos subcategorías, como antes y después , con y sin tratamiento, etc.
+
+    secuencial: para propiedades cuantitativas que van de menor a mayor
+
+    divergente: para propiedades cuantitativas para las que existe un punto medio natural o valor neutral, y cuyo valor puede desviarse tanto hacia arriba como hacia abajo.
+
+
+```{r}
+brewer.pal(4, "RdYlGn")
+mypalette  = colorRampPalette(
+    c("darkorange3", "white","darkblue")
+  )(100)
+head(mypalette)
+par(mai = rep(0.1, 4))
+image(matrix(1:100, nrow = 100, ncol = 10), col = mypalette,
+        xaxt = "n", yaxt = "n", useRaster = TRUE)
+```
+
+## Mapas de calor 
+
+```{r}
+p_load("pheatmap")
+topGenes = order(rowVars(Biobase::exprs(x)), decreasing = TRUE)[1:500]
+rowCenter = function(x) { x - rowMeans(x) }
+pheatmap( rowCenter(Biobase::exprs(x)[ topGenes, ] ),
+  show_rownames = FALSE, show_colnames = FALSE,
+  breaks = seq(-5, +5, length = 101),
+  annotation_col =
+    pData(x)[, c("sampleGroup", "Embryonic.day", "ScanDate") ],
+  annotation_colors = list(
+    sampleGroup = groupColor,
+    genotype = c(`FGF4-KO` = "chocolate1", `WT` = "azure2"),
+    Embryonic.day = setNames(brewer.pal(9, "Blues")[c(3, 6, 9)],
+                             c("E3.25", "E3.5", "E4.5")),
+    ScanDate = setNames(brewer.pal(nlevels(x$ScanDate), "YlGn"),
+                        levels(x$ScanDate))
+  ),
+  cutree_rows = 4
+)
+```
+
+
+```{r}
+groupColor[1]
+hexvals = sapply(1:3, function(i) substr(groupColor[1], i*2, i*2+1))
+decvals = strtoi(paste0("0x", hexvals))
+```
+
+
+```{r}
+p_load("colorspace","grid")
+plothcl = function(h, c, l, what, x0 = 0.5, y0 = 0.5, default.units = "npc", ...) {
+  switch(what,
+         "c" = {
+           stopifnot(length(l)==1)
+           n = length(c)
+         },
+         "l" = {
+           stopifnot(length(c)==1)
+           n = length(l)
+         },
+         stop("Sapperlot"))
+  cr = seq(0.1, 0.5, length = n+1)
+  dr = 0.05 / n
+  for (j in seq_len(n)) {
+    r = c(cr[j]+dr, cr[j+1]-dr)
+    for(i in 1:(length(h)-1)){
+      phi = seq(h[i], h[i+1], by=1)/180*pi
+      px = x0 + c(r[1]*cos(phi), r[2]*rev(cos(phi)))
+      py = y0 + c(r[1]*sin(phi), r[2]*rev(sin(phi)))
+      mycol = switch(what,
+        "c" = hcl(h=mean(h[i+(0:1)]), c=c[j], l=l),
+        "l" = hcl(h=mean(h[i+(0:1)]), c=c, l=l[j]))
+      grid.polygon(px, py, gp=gpar(col=mycol, fill=mycol),
+                   default.units=default.units,...)
+    }
+  }
+}
+```
+
+
+```{r}
+plothcl( h = seq(0, 360, by=3), c = seq(5, 75, by=10), l = 75,   what="c")
+grid.newpage()
+plothcl( h = seq(0, 360, by=3), c = 55, l = seq(20, 100, by=10), what="l")
+```
+
+## Transformaciones de datos 
+
+```{r}
+gg = ggplot(tibble(A = Biobase::exprs(x)[, 1], M = rnorm(length(A))),
+            aes(y = M))
+gg + geom_point(aes(x = A), size = 0.2)
+gg + geom_point(aes(x = rank(A)), size = 0.2)
+```
+
+## Símbolos matemáticos y otras fuentes 
+
+```{r}
+volume = function(rho, nu)
+            pi^(nu/2) * rho^nu / gamma(nu/2+1)
+ggplot(tibble(nu    = 1:15,
+  Omega = volume(1, nu)), aes(x = nu, y = Omega)) +
+geom_line() +
+xlab(expression(nu)) + ylab(expression(Omega)) +
+geom_text(label =
+"Omega(rho,nu)==frac(pi^frac(nu,2)~rho^nu, Gamma(frac(nu,2)+1))",
+  parse = TRUE, x = 6, y = 1.5)
+```
+
+
+```{r}
+ggplot(genes, aes( x = value, color = gene)) + stat_ecdf() +
+  theme(text = element_text(family = "Times"))
+ggplot(genes, aes( x = value, color = gene)) + stat_ecdf() + theme(text = element_text(family = "Bauhaus 93"))
+```
+
+## Datos genómicos 
+
+```{r, warning=FALSE, message=FALSE}
+p_load("ggbio")
+data("hg19IdeogramCyto", package = "biovizBase")
+plotIdeogram(hg19IdeogramCyto, subchr = "chr1")
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+
+p_load("GenomicRanges")
+data("darned_hg19_subset500", package = "biovizBase")
+autoplot(darned_hg19_subset500, layout = "karyogram",
+         aes(color = exReg, fill = exReg))
+```
+
+
+```{r}
+p_load("biovizBase")
+data("ideoCyto", package = "biovizBase")
+dn = darned_hg19_subset500
+seqlengths(dn) = seqlengths(ideoCyto$hg19)[names(seqlengths(dn))]
+dn = keepSeqlevels(dn, paste0("chr", c(1:22, "X")))
+autoplot(dn, layout = "karyogram", aes(color = exReg, fill = exReg))
+```
+
+<!--chapter:end:02-C3-Graficos-de-alta-calidad-en-R.Rmd-->
+
+# CAPÍTULO N° 4 - Modelos de mezcla
+
+## Objetivos de este capítulo
+
+* Genere sus propios datos de modelo mixto a partir de distribuciones compuestas por dos poblaciones normales.
+
+* Vea cómo el algoritmo Expectation-Maximization (EM) nos permite aplicar "ingeniería inversa" a las mezclas subyacentes en el conjunto de datos.
+
+* Use un tipo especial de combinación llamada inflación cero para datos como los datos ChIP-Seq que tienen muchos ceros adicionales.
+
+* Descubra la distribución acumulativa empírica: una mezcla especial que podemos construir a partir de los datos observados. Esto nos permitirá ver cómo podemos simular la variabilidad de nuestras estimaciones usando el bootstrap.
+
+* Construya la distribución de Laplace como una instancia de un modelo de mezcla infinita, con muchos componentes. Lo usaremos para modelar las longitudes de los promotores y las intensidades de los microarreglos.
+
+* Tenga nuestro primer encuentro con la distribución gamma-Poisson, un modelo jerárquico útil para los datos de RNA-Seq. Veremos que surge de forma natural al mezclar diferentes fuentes distribuidas de Poisson.
+
+* Vea cómo los modelos mixtos nos permiten elegir transformaciones de datos.
+
+**Paquetes** 
+
+```{r}
+#paquetes 
+library(pacman)
+p_load("ggplot2","dplyr")
+```
+
+## Mezclas finitas 
+
+### Ejemplos sencillos y experimentos informáticos 
+
+Tira una moneda justa.
+
+Genere un número aleatorio a partir de una distribución normal con media 1 y varianza 0,25. 
+
+
+```{r}
+coinflips = (runif(10000) > 0.5)
+table(coinflips)
+```
+
+```{r}
+oneFlip = function(fl, mean1 = 1, mean2 = 3, sd1 = 0.5, sd2 = 0.5) {
+  if (fl) {
+   rnorm(1, mean1, sd1)
+  } else {
+   rnorm(1, mean2, sd2)
+  }
+}
+fairmix = vapply(coinflips, oneFlip, numeric(1))
+ggplot(tibble(value = fairmix), aes(x = value)) +
+     geom_histogram(fill = "purple", binwidth = 0.1)
+```
+
+
+```{r}
+means = c(1, 3)
+sds   = c(0.5, 0.5)
+values = rnorm(length(coinflips),
+               mean = ifelse(coinflips, means[1], means[2]),
+               sd   = ifelse(coinflips, sds[1],   sds[2]))
+```
+
+```{r}
+fair = tibble(
+  coinflips = (runif(1e6) > 0.5),
+  values = rnorm(length(coinflips),
+                 mean = ifelse(coinflips, means[1], means[2]),
+                 sd   = ifelse(coinflips, sds[1],   sds[2])))
+ggplot(fair, aes(x = values)) +
+     geom_histogram(fill = "purple", bins = 500)
+```
+
+```{r}
+ggplot(dplyr::filter(fair, coinflips), aes(x = values)) +
+   geom_histogram(aes(y = ..density..), fill = "purple",
+                  binwidth = 0.01) +
+   stat_function(fun = dnorm,
+          args = list(mean = means[1], sd = sds[1]), color = "red")
+```
+
+Se puede escribir la fórmula matemática para la densidad de todos fair$values(la curva límite a la que tienden a parecerse los histogramas) como una suma de las dos densidades. 
+
+```{r}
+fairtheory = tibble(
+  x = seq(-1, 5, length.out = 1000),
+  f = 0.5 * dnorm(x, mean = means[1], sd = sds[1]) +
+      0.5 * dnorm(x, mean = means[2], sd = sds[2]))
+ggplot(fairtheory, aes(x = x, y = f)) +
+  geom_line(color = "red", size = 1.5) + ylab("mixture density")
+```
+
+
+```{r}
+mystery = tibble(
+  coinflips = (runif(1e3) > 0.5),
+  values = rnorm(length(coinflips),
+               mean = ifelse(coinflips, 1, 2),
+               sd   = ifelse(coinflips, sqrt(.5), sqrt(.5))))
+br2 = with(mystery, seq(min(values), max(values), length.out = 30))
+ggplot(mystery, aes(x = values)) +
+geom_histogram(fill = "purple", breaks = br2)
+```
+
+Las barras de las distribuciones de dos componentes se trazan una encima de la otra. Una forma diferente de mostrar los componentes es la producida por el siguiente código. 
+
+```{r}
+head(mystery, 3)
+br = with(mystery, seq(min(values), max(values), length.out = 30))
+ggplot(mystery, aes(x = values)) +
+  geom_histogram(data = dplyr::filter(mystery, coinflips),
+     fill = "red", alpha = 0.2, breaks = br) +
+  geom_histogram(data = dplyr::filter(mystery, !coinflips),
+     fill = "darkblue", alpha = 0.2, breaks = br) 
+```
+
+```{r}
+ggplot(mystery, aes(x = values, fill = coinflips)) +
+  geom_histogram(data = dplyr::filter(mystery, coinflips),
+     fill = "red", alpha = 0.2, breaks = br) +
+  geom_histogram(data = dplyr::filter(mystery, !coinflips),
+     fill = "darkblue", alpha = 0.2, breaks = br) +
+  geom_histogram(fill = "purple", breaks = br, alpha = 0.2)
+```
+
+### Descubriendo las etiquetas de clase ocultas 
+
+**Pregunta**
+
+Supongamos que tenemos dos monedas injustas, cuyas probabilidades de cara son p1 = 0.125 y p2= 0,25 . Con probabilidad π elegimos la moneda 1, con probabilidad 1 − π , moneda 2. Luego lanzamos esa moneda dos veces y registramos el número de caras K.
+
+Suponiendo que  se tiene una mezcla de dos normales con parámetros medios desconocidos y desviaciones estándar 1 ; por lo tanto, ($ μ1 = ? , μ2 = ? , σ 1 = σ 2 = 1 $) . Aquí hay un ejemplo de datos generados de acuerdo con dicho modelo. las etiquetas eres tu . 
+```{r}
+mus = c(-0.5, 1.5)
+lambda = 0.5
+u = sample(2, size = 100, replace = TRUE, prob = c(lambda, 1-lambda))
+x = rnorm(length(u), mean = mus[u])
+dux = tibble(u, x)
+head(dux)
+```
+
+Se puede estimar las medias usando MLE (Error cuadratico medio, Mean squared error) separados para cada grupoLa maximización se puede dividir en dos partes independientes y resolver como si se tuviera dos MLE diferentes para encontrar:
+
+```{r}
+group_by(dux, u) |> summarize(mu = mean(x), sigma = sd(x))
+table(dux$u) / nrow(dux)
+```
+
+### Modelos para datos inflados a cero 
+
+```{r}
+p_load("mosaics","mosaicsExample")
+
+datafiles = c("../data/wgEncodeSydhTfbsGm12878Stat1StdAlnRep1_chr22_sorted.bam_fragL200_bin200.txt",
+              "../data/wgEncodeSydhTfbsGm12878InputStdAlnRep1_chr22_sorted.bam_fragL200_bin200.txt")
+binTFBS = readBins(type = c("chip", "input"), fileName = datafiles)
+binTFBS
+```
+El número de sitios de unión encontrados en ventanas de 200 nt a lo largo del cromosoma 22 en un conjunto de datos de ChIP-Seq. 
+
+```{r}
+bincts = print(binTFBS)
+ggplot(bincts, aes(x = tagCount)) +
+  geom_histogram(binwidth = 1, fill = "forestgreen")
+```
+
+```{r}
+ggplot(bincts, aes(x = tagCount)) + scale_y_log10() +
+   geom_histogram(binwidth = 1, fill = "forestgreen")
+```
+
+### Más de dos componentes 
+
+```{r}
+masses = c(A =  331, C =  307, G =  347, T =  322)
+probs  = c(A = 0.12, C = 0.38, G = 0.36, T = 0.14)
+N  = 7000
+sd = 3
+nuclt   = sample(length(probs), N, replace = TRUE, prob = probs)
+quadwts = rnorm(length(nuclt),
+                mean = masses[nuclt],
+                sd   = sd)
+ggplot(tibble(quadwts = quadwts), aes(x = quadwts)) +
+  geom_histogram(bins = 100, fill = "purple")
+```
+
+## Distribuciones empíricas y bootstrap no paramétrico 
+
+```{r}
+library("HistData")
+ZeaMays$diff
+ggplot(ZeaMays, aes(x = diff, ymax = 1/15, ymin = 0)) +
+  geom_linerange(size = 1, col = "forestgreen") + ylim(0, 0.1)
+```
+
+Usando estas ideas, intentemos estimar la distribución muestral de la mediana de las diferencias de Zea Mays que vimos.
+
+```{r}
+B = 1000
+meds = replicate(B, {
+  i = sample(15, 15, replace = TRUE)
+  median(ZeaMays$diff[i])
+})
+ggplot(tibble(medians = meds), aes(x = medians)) +
+  geom_histogram(bins = 30, fill = "purple")
+```
+
+## Mezclas infinitas 
+
+### Mezcla infinita de normales 
+
+Nivel 2: La w s sirven como las varianzas de las variables normales con media μ generado usando rnorm. 
+
+```{r}
+w = rexp(10000, rate = 1)
+mu  = 0.3
+lps = rnorm(length(w), mean = mu, sd = sqrt(w))
+ggplot(data.frame(lps), aes(x = lps)) +
+  geom_histogram(fill = "purple", binwidth = 0.1)
+```
+
+#### Laplace asimétrica
+
+```{r}
+mu = 0.3; sigma = 0.4; theta = -1
+w  = rexp(10000, 1)
+alps = rnorm(length(w), theta + mu * w, sigma * sqrt(w))
+ggplot(tibble(alps), aes(x = alps)) +
+  geom_histogram(fill = "purple", binwidth = 0.1)
+```
+
+Estas distribuciones de mezclas jerárquicas, donde cada instancia de los datos tiene su propia media y varianza, son modelos útiles en muchos entornos biológicos.
+
+### Mezclas infinitas de variables de Poisson
+
+```{r}
+ggplot(tibble(x = rgamma(10000, shape = 2, rate = 1/3)),
+   aes(x = x)) + geom_histogram(bins = 100, fill= "purple")
+ggplot(tibble(x = rgamma(10000, shape = 10, rate = 3/2)),
+   aes(x = x)) + geom_histogram(bins = 100, fill= "purple")
+```
+
+Mezcla Gamma-Poisson: un modelo jerárquico 
+
+```{r}
+lambda = rgamma(10000, shape = 10, rate = 3/2)
+gp = rpois(length(lambda), lambda = lambda)
+ggplot(tibble(x = gp), aes(x = x)) +
+  geom_histogram(bins = 100, fill= "purple")
+```
+```{r}
+p_load_gh("vcd")
+ofit = goodfit(gp, "nbinomial")
+plot(ofit, xlab = "")
+ofit$par
+```
+```{r}
+x    = 0:95
+mu   = 50
+vtot = 80
+v1   = vtot - mu
+scale = v1/mu    # 0.6
+shape = mu^2/v1  # 83.3
+p1   = dgamma(x = x, scale = 0.6, shape = 80)
+p2   = dpois(x = x, lambda = mu*1.2)
+p3   = dnbinom(x = x, mu = mu, size = mu^2/vtot)
+```
+
+```{r}
+p_load("RColorBrewer")
+cols = brewer.pal(8, "Paired")
+par(mfrow=c(3,1), mai=c(0.5, 0.5, 0.01, 0.01))
+xlim = x[c(1, length(x))]
+plot(NA, NA, xlim=xlim, ylim=c(0,0.07), type="n", ylab="", xlab="")
+polygon(x, p1, col=cols[1])
+abline(v=mu, col="black", lwd=3)
+abline(v=mu*1.2, col=cols[2], lty=2, lwd=3)
+plot(x, p2, col=cols[3], xlim=xlim, ylab="", xlab="", type="h", lwd=2)
+abline(v=mu*1.2, col=cols[2], lwd=2)
+abline(v=mu*1.1, col=cols[4], lty=2, lwd=3)
+plot(x, p3, col=cols[4], xlim=xlim, type="h", lwd=2, ylab="", xlab="")
+```
+
+### Transformaciones estabilizadoras de varianza
+
+```{r}
+p_load("ggbeeswarm")
+lambdas = seq(100, 900, by = 100)
+simdat = lapply(lambdas, function(l)
+    tibble(y = rpois(n = 40, lambda=l), lambda = l)
+  ) %>% bind_rows
+par(mfrow=c(2,1))
+ggplot(simdat, aes(x = lambda, y = y)) +
+  geom_beeswarm(alpha = 0.6, color = "purple")
+ggplot(simdat, aes(x = lambda, y = sqrt(y))) +
+  geom_beeswarm(alpha = 0.6, color = "purple")
+```
+
+Los datos que vemos en el panel izquierdo son un ejemplo de lo que se llama heteroscedasticidad : las desviaciones estándar (o, de manera equivalente, la varianza) de nuestros datos son diferentes en diferentes regiones de nuestro espacio de datos.
+
+```{r}
+summarise(group_by(simdat, lambda), sd(y), sd(2*sqrt(y)))
+```
+
+```{r}
+muvalues = 2^seq(0, 10, by = 1)
+simgp = lapply(muvalues, function(mu) {
+  u = rnbinom(n = 1e4, mu = mu, size = 4)
+  tibble(mean = mean(u), sd = sd(u),
+         lower = quantile(u, 0.025),
+         upper = quantile(u, 0.975),
+         mu = mu)
+  } ) %>% bind_rows
+head(as.data.frame(simgp), 2)
+ggplot(simgp, aes(x = mu, y = mean, ymin = lower, ymax = upper)) +
+  geom_point() + geom_errorbar()
+```
+
+**Pregunta** 
+
+¿Cómo podemos encontrar una transformación para estos datos que estabilice la varianza, similar a la función de raíz cuadrada para los datos distribuidos de Poisson? 
+
+```{r}
+simgp = mutate(simgp,
+  slopes = 1 / sd,
+  trsf   = cumsum(slopes * mean))
+ggplot(simgp, aes(x = mean, y = trsf)) +
+  geom_point() + geom_line() + xlab("")
+```
+
+## Resumen de este capítulo
+
+Se vio cómo el algoritmo EM ayuda a resolver un problema de optimización difícil al pretender iterativamente que conocemos una parte de la solución para calcular la otra parte, luego alternar para pretender que se conoce el otro componente y calcular la primera parte, y así sucesivamente. , hasta la convergencia.
+
+**Modelos de mezcla finita**
+
+Hemos visto cómo modelar mezclas de dos o más distribuciones normales con diferentes medias y varianzas. Hemos visto cómo descomponer una muestra dada de datos de tal mezcla, incluso sin conocer la variable latente, utilizando el algoritmo EM.
+
+**Modelos comunes de mezcla infinita**
+
+Los modelos de mezcla infinita son buenos para construir distribuciones nuevas (como la gamma-Poisson o Laplace) a partir de otras más básicas (como binomial, normal, Poisson). Los ejemplos comunes son
+
+    mezclas de normales (a menudo con un modelo jerárquico sobre las medias y las varianzas);
+
+    mezclas beta-binomiales – donde la probabilidad p en el binomio se genera según una beta ( a , b ) 
+
+    distribución;
+
+    gamma-Poisson para recuentos de lectura (consulte el Capítulo 8 );
+
+    gamma-exponencial para PCR.
+
+**Aplicaciones**
+
+Los modelos de mezcla son útiles cuando hay varias capas de variabilidad experimental. Por ejemplo, en la capa más baja, nuestra precisión de medición puede estar limitada por límites físicos básicos de detección, y estos pueden modelarse mediante una distribución de Poisson en el caso de un ensayo basado en conteo, o una distribución normal en el caso de la medición continua.
+
+Los modelos mixtos reflejan que a menudo hay cantidades heterogéneas de variabilidad (variaciones) en los datos. En tales casos, son necesarias transformaciones de datos adecuados, es decir, transformaciones de estabilización de varianza, antes de la visualización o el análisis posterior. 
+Otra aplicación importante del modelado de mezclas es el modelo de dos componentes en pruebas múltiples.
+
+El ECDF y el arranque
+
+Vimos que al usar la muestra observada como una mezcla podíamos generar muchas muestras simuladas que nos informan sobre la distribución muestral de una estimación. Este método se llama bootstrap y volveremos a él varias veces, ya que proporciona una forma de evaluar las estimaciones incluso cuando no se dispone de fórmulas analíticas (decimos que no es paramétrico).
+
+## Ejercicios 
+
+```{r}
+f = function(x, a) 
+  ifelse (a==0, 
+    sqrt(x), 
+    log(2*sqrt(a) * sqrt(x*(a*x+1)) + 2*a*x+1) / (2*sqrt(a)))
+x  = seq(0, 24, by = 0.1)
+df = lapply(c(0, 0.05*2^(0:5)), 
+       function(a) tibble(x = x, a = a, y = f(x, a))) %>% bind_rows()
+ggplot(df, aes(x = x, y = y, col = factor(a))) + geom_line() + 
+    theme(legend.position = "bottom") + labs(col = expression(alpha))
+```
+
+### Ejercicio 4.1
+
+El algoritmo EM paso a paso. Como conjunto de datos de ejemplo, usamos los valores en el archivo Myst.rds. Como siempre, es una buena idea visualizar primero los datos. El histograma se muestra en la figura 4.27 . Vamos a modelar estos datos como una mezcla de dos distribuciones normales con medias desconocidas y desviaciones estándar. Llamaremos a los dos componentes A y B. 
+```{r}
+mx = readRDS("../data/Myst.rds")$yvar
+str(mx)
+ggplot(tibble(mx), aes(x = mx)) + geom_histogram(binwidth = 0.025)
+```
+
+```{r}
+wA = runif(length(mx))
+wB = 1 - wA
+```
+
+```{r}
+iter      = 0
+loglik    = -Inf
+delta     = +Inf
+tolerance = 1e-3
+miniter   = 50
+maxiter   = 1000
+```
+```{r}
+while((delta > tolerance) && (iter <= maxiter) || (iter < miniter)) {
+  lambda = mean(wA)
+  muA = weighted.mean(mx, wA)
+  muB = weighted.mean(mx, wB)
+  sdA = sqrt(weighted.mean((mx - muA)^2, wA))
+  sdB = sqrt(weighted.mean((mx - muB)^2, wB))
+  pA   =    lambda    * dnorm(mx, mean = muA, sd = sdA)
+  pB   = (1 - lambda) * dnorm(mx, mean = muB, sd = sdB)
+  ptot = pA + pB
+  wA   = pA / ptot
+  wB   = pB / ptot
+  loglikOld = loglik
+  loglik = sum(log(pA)) + sum(log(pB))
+  delta = abs(loglikOld - loglik)
+  iter = iter + 1
+}
+iter
+```
+```{r}
+c(lambda, muA, muB, sdA, sdB)
+```
+
+Las primeras cinco líneas de la whilebucle implementar el paso . Estimamos los parámetros del modelo de mezcla utilizando los estimadores de máxima verosimilitud: la fracción de mezcla lambdapor medio de pA, y los parámetros de los dos componentes de la distribución normal ( muA, sdA) y ( muB, sdB) por las medias muestrales y las desviaciones estándar muestrales. Dado que no tenemos membresías de grupos binarios, pero las membresías probabilísticas pAy pB, usamos media ponderada (función weighted.mean) y desviación estándar para estas estimaciones. 
+
+Finalmente, comparemos nuestras estimaciones con las de la función
+
+```{r}
+gm = mixtools::normalmixEM(mx, k = 2)
+with(gm, c(lambda[1], mu, sigma))
+```
+
+###  Ejercicio 4.2 
+
+Ejemplos de modelado de mezclas para regresión . El paquete [flexmix](https://cran.r-project.org/web/packages/flexmix) (Grün, Scharl y Leisch 2012 ) nos permite agrupar y ajustar las regresiones a los datos al mismo tiempo. El paso M estándar FLXMRglmde flexmix es una interfaz para las instalaciones de modelado lineal generalizado de R (el glmfunción). Cargue el paquete y un conjunto de datos de ejemplo. 
+
+a) Primero, grafique los datos y trate de adivinar cómo se generaron los puntos.
+
+b) Ajuste un modelo de mezcla de dos componentes usando los comandos.
+```{r}
+p_load("flexmix")
+data("NPreg")
+m1 = flexmix(yn ~ x + I(x^2), data = NPreg, k = 2)
+```
+
+c) Observe los parámetros estimados de los componentes de la mezcla y elabore una tabla de verdad que clasifique de forma cruzada las clases verdaderas frente a las pertenencias a grupos. ¿Qué significa el resumen del objeto? m1¿muéstranos? 
+
+```{r}
+ggplot(NPreg, aes(x = x, y = yn)) + geom_point()
+```
+
+```{r}
+modeltools::parameters(m1, component = 1)
+modeltools::parameters(m1, component = 2)
+```
+
+```{r}
+table(NPreg$class, modeltools::clusters(m1))
+```
+
+Para nuestros datos de ejemplo, las proporciones de ambos componentes son aproximadamente 0,7, lo que indica la superposición de las clases en la sección transversal de la línea y la parábola.
+
+```{r}
+summary(m1)
+```
+
+El resumen muestra las probabilidades previas estimadas ${π}_{k}$ , el número de observaciones asignadas a los dos conglomerados, el número de observaciones donde ${p}_{nk} > δ$ (con un valor predeterminado de $δ = {10}^{− 4}$ ), y la razón de los dos últimos números. Para componentes bien separados, una gran proporción de observaciones con posteriores que no desaparecen ${p}_{nk}$ deben ser asignados a su grupo, dando una proporción cercana a 1. 
+
+```{r}
+NPreg = mutate(NPreg, gr = factor(class))
+ggplot(NPreg, aes(x = x, y = yn, group = gr)) +
+   geom_point(aes(colour = gr, shape = gr)) +
+   scale_colour_hue(l = 40, c = 180)
+```
+
+<!--chapter:end:03-C4-Modelos-de-mezcla.Rmd-->
+
+# Footnotes and citations 
+
+## Footnotes
+
+Footnotes are put inside the square brackets after a caret `^[]`. Like this one ^[This is a footnote.]. 
+
+## Citations
+
+Reference items in your bibliography file(s) using `@key`.
+
+For example, we are using the **bookdown** package [@R-bookdown] (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and **knitr** [@xie2015] (this citation was added manually in an external file book.bib). 
+Note that the `.bib` files need to be listed in the index.Rmd with the YAML `bibliography` key.
+
+
+The RStudio Visual Markdown Editor can also make it easier to insert citations: <https://rstudio.github.io/visual-markdown-editing/#/citations>
+
+<!--chapter:end:04-citations.Rmd-->
+
+# Blocks
+
+## Equations
+
+Here is an equation.
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation} 
+
+You may refer to using `\@ref(eq:binom)`, like see Equation \@ref(eq:binom).
+
+
+## Theorems and proofs
+
+Labeled theorems can be referenced in text using `\@ref(thm:tri)`, for example, check out this smart theorem \@ref(thm:tri).
+
+::: {.theorem #tri}
+For a right triangle, if $c$ denotes the *length* of the hypotenuse
+and $a$ and $b$ denote the lengths of the **other** two sides, we have
+$$a^2 + b^2 = c^2$$
+:::
+
+Read more here <https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html>.
+
+## Callout blocks
+
+
+The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html
+
+<!--chapter:end:05-blocks.Rmd-->
+
+# Sharing your book
+
+## Publishing
+
+HTML books can be published online, see: https://bookdown.org/yihui/bookdown/publishing.html
+
+## 404 pages
+
+By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a `_404.Rmd` or `_404.md` file to your project root and use code and/or Markdown syntax.
+
+## Metadata for sharing
+
+Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the `index.Rmd` YAML. To setup, set the `url` for your book and the path to your `cover-image` file. Your book's `title` and `description` are also used.
+
+
+
+This `gitbook` uses the same social sharing data across all chapters in your book- all links shared will look the same.
+
+Specify your book's source repository on GitHub using the `edit` key under the configuration options in the `_output.yml` file, which allows users to suggest an edit by linking to a chapter's source file. 
+
+Read more about the features of this output format here:
+
+https://pkgs.rstudio.com/bookdown/reference/gitbook.html
+
+Or use:
+
+```{r eval=FALSE}
+?bookdown::gitbook
+```
+
+
+
+<!--chapter:end:06-share.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:07-references.Rmd-->
+
