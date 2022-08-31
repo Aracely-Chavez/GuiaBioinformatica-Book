@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 CAPÍTULO N° 4 - Modelos de mezcla | A Minimal Book Example</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 CAPÍTULO N° 4 - Modelos de mezcla | A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 CAPÍTULO N° 4 - Modelos de mezcla | A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="John Doe" />
+
+
+<meta name="date" content="2022-08-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"/>
+<link rel="next" href="footnotes-and-citations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html"><i class="fa fa-check"></i><b>2</b> CAPÍTULO N° 2 - Modelamiento Estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-ejemplo-simple-de-modelado-estadístico"><i class="fa fa-check"></i><b>2.1</b> Un ejemplo simple de modelado estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estimación-del-parámetro-de-la-distribución-de-poisson"><i class="fa fa-check"></i><b>2.1.1</b> Estimación del parámetro de la distribución de Poisson</a></li>
+<li class="chapter" data-level="2.1.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#función-de-verosimilitud-de-λ"><i class="fa fa-check"></i><b>2.1.2</b> Función de verosimilitud de λ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#distribuciones-binomiales-y-máxima-verosimilitud"><i class="fa fa-check"></i><b>2.2</b> Distribuciones binomiales y máxima verosimilitud</a></li>
+<li class="chapter" data-level="2.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#más-casillasdatos-multinomiales"><i class="fa fa-check"></i><b>2.3</b> Más casillas:datos multinomiales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#sesgo-de-nucleótidos"><i class="fa fa-check"></i><b>2.3.1</b> Sesgo de nucleótidos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-chi-cuadrado"><i class="fa fa-check"></i><b>2.4</b> La distribución Chi-Cuadrado</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#intermezzo-cuantiles-y-gráfico-cuantil-cuantil"><i class="fa fa-check"></i><b>2.4.1</b> Intermezzo: cuantiles y gráfico cuantil-cuantil</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#regla-de-chargaff"><i class="fa fa-check"></i><b>2.5</b> Regla de Chargaff</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#dos-variables-categóricas"><i class="fa fa-check"></i><b>2.5.1</b> Dos variables categóricas</a></li>
+<li class="chapter" data-level="2.5.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#daltonismo-y-sexo"><i class="fa fa-check"></i><b>2.5.2</b> <strong>Daltonismo y sexo</strong></a></li>
+<li class="chapter" data-level="2.5.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-multinomio-especial-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.3</b> Un multinomio especial: equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#comparación-visual-con-el-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.4</b> Comparación visual con el equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#concatenación-de-varios-multinomios-motivos-de-secuencia-y-logos"><i class="fa fa-check"></i><b>2.5.5</b> Concatenación de varios multinomios: motivos de secuencia y logos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-de-dependencias-secuenciales-cadenas-de-markov"><i class="fa fa-check"></i><b>2.6</b> Modelado de dependencias secuenciales: cadenas de Markov</a></li>
+<li class="chapter" data-level="2.7" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pensamiento-bayesiano"><i class="fa fa-check"></i><b>2.7</b> Pensamiento bayesiano</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#haplotipos"><i class="fa fa-check"></i><b>2.7.1</b> Haplotipos</a></li>
+<li class="chapter" data-level="2.7.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estudio-de-simulación-del-paradigma-bayesiano-para-el-binomio"><i class="fa fa-check"></i><b>2.7.2</b> Estudio de simulación del paradigma bayesiano para el binomio</a></li>
+<li class="chapter" data-level="2.7.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-de-y"><i class="fa fa-check"></i><b>2.7.3</b> La distribución de Y</a></li>
+<li class="chapter" data-level="2.7.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-posterior-también-es-una-beta."><i class="fa fa-check"></i><b>2.7.4</b> La distribución posterior también es una beta.</a></li>
+<li class="chapter" data-level="2.7.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#declaraciones-de-confianza-para-el-parámetro-de-proporción"><i class="fa fa-check"></i><b>2.7.5</b> Declaraciones de confianza para el parámetro de proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejemplo-aparición-de-un-patrón-de-nucleótidos-en-un-genoma"><i class="fa fa-check"></i><b>2.8</b> Ejemplo: aparición de un patrón de nucleótidos en un genoma</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-en-el-caso-de-dependencias"><i class="fa fa-check"></i><b>2.8.1</b> Modelado en el caso de dependencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#resumen-de-este-capítulo"><i class="fa fa-check"></i><b>2.9</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="2.10" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejercicios"><i class="fa fa-check"></i><b>2.10</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-1"><i class="fa fa-check"></i><b>2.10.1</b> Pregunta N° 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-2"><i class="fa fa-check"></i><b>2.10.2</b> pregunta N° 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><i class="fa fa-check"></i><b>3</b> CAPÍTULO N° 3 - Gráficos de alta calidad en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#objetivos-del-capítulo"><i class="fa fa-check"></i><b>3.1</b> Objetivos del capítulo</a></li>
+<li class="chapter" data-level="3.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazado-base-r"><i class="fa fa-check"></i><b>3.2</b> Trazado base R</a></li>
+<li class="chapter" data-level="3.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#un-conjunto-de-datos-de-ejemplo"><i class="fa fa-check"></i><b>3.3</b> Un conjunto de datos de ejemplo</a></li>
+<li class="chapter" data-level="3.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#ggplot2"><i class="fa fa-check"></i><b>3.4</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#estética"><i class="fa fa-check"></i><b>3.4.1</b> Estética</a></li>
+<li class="chapter" data-level="3.4.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#flujo-de-datos"><i class="fa fa-check"></i><b>3.4.2</b> Flujo de datos</a></li>
+<li class="chapter" data-level="3.4.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#guardar-cifras"><i class="fa fa-check"></i><b>3.4.3</b> Guardar cifras</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#la-gramática-de-los-gráficos"><i class="fa fa-check"></i><b>3.5</b> La gramática de los gráficos</a></li>
+<li class="chapter" data-level="3.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-1d"><i class="fa fa-check"></i><b>3.6</b> Visualización de datos en 1D</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-barras"><i class="fa fa-check"></i><b>3.6.1</b> Diagramas de barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-caja"><i class="fa fa-check"></i><b>3.6.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="3.6.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#violín"><i class="fa fa-check"></i><b>3.6.3</b> violín</a></li>
+<li class="chapter" data-level="3.6.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>3.6.4</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="3.6.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-ecdf"><i class="fa fa-check"></i><b>3.6.5</b> Gráficos ECDF</a></li>
+<li class="chapter" data-level="3.6.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#el-efecto-de-las-transformaciones-sobre-las-densidades"><i class="fa fa-check"></i><b>3.6.6</b> El efecto de las transformaciones sobre las densidades</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-2d-diagramas-de-dispersión"><i class="fa fa-check"></i><b>3.7</b> Visualización de datos en 2D: diagramas de dispersión</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#representada-como-un-gráfico-de-contorno-de-la-estimación-de-densidad-2d."><i class="fa fa-check"></i><b>3.7.1</b> Representada como un gráfico de contorno de la estimación de densidad 2D.</a></li>
+<li class="chapter" data-level="3.7.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazar-formas"><i class="fa fa-check"></i><b>3.7.2</b> Trazar formas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-más-de-dos-dimensiones"><i class="fa fa-check"></i><b>3.8</b> Visualización de más de dos dimensiones</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#facetado"><i class="fa fa-check"></i><b>3.8.1</b> Facetado</a></li>
+<li class="chapter" data-level="3.8.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-interactivos"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos interactivos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#color"><i class="fa fa-check"></i><b>3.9</b> Color</a></li>
+<li class="chapter" data-level="3.10" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#mapas-de-calor"><i class="fa fa-check"></i><b>3.10</b> Mapas de calor</a></li>
+<li class="chapter" data-level="3.11" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#transformaciones-de-datos"><i class="fa fa-check"></i><b>3.11</b> Transformaciones de datos</a></li>
+<li class="chapter" data-level="3.12" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#símbolos-matemáticos-y-otras-fuentes"><i class="fa fa-check"></i><b>3.12</b> Símbolos matemáticos y otras fuentes</a></li>
+<li class="chapter" data-level="3.13" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#datos-genómicos"><i class="fa fa-check"></i><b>3.13</b> Datos genómicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html"><i class="fa fa-check"></i><b>4</b> CAPÍTULO N° 4 - Modelos de mezcla</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#objetivos-de-este-capítulo"><i class="fa fa-check"></i><b>4.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-finitas"><i class="fa fa-check"></i><b>4.2</b> Mezclas finitas</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejemplos-sencillos-y-experimentos-informáticos"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplos sencillos y experimentos informáticos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#descubriendo-las-etiquetas-de-clase-ocultas"><i class="fa fa-check"></i><b>4.2.2</b> Descubriendo las etiquetas de clase ocultas</a></li>
+<li class="chapter" data-level="4.2.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#modelos-para-datos-inflados-a-cero"><i class="fa fa-check"></i><b>4.2.3</b> Modelos para datos inflados a cero</a></li>
+<li class="chapter" data-level="4.2.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#más-de-dos-componentes"><i class="fa fa-check"></i><b>4.2.4</b> Más de dos componentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#distribuciones-empíricas-y-bootstrap-no-paramétrico"><i class="fa fa-check"></i><b>4.3</b> Distribuciones empíricas y bootstrap no paramétrico</a></li>
+<li class="chapter" data-level="4.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas"><i class="fa fa-check"></i><b>4.4</b> Mezclas infinitas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezcla-infinita-de-normales"><i class="fa fa-check"></i><b>4.4.1</b> Mezcla infinita de normales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas-de-variables-de-poisson"><i class="fa fa-check"></i><b>4.4.2</b> Mezclas infinitas de variables de Poisson</a></li>
+<li class="chapter" data-level="4.4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#transformaciones-estabilizadoras-de-varianza"><i class="fa fa-check"></i><b>4.4.3</b> Transformaciones estabilizadoras de varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#resumen-de-este-capítulo-1"><i class="fa fa-check"></i><b>4.5</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="4.6" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicios-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.1"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 4.1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.2"><i class="fa fa-check"></i><b>4.6.2</b> Ejercicio 4.2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="capítulo-n-4---modelos-de-mezcla" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> CAPÍTULO N° 4 - Modelos de mezcla<a href="capítulo-n-4---modelos-de-mezcla.html#capítulo-n-4---modelos-de-mezcla" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivos-de-este-capítulo" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Objetivos de este capítulo<a href="capítulo-n-4---modelos-de-mezcla.html#objetivos-de-este-capítulo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Genere sus propios datos de modelo mixto a partir de distribuciones compuestas por dos poblaciones normales.</p></li>
+<li><p>Vea cómo el algoritmo Expectation-Maximization (EM) nos permite aplicar “ingeniería inversa” a las mezclas subyacentes en el conjunto de datos.</p></li>
+<li><p>Use un tipo especial de combinación llamada inflación cero para datos como los datos ChIP-Seq que tienen muchos ceros adicionales.</p></li>
+<li><p>Descubra la distribución acumulativa empírica: una mezcla especial que podemos construir a partir de los datos observados. Esto nos permitirá ver cómo podemos simular la variabilidad de nuestras estimaciones usando el bootstrap.</p></li>
+<li><p>Construya la distribución de Laplace como una instancia de un modelo de mezcla infinita, con muchos componentes. Lo usaremos para modelar las longitudes de los promotores y las intensidades de los microarreglos.</p></li>
+<li><p>Tenga nuestro primer encuentro con la distribución gamma-Poisson, un modelo jerárquico útil para los datos de RNA-Seq. Veremos que surge de forma natural al mezclar diferentes fuentes distribuidas de Poisson.</p></li>
+<li><p>Vea cómo los modelos mixtos nos permiten elegir transformaciones de datos.</p></li>
+</ul>
+<p><strong>Paquetes</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#paquetes </span></span>
+<span id="cb1-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+</div>
+<div id="mezclas-finitas" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Mezclas finitas<a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-finitas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejemplos-sencillos-y-experimentos-informáticos" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Ejemplos sencillos y experimentos informáticos<a href="capítulo-n-4---modelos-de-mezcla.html#ejemplos-sencillos-y-experimentos-informáticos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tira una moneda justa.</p>
+<p>Genere un número aleatorio a partir de una distribución normal con media 1 y varianza 0,25.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb2-1" aria-hidden="true" tabindex="-1"></a>coinflips <span class="ot">=</span> (<span class="fu">runif</span>(<span class="dv">10000</span>) <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(coinflips)</span></code></pre></div>
+<pre><code>## coinflips
+## FALSE  TRUE 
+##  4962  5038</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-1" aria-hidden="true" tabindex="-1"></a>oneFlip <span class="ot">=</span> <span class="cf">function</span>(fl, <span class="at">mean1 =</span> <span class="dv">1</span>, <span class="at">mean2 =</span> <span class="dv">3</span>, <span class="at">sd1 =</span> <span class="fl">0.5</span>, <span class="at">sd2 =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb4-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (fl) {</span>
+<span id="cb4-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rnorm</span>(<span class="dv">1</span>, mean1, sd1)</span>
+<span id="cb4-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rnorm</span>(<span class="dv">1</span>, mean2, sd2)</span>
+<span id="cb4-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-8" aria-hidden="true" tabindex="-1"></a>fairmix <span class="ot">=</span> <span class="fu">vapply</span>(coinflips, oneFlip, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb4-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">value =</span> fairmix), <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="capítulo-n-4---modelos-de-mezcla.html#cb4-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb5-1" aria-hidden="true" tabindex="-1"></a>means <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb5-2" aria-hidden="true" tabindex="-1"></a>sds   <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb5-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb5-3" aria-hidden="true" tabindex="-1"></a>values <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(coinflips),</span>
+<span id="cb5-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">mean =</span> <span class="fu">ifelse</span>(coinflips, means[<span class="dv">1</span>], means[<span class="dv">2</span>]),</span>
+<span id="cb5-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb5-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">sd   =</span> <span class="fu">ifelse</span>(coinflips, sds[<span class="dv">1</span>],   sds[<span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-1" aria-hidden="true" tabindex="-1"></a>fair <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb6-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">coinflips =</span> (<span class="fu">runif</span>(<span class="fl">1e6</span>) <span class="sc">&gt;</span> <span class="fl">0.5</span>),</span>
+<span id="cb6-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(coinflips),</span>
+<span id="cb6-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">mean =</span> <span class="fu">ifelse</span>(coinflips, means[<span class="dv">1</span>], means[<span class="dv">2</span>]),</span>
+<span id="cb6-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sd   =</span> <span class="fu">ifelse</span>(coinflips, sds[<span class="dv">1</span>],   sds[<span class="dv">2</span>])))</span>
+<span id="cb6-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fair, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">bins =</span> <span class="dv">500</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(fair, coinflips), <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>,</span>
+<span id="cb7-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm,</span>
+<span id="cb7-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> means[<span class="dv">1</span>], <span class="at">sd =</span> sds[<span class="dv">1</span>]), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Se puede escribir la fórmula matemática para la densidad de todos fair$values(la curva límite a la que tienden a parecerse los histogramas) como una suma de las dos densidades.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-1" aria-hidden="true" tabindex="-1"></a>fairtheory <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">1000</span>),</span>
+<span id="cb8-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> means[<span class="dv">1</span>], <span class="at">sd =</span> sds[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> means[<span class="dv">2</span>], <span class="at">sd =</span> sds[<span class="dv">2</span>]))</span>
+<span id="cb8-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fairtheory, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> f)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;mixture density&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-1" aria-hidden="true" tabindex="-1"></a>mystery <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">coinflips =</span> (<span class="fu">runif</span>(<span class="fl">1e3</span>) <span class="sc">&gt;</span> <span class="fl">0.5</span>),</span>
+<span id="cb9-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(coinflips),</span>
+<span id="cb9-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">mean =</span> <span class="fu">ifelse</span>(coinflips, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb9-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">sd   =</span> <span class="fu">ifelse</span>(coinflips, <span class="fu">sqrt</span>(.<span class="dv">5</span>), <span class="fu">sqrt</span>(.<span class="dv">5</span>))))</span>
+<span id="cb9-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-6" aria-hidden="true" tabindex="-1"></a>br2 <span class="ot">=</span> <span class="fu">with</span>(mystery, <span class="fu">seq</span>(<span class="fu">min</span>(values), <span class="fu">max</span>(values), <span class="at">length.out =</span> <span class="dv">30</span>))</span>
+<span id="cb9-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mystery, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">breaks =</span> br2)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Las barras de las distribuciones de dos componentes se trazan una encima de la otra. Una forma diferente de mostrar los componentes es la producida por el siguiente código.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mystery, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   coinflips values
+##   &lt;lgl&gt;      &lt;dbl&gt;
+## 1 FALSE       2.08
+## 2 FALSE       2.58
+## 3 FALSE       1.87</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-1" aria-hidden="true" tabindex="-1"></a>br <span class="ot">=</span> <span class="fu">with</span>(mystery, <span class="fu">seq</span>(<span class="fu">min</span>(values), <span class="fu">max</span>(values), <span class="at">length.out =</span> <span class="dv">30</span>))</span>
+<span id="cb12-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mystery, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mystery, coinflips),</span>
+<span id="cb12-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">breaks =</span> br) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mystery, <span class="sc">!</span>coinflips),</span>
+<span id="cb12-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">breaks =</span> br) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mystery, <span class="fu">aes</span>(<span class="at">x =</span> values, <span class="at">fill =</span> coinflips)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mystery, coinflips),</span>
+<span id="cb13-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">breaks =</span> br) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(mystery, <span class="sc">!</span>coinflips),</span>
+<span id="cb13-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">breaks =</span> br) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">breaks =</span> br, <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="descubriendo-las-etiquetas-de-clase-ocultas" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Descubriendo las etiquetas de clase ocultas<a href="capítulo-n-4---modelos-de-mezcla.html#descubriendo-las-etiquetas-de-clase-ocultas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Pregunta</strong></p>
+<p>Supongamos que tenemos dos monedas injustas, cuyas probabilidades de cara son p1 = 0.125 y p2= 0,25 . Con probabilidad π elegimos la moneda 1, con probabilidad 1 − π , moneda 2. Luego lanzamos esa moneda dos veces y registramos el número de caras K.</p>
+<p>Suponiendo que se tiene una mezcla de dos normales con parámetros medios desconocidos y desviaciones estándar 1 ; por lo tanto, ($ μ1 = ? , μ2 = ? , σ 1 = σ 2 = 1 $) . Aquí hay un ejemplo de datos generados de acuerdo con dicho modelo. las etiquetas eres tu .</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-1" aria-hidden="true" tabindex="-1"></a>mus <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb14-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-2" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb14-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(lambda, <span class="dv">1</span><span class="sc">-</span>lambda))</span>
+<span id="cb14-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(u), <span class="at">mean =</span> mus[u])</span>
+<span id="cb14-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-5" aria-hidden="true" tabindex="-1"></a>dux <span class="ot">=</span> <span class="fu">tibble</span>(u, x)</span>
+<span id="cb14-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dux)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##       u       x
+##   &lt;int&gt;   &lt;dbl&gt;
+## 1     2  1.17  
+## 2     2  2.22  
+## 3     1 -0.775 
+## 4     1 -0.464 
+## 5     1 -0.0807
+## 6     1  0.893</code></pre>
+<p>Se puede estimar las medias usando MLE (Error cuadratico medio, Mean squared error) separados para cada grupoLa maximización se puede dividir en dos partes independientes y resolver como si se tuviera dos MLE diferentes para encontrar:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(dux, u) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">mu =</span> <span class="fu">mean</span>(x), <span class="at">sigma =</span> <span class="fu">sd</span>(x))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##       u     mu sigma
+##   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 -0.583 1.01 
+## 2     2  1.40  0.932</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dux<span class="sc">$</span>u) <span class="sc">/</span> <span class="fu">nrow</span>(dux)</span></code></pre></div>
+<pre><code>## 
+##    1    2 
+## 0.59 0.41</code></pre>
+</div>
+<div id="modelos-para-datos-inflados-a-cero" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Modelos para datos inflados a cero<a href="capítulo-n-4---modelos-de-mezcla.html#modelos-para-datos-inflados-a-cero" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;mosaics&quot;</span>,<span class="st">&quot;mosaicsExample&quot;</span>)</span>
+<span id="cb20-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb20-3" aria-hidden="true" tabindex="-1"></a>datafiles <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;../data/wgEncodeSydhTfbsGm12878Stat1StdAlnRep1_chr22_sorted.bam_fragL200_bin200.txt&quot;</span>,</span>
+<span id="cb20-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb20-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;../data/wgEncodeSydhTfbsGm12878InputStdAlnRep1_chr22_sorted.bam_fragL200_bin200.txt&quot;</span>)</span>
+<span id="cb20-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb20-5" aria-hidden="true" tabindex="-1"></a>binTFBS <span class="ot">=</span> <span class="fu">readBins</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;chip&quot;</span>, <span class="st">&quot;input&quot;</span>), <span class="at">fileName =</span> datafiles)</span></code></pre></div>
+<pre><code>## Info: reading and preprocessing bin-level data...</code></pre>
+<pre><code>## Info: data contains only one chromosome.</code></pre>
+<pre><code>## Info: done!</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb24-1" aria-hidden="true" tabindex="-1"></a>binTFBS</span></code></pre></div>
+<pre><code>## Summary: bin-level data (class: BinData)
+## ----------------------------------------
+## - # of chromosomes in the data: 1
+## - total effective tag counts: 462479
+##   (sum of ChIP tag counts of all bins)
+## - control sample is incorporated
+## - mappability score is NOT incorporated
+## - GC content score is NOT incorporated
+## - uni-reads are assumed
+## ----------------------------------------</code></pre>
+<p>El número de sitios de unión encontrados en ventanas de 200 nt a lo largo del cromosoma 22 en un conjunto de datos de ChIP-Seq.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb26-1" aria-hidden="true" tabindex="-1"></a>bincts <span class="ot">=</span> <span class="fu">print</span>(binTFBS)</span>
+<span id="cb26-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bincts, <span class="fu">aes</span>(<span class="at">x =</span> tagCount)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;forestgreen&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bincts, <span class="fu">aes</span>(<span class="at">x =</span> tagCount)) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb27-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb27-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;forestgreen&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 17 rows containing missing values (geom_bar).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="más-de-dos-componentes" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Más de dos componentes<a href="capítulo-n-4---modelos-de-mezcla.html#más-de-dos-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-1" aria-hidden="true" tabindex="-1"></a>masses <span class="ot">=</span> <span class="fu">c</span>(<span class="at">A =</span>  <span class="dv">331</span>, <span class="at">C =</span>  <span class="dv">307</span>, <span class="at">G =</span>  <span class="dv">347</span>, <span class="at">T =</span>  <span class="dv">322</span>)</span>
+<span id="cb30-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-2" aria-hidden="true" tabindex="-1"></a>probs  <span class="ot">=</span> <span class="fu">c</span>(<span class="at">A =</span> <span class="fl">0.12</span>, <span class="at">C =</span> <span class="fl">0.38</span>, <span class="at">G =</span> <span class="fl">0.36</span>, <span class="at">T =</span> <span class="fl">0.14</span>)</span>
+<span id="cb30-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-3" aria-hidden="true" tabindex="-1"></a>N  <span class="ot">=</span> <span class="dv">7000</span></span>
+<span id="cb30-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb30-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-5" aria-hidden="true" tabindex="-1"></a>nuclt   <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">length</span>(probs), N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> probs)</span>
+<span id="cb30-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-6" aria-hidden="true" tabindex="-1"></a>quadwts <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(nuclt),</span>
+<span id="cb30-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">mean =</span> masses[nuclt],</span>
+<span id="cb30-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">sd   =</span> sd)</span>
+<span id="cb30-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">quadwts =</span> quadwts), <span class="fu">aes</span>(<span class="at">x =</span> quadwts)) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="capítulo-n-4---modelos-de-mezcla.html#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+<div id="distribuciones-empíricas-y-bootstrap-no-paramétrico" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Distribuciones empíricas y bootstrap no paramétrico<a href="capítulo-n-4---modelos-de-mezcla.html#distribuciones-empíricas-y-bootstrap-no-paramétrico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;HistData&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: package &#39;HistData&#39; was built under R version 4.1.3</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb33-1" aria-hidden="true" tabindex="-1"></a>ZeaMays<span class="sc">$</span>diff</span></code></pre></div>
+<pre><code>##  [1]  6.125 -8.375  1.000  2.000  0.750  2.875  3.500  5.125  1.750  3.625
+## [11]  7.000  3.000  9.375  7.500 -6.000</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ZeaMays, <span class="fu">aes</span>(<span class="at">x =</span> diff, <span class="at">ymax =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">15</span>, <span class="at">ymin =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Usando estas ideas, intentemos estimar la distribución muestral de la mediana de las diferencias de Zea Mays que vimos.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb36-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-2" aria-hidden="true" tabindex="-1"></a>meds <span class="ot">=</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb36-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median</span>(ZeaMays<span class="sc">$</span>diff[i])</span>
+<span id="cb36-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb36-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">medians =</span> meds), <span class="fu">aes</span>(<span class="at">x =</span> medians)) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="mezclas-infinitas" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Mezclas infinitas<a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mezcla-infinita-de-normales" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Mezcla infinita de normales<a href="capítulo-n-4---modelos-de-mezcla.html#mezcla-infinita-de-normales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nivel 2: La w s sirven como las varianzas de las variables normales con media μ generado usando rnorm.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb37-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="fu">rexp</span>(<span class="dv">10000</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb37-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb37-2" aria-hidden="true" tabindex="-1"></a>mu  <span class="ot">=</span> <span class="fl">0.3</span></span>
+<span id="cb37-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb37-3" aria-hidden="true" tabindex="-1"></a>lps <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(w), <span class="at">mean =</span> mu, <span class="at">sd =</span> <span class="fu">sqrt</span>(w))</span>
+<span id="cb37-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(lps), <span class="fu">aes</span>(<span class="at">x =</span> lps)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div id="laplace-asimétrica" class="section level4 hasAnchor" number="4.4.1.1">
+<h4><span class="header-section-number">4.4.1.1</span> Laplace asimétrica<a href="capítulo-n-4---modelos-de-mezcla.html#laplace-asimétrica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb38-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fl">0.3</span>; sigma <span class="ot">=</span> <span class="fl">0.4</span>; theta <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb38-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb38-2" aria-hidden="true" tabindex="-1"></a>w  <span class="ot">=</span> <span class="fu">rexp</span>(<span class="dv">10000</span>, <span class="dv">1</span>)</span>
+<span id="cb38-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb38-3" aria-hidden="true" tabindex="-1"></a>alps <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(w), theta <span class="sc">+</span> mu <span class="sc">*</span> w, sigma <span class="sc">*</span> <span class="fu">sqrt</span>(w))</span>
+<span id="cb38-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(alps), <span class="fu">aes</span>(<span class="at">x =</span> alps)) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Estas distribuciones de mezclas jerárquicas, donde cada instancia de los datos tiene su propia media y varianza, son modelos útiles en muchos entornos biológicos.</p>
+</div>
+</div>
+<div id="mezclas-infinitas-de-variables-de-poisson" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Mezclas infinitas de variables de Poisson<a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas-de-variables-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)),</span>
+<span id="cb39-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb39-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill=</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="at">shape =</span> <span class="dv">10</span>, <span class="at">rate =</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)),</span>
+<span id="cb40-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb40-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill=</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<p>Mezcla Gamma-Poisson: un modelo jerárquico</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb41-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="at">shape =</span> <span class="dv">10</span>, <span class="at">rate =</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb41-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb41-2" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">=</span> <span class="fu">rpois</span>(<span class="fu">length</span>(lambda), <span class="at">lambda =</span> lambda)</span>
+<span id="cb41-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> gp), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill=</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load_gh</span>(<span class="st">&quot;vcd&quot;</span>)</span>
+<span id="cb42-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb42-2" aria-hidden="true" tabindex="-1"></a>ofit <span class="ot">=</span> <span class="fu">goodfit</span>(gp, <span class="st">&quot;nbinomial&quot;</span>)</span>
+<span id="cb42-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ofit, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ofit<span class="sc">$</span>par</span></code></pre></div>
+<pre><code>## $size
+## [1] 9.88837
+## 
+## $prob
+## [1] 0.5981977</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-1" aria-hidden="true" tabindex="-1"></a>x    <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">95</span></span>
+<span id="cb45-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-2" aria-hidden="true" tabindex="-1"></a>mu   <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb45-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-3" aria-hidden="true" tabindex="-1"></a>vtot <span class="ot">=</span> <span class="dv">80</span></span>
+<span id="cb45-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-4" aria-hidden="true" tabindex="-1"></a>v1   <span class="ot">=</span> vtot <span class="sc">-</span> mu</span>
+<span id="cb45-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-5" aria-hidden="true" tabindex="-1"></a>scale <span class="ot">=</span> v1<span class="sc">/</span>mu    <span class="co"># 0.6</span></span>
+<span id="cb45-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-6" aria-hidden="true" tabindex="-1"></a>shape <span class="ot">=</span> mu<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>v1  <span class="co"># 83.3</span></span>
+<span id="cb45-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-7" aria-hidden="true" tabindex="-1"></a>p1   <span class="ot">=</span> <span class="fu">dgamma</span>(<span class="at">x =</span> x, <span class="at">scale =</span> <span class="fl">0.6</span>, <span class="at">shape =</span> <span class="dv">80</span>)</span>
+<span id="cb45-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-8" aria-hidden="true" tabindex="-1"></a>p2   <span class="ot">=</span> <span class="fu">dpois</span>(<span class="at">x =</span> x, <span class="at">lambda =</span> mu<span class="sc">*</span><span class="fl">1.2</span>)</span>
+<span id="cb45-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb45-9" aria-hidden="true" tabindex="-1"></a>p3   <span class="ot">=</span> <span class="fu">dnbinom</span>(<span class="at">x =</span> x, <span class="at">mu =</span> mu, <span class="at">size =</span> mu<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>vtot)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</span>
+<span id="cb46-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">=</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb46-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>), <span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.01</span>, <span class="fl">0.01</span>))</span>
+<span id="cb46-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-4" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">=</span> x[<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(x))]</span>
+<span id="cb46-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="at">xlim=</span>xlim, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.07</span>), <span class="at">type=</span><span class="st">&quot;n&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb46-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(x, p1, <span class="at">col=</span>cols[<span class="dv">1</span>])</span>
+<span id="cb46-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>mu, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb46-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>mu<span class="sc">*</span><span class="fl">1.2</span>, <span class="at">col=</span>cols[<span class="dv">2</span>], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb46-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, p2, <span class="at">col=</span>cols[<span class="dv">3</span>], <span class="at">xlim=</span>xlim, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>, <span class="at">type=</span><span class="st">&quot;h&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb46-10"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>mu<span class="sc">*</span><span class="fl">1.2</span>, <span class="at">col=</span>cols[<span class="dv">2</span>], <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb46-11"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>mu<span class="sc">*</span><span class="fl">1.1</span>, <span class="at">col=</span>cols[<span class="dv">4</span>], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb46-12"><a href="capítulo-n-4---modelos-de-mezcla.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, p3, <span class="at">col=</span>cols[<span class="dv">4</span>], <span class="at">xlim=</span>xlim, <span class="at">type=</span><span class="st">&quot;h&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="transformaciones-estabilizadoras-de-varianza" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Transformaciones estabilizadoras de varianza<a href="capítulo-n-4---modelos-de-mezcla.html#transformaciones-estabilizadoras-de-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ggbeeswarm&quot;</span>)</span>
+<span id="cb47-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-2" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">900</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
+<span id="cb47-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-3" aria-hidden="true" tabindex="-1"></a>simdat <span class="ot">=</span> <span class="fu">lapply</span>(lambdas, <span class="cf">function</span>(l)</span>
+<span id="cb47-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">40</span>, <span class="at">lambda=</span>l), <span class="at">lambda =</span> l)</span>
+<span id="cb47-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> bind_rows</span>
+<span id="cb47-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb47-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simdat, <span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb47-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simdat, <span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> <span class="fu">sqrt</span>(y))) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p>Los datos que vemos en el panel izquierdo son un ejemplo de lo que se llama heteroscedasticidad : las desviaciones estándar (o, de manera equivalente, la varianza) de nuestros datos son diferentes en diferentes regiones de nuestro espacio de datos.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(simdat, lambda), <span class="fu">sd</span>(y), <span class="fu">sd</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(y)))</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 3
+##   lambda `sd(y)` `sd(2 * sqrt(y))`
+##    &lt;dbl&gt;   &lt;dbl&gt;             &lt;dbl&gt;
+## 1    100    10.1             1.02 
+## 2    200    14.4             1.03 
+## 3    300    18.8             1.09 
+## 4    400    22.3             1.11 
+## 5    500    17.8             0.798
+## 6    600    27.3             1.10 
+## 7    700    29.6             1.13 
+## 8    800    35.9             1.27 
+## 9    900    31.9             1.07</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-1" aria-hidden="true" tabindex="-1"></a>muvalues <span class="ot">=</span> <span class="dv">2</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb51-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-2" aria-hidden="true" tabindex="-1"></a>simgp <span class="ot">=</span> <span class="fu">lapply</span>(muvalues, <span class="cf">function</span>(mu) {</span>
+<span id="cb51-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">=</span> <span class="fu">rnbinom</span>(<span class="at">n =</span> <span class="fl">1e4</span>, <span class="at">mu =</span> mu, <span class="at">size =</span> <span class="dv">4</span>)</span>
+<span id="cb51-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">mean =</span> <span class="fu">mean</span>(u), <span class="at">sd =</span> <span class="fu">sd</span>(u),</span>
+<span id="cb51-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> <span class="fu">quantile</span>(u, <span class="fl">0.025</span>),</span>
+<span id="cb51-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> <span class="fu">quantile</span>(u, <span class="fl">0.975</span>),</span>
+<span id="cb51-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">mu =</span> mu)</span>
+<span id="cb51-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-8" aria-hidden="true" tabindex="-1"></a>  } ) <span class="sc">%&gt;%</span> bind_rows</span>
+<span id="cb51-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">as.data.frame</span>(simgp), <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##     mean       sd lower upper mu
+## 1 1.0104 1.114996     0     4  1
+## 2 1.9908 1.747976     0     6  2</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simgp, <span class="fu">aes</span>(<span class="at">x =</span> mu, <span class="at">y =</span> mean, <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_errorbar</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><strong>Pregunta</strong></p>
+<p>¿Cómo podemos encontrar una transformación para estos datos que estabilice la varianza, similar a la función de raíz cuadrada para los datos distribuidos de Poisson?</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb54-1" aria-hidden="true" tabindex="-1"></a>simgp <span class="ot">=</span> <span class="fu">mutate</span>(simgp,</span>
+<span id="cb54-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">slopes =</span> <span class="dv">1</span> <span class="sc">/</span> sd,</span>
+<span id="cb54-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">trsf   =</span> <span class="fu">cumsum</span>(slopes <span class="sc">*</span> mean))</span>
+<span id="cb54-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simgp, <span class="fu">aes</span>(<span class="at">x =</span> mean, <span class="at">y =</span> trsf)) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+</div>
+<div id="resumen-de-este-capítulo-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Resumen de este capítulo<a href="capítulo-n-4---modelos-de-mezcla.html#resumen-de-este-capítulo-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se vio cómo el algoritmo EM ayuda a resolver un problema de optimización difícil al pretender iterativamente que conocemos una parte de la solución para calcular la otra parte, luego alternar para pretender que se conoce el otro componente y calcular la primera parte, y así sucesivamente. , hasta la convergencia.</p>
+<p><strong>Modelos de mezcla finita</strong></p>
+<p>Hemos visto cómo modelar mezclas de dos o más distribuciones normales con diferentes medias y varianzas. Hemos visto cómo descomponer una muestra dada de datos de tal mezcla, incluso sin conocer la variable latente, utilizando el algoritmo EM.</p>
+<p><strong>Modelos comunes de mezcla infinita</strong></p>
+<p>Los modelos de mezcla infinita son buenos para construir distribuciones nuevas (como la gamma-Poisson o Laplace) a partir de otras más básicas (como binomial, normal, Poisson). Los ejemplos comunes son</p>
+<pre><code>mezclas de normales (a menudo con un modelo jerárquico sobre las medias y las varianzas);
+
+mezclas beta-binomiales – donde la probabilidad p en el binomio se genera según una beta ( a , b ) 
+
+distribución;
+
+gamma-Poisson para recuentos de lectura (consulte el Capítulo 8 );
+
+gamma-exponencial para PCR.</code></pre>
+<p><strong>Aplicaciones</strong></p>
+<p>Los modelos de mezcla son útiles cuando hay varias capas de variabilidad experimental. Por ejemplo, en la capa más baja, nuestra precisión de medición puede estar limitada por límites físicos básicos de detección, y estos pueden modelarse mediante una distribución de Poisson en el caso de un ensayo basado en conteo, o una distribución normal en el caso de la medición continua.</p>
+<p>Los modelos mixtos reflejan que a menudo hay cantidades heterogéneas de variabilidad (variaciones) en los datos. En tales casos, son necesarias transformaciones de datos adecuados, es decir, transformaciones de estabilización de varianza, antes de la visualización o el análisis posterior.
+Otra aplicación importante del modelado de mezclas es el modelo de dos componentes en pruebas múltiples.</p>
+<p>El ECDF y el arranque</p>
+<p>Vimos que al usar la muestra observada como una mezcla podíamos generar muchas muestras simuladas que nos informan sobre la distribución muestral de una estimación. Este método se llama bootstrap y volveremos a él varias veces, ya que proporciona una forma de evaluar las estimaciones incluso cuando no se dispone de fórmulas analíticas (decimos que no es paramétrico).</p>
+</div>
+<div id="ejercicios-1" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Ejercicios<a href="capítulo-n-4---modelos-de-mezcla.html#ejercicios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="cf">function</span>(x, a) </span>
+<span id="cb56-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span> (a<span class="sc">==</span><span class="dv">0</span>, </span>
+<span id="cb56-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sqrt</span>(x), </span>
+<span id="cb56-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(a) <span class="sc">*</span> <span class="fu">sqrt</span>(x<span class="sc">*</span>(a<span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>)) <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>a<span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>) <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(a)))</span>
+<span id="cb56-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-5" aria-hidden="true" tabindex="-1"></a>x  <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb56-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span><span class="sc">*</span><span class="dv">2</span><span class="sc">^</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)), </span>
+<span id="cb56-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-7" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(a) <span class="fu">tibble</span>(<span class="at">x =</span> x, <span class="at">a =</span> a, <span class="at">y =</span> <span class="fu">f</span>(x, a))) <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>()</span>
+<span id="cb56-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">col =</span> <span class="fu">factor</span>(a))) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb56-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">col =</span> <span class="fu">expression</span>(alpha))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div id="ejercicio-4.1" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Ejercicio 4.1<a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El algoritmo EM paso a paso. Como conjunto de datos de ejemplo, usamos los valores en el archivo Myst.rds. Como siempre, es una buena idea visualizar primero los datos. El histograma se muestra en la figura 4.27 . Vamos a modelar estos datos como una mezcla de dos distribuciones normales con medias desconocidas y desviaciones estándar. Llamaremos a los dos componentes A y B.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb57-1" aria-hidden="true" tabindex="-1"></a>mx <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;../data/Myst.rds&quot;</span>)<span class="sc">$</span>yvar</span>
+<span id="cb57-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mx)</span></code></pre></div>
+<pre><code>##  num [1:1800] 0.3038 0.0596 -0.0204 0.1849 0.2842 ...</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(mx), <span class="fu">aes</span>(<span class="at">x =</span> mx)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb60-1" aria-hidden="true" tabindex="-1"></a>wA <span class="ot">=</span> <span class="fu">runif</span>(<span class="fu">length</span>(mx))</span>
+<span id="cb60-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb60-2" aria-hidden="true" tabindex="-1"></a>wB <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> wA</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-1" aria-hidden="true" tabindex="-1"></a>iter      <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb61-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-2" aria-hidden="true" tabindex="-1"></a>loglik    <span class="ot">=</span> <span class="sc">-</span><span class="cn">Inf</span></span>
+<span id="cb61-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-3" aria-hidden="true" tabindex="-1"></a>delta     <span class="ot">=</span> <span class="sc">+</span><span class="cn">Inf</span></span>
+<span id="cb61-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-4" aria-hidden="true" tabindex="-1"></a>tolerance <span class="ot">=</span> <span class="fl">1e-3</span></span>
+<span id="cb61-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-5" aria-hidden="true" tabindex="-1"></a>miniter   <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb61-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb61-6" aria-hidden="true" tabindex="-1"></a>maxiter   <span class="ot">=</span> <span class="dv">1000</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>((delta <span class="sc">&gt;</span> tolerance) <span class="sc">&amp;&amp;</span> (iter <span class="sc">&lt;=</span> maxiter) <span class="sc">||</span> (iter <span class="sc">&lt;</span> miniter)) {</span>
+<span id="cb62-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">=</span> <span class="fu">mean</span>(wA)</span>
+<span id="cb62-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  muA <span class="ot">=</span> <span class="fu">weighted.mean</span>(mx, wA)</span>
+<span id="cb62-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  muB <span class="ot">=</span> <span class="fu">weighted.mean</span>(mx, wB)</span>
+<span id="cb62-5"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  sdA <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">weighted.mean</span>((mx <span class="sc">-</span> muA)<span class="sc">^</span><span class="dv">2</span>, wA))</span>
+<span id="cb62-6"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  sdB <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">weighted.mean</span>((mx <span class="sc">-</span> muB)<span class="sc">^</span><span class="dv">2</span>, wB))</span>
+<span id="cb62-7"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-7" aria-hidden="true" tabindex="-1"></a>  pA   <span class="ot">=</span>    lambda    <span class="sc">*</span> <span class="fu">dnorm</span>(mx, <span class="at">mean =</span> muA, <span class="at">sd =</span> sdA)</span>
+<span id="cb62-8"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-8" aria-hidden="true" tabindex="-1"></a>  pB   <span class="ot">=</span> (<span class="dv">1</span> <span class="sc">-</span> lambda) <span class="sc">*</span> <span class="fu">dnorm</span>(mx, <span class="at">mean =</span> muB, <span class="at">sd =</span> sdB)</span>
+<span id="cb62-9"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  ptot <span class="ot">=</span> pA <span class="sc">+</span> pB</span>
+<span id="cb62-10"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-10" aria-hidden="true" tabindex="-1"></a>  wA   <span class="ot">=</span> pA <span class="sc">/</span> ptot</span>
+<span id="cb62-11"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-11" aria-hidden="true" tabindex="-1"></a>  wB   <span class="ot">=</span> pB <span class="sc">/</span> ptot</span>
+<span id="cb62-12"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-12" aria-hidden="true" tabindex="-1"></a>  loglikOld <span class="ot">=</span> loglik</span>
+<span id="cb62-13"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-13" aria-hidden="true" tabindex="-1"></a>  loglik <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">log</span>(pA)) <span class="sc">+</span> <span class="fu">sum</span>(<span class="fu">log</span>(pB))</span>
+<span id="cb62-14"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-14" aria-hidden="true" tabindex="-1"></a>  delta <span class="ot">=</span> <span class="fu">abs</span>(loglikOld <span class="sc">-</span> loglik)</span>
+<span id="cb62-15"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-15" aria-hidden="true" tabindex="-1"></a>  iter <span class="ot">=</span> iter <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb62-16"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb62-17"><a href="capítulo-n-4---modelos-de-mezcla.html#cb62-17" aria-hidden="true" tabindex="-1"></a>iter</span></code></pre></div>
+<pre><code>## [1] 352</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lambda, muA, muB, sdA, sdB)</span></code></pre></div>
+<pre><code>## [1]  0.4756306 -0.1693558  0.1473280  0.0982670  0.1497847</code></pre>
+<p>Las primeras cinco líneas de la whilebucle implementar el paso . Estimamos los parámetros del modelo de mezcla utilizando los estimadores de máxima verosimilitud: la fracción de mezcla lambdapor medio de pA, y los parámetros de los dos componentes de la distribución normal ( muA, sdA) y ( muB, sdB) por las medias muestrales y las desviaciones estándar muestrales. Dado que no tenemos membresías de grupos binarios, pero las membresías probabilísticas pAy pB, usamos media ponderada (función weighted.mean) y desviación estándar para estas estimaciones.</p>
+<p>Finalmente, comparemos nuestras estimaciones con las de la función</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb66-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">=</span> mixtools<span class="sc">::</span><span class="fu">normalmixEM</span>(mx, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## number of iterations= 247</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(gm, <span class="fu">c</span>(lambda[<span class="dv">1</span>], mu, sigma))</span></code></pre></div>
+<pre><code>## [1]  0.47565297 -0.16935087  0.14733731  0.09826952  0.14977993</code></pre>
+</div>
+<div id="ejercicio-4.2" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Ejercicio 4.2<a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ejemplos de modelado de mezclas para regresión . El paquete <a href="https://cran.r-project.org/web/packages/flexmix">flexmix</a> (Grün, Scharl y Leisch 2012 ) nos permite agrupar y ajustar las regresiones a los datos al mismo tiempo. El paso M estándar FLXMRglmde flexmix es una interfaz para las instalaciones de modelado lineal generalizado de R (el glmfunción). Cargue el paquete y un conjunto de datos de ejemplo.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Primero, grafique los datos y trate de adivinar cómo se generaron los puntos.</p></li>
+<li><p>Ajuste un modelo de mezcla de dos componentes usando los comandos.</p></li>
+</ol>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;flexmix&quot;</span>)</span>
+<span id="cb70-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;NPreg&quot;</span>)</span>
+<span id="cb70-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb70-3" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">flexmix</span>(yn <span class="sc">~</span> x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> NPreg, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Observe los parámetros estimados de los componentes de la mezcla y elabore una tabla de verdad que clasifique de forma cruzada las clases verdaderas frente a las pertenencias a grupos. ¿Qué significa el resumen del objeto? m1¿muéstranos?</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NPreg, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> yn)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb72-1" aria-hidden="true" tabindex="-1"></a>modeltools<span class="sc">::</span><span class="fu">parameters</span>(m1, <span class="at">component =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##                       Comp.1
+## coef.(Intercept) -0.20950974
+## coef.x            4.81768229
+## coef.I(x^2)       0.03616696
+## sigma             3.47650123</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb74-1" aria-hidden="true" tabindex="-1"></a>modeltools<span class="sc">::</span><span class="fu">parameters</span>(m1, <span class="at">component =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##                      Comp.2
+## coef.(Intercept) 14.7171959
+## coef.x            9.8465846
+## coef.I(x^2)      -0.9683487
+## sigma             3.4796332</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(NPreg<span class="sc">$</span>class, modeltools<span class="sc">::</span><span class="fu">clusters</span>(m1))</span></code></pre></div>
+<pre><code>##    
+##      1  2
+##   1 95  5
+##   2  5 95</code></pre>
+<p>Para nuestros datos de ejemplo, las proporciones de ambos componentes son aproximadamente 0,7, lo que indica la superposición de las clases en la sección transversal de la línea y la parábola.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## flexmix(formula = yn ~ x + I(x^2), data = NPreg, k = 2)
+## 
+##        prior size post&gt;0 ratio
+## Comp.1 0.494  100    145 0.690
+## Comp.2 0.506  100    141 0.709
+## 
+## &#39;log Lik.&#39; -642.5453 (df=9)
+## AIC: 1303.091   BIC: 1332.775</code></pre>
+<p>El resumen muestra las probabilidades previas estimadas <span class="math inline">\({π}_{k}\)</span> , el número de observaciones asignadas a los dos conglomerados, el número de observaciones donde <span class="math inline">\({p}_{nk} &gt; δ\)</span> (con un valor predeterminado de <span class="math inline">\(δ = {10}^{− 4}\)</span> ), y la razón de los dos últimos números. Para componentes bien separados, una gran proporción de observaciones con posteriores que no desaparecen <span class="math inline">\({p}_{nk}\)</span> deben ser asignados a su grupo, dando una proporción cercana a 1.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="capítulo-n-4---modelos-de-mezcla.html#cb80-1" aria-hidden="true" tabindex="-1"></a>NPreg <span class="ot">=</span> <span class="fu">mutate</span>(NPreg, <span class="at">gr =</span> <span class="fu">factor</span>(class))</span>
+<span id="cb80-2"><a href="capítulo-n-4---modelos-de-mezcla.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NPreg, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> yn, <span class="at">group =</span> gr)) <span class="sc">+</span></span>
+<span id="cb80-3"><a href="capítulo-n-4---modelos-de-mezcla.html#cb80-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> gr, <span class="at">shape =</span> gr)) <span class="sc">+</span></span>
+<span id="cb80-4"><a href="capítulo-n-4---modelos-de-mezcla.html#cb80-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_colour_hue</span>(<span class="at">l =</span> <span class="dv">40</span>, <span class="at">c =</span> <span class="dv">180</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="footnotes-and-citations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-C4-Modelos-de-mezcla.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
