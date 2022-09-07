@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 CAPÍTULO N° 8 - Datos de Conteo de Alto Rendimiento | Guía de Bioestadistica</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 CAPÍTULO N° 8 - Datos de Conteo de Alto Rendimiento | Guía de Bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 CAPÍTULO N° 8 - Datos de Conteo de Alto Rendimiento | Guía de Bioestadistica" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+
+
+<meta name="date" content="2022-09-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="capítulo-n-7---análisis-multivariado.html"/>
+<link rel="next" href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdución</a></li>
+<li class="chapter" data-level="2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html"><i class="fa fa-check"></i><b>2</b> CAPÍTULO N° 2 - Modelamiento Estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-ejemplo-simple-de-modelado-estadístico"><i class="fa fa-check"></i><b>2.1</b> Un ejemplo simple de modelado estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estimación-del-parámetro-de-la-distribución-de-poisson"><i class="fa fa-check"></i><b>2.1.1</b> Estimación del parámetro de la distribución de Poisson</a></li>
+<li class="chapter" data-level="2.1.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#función-de-verosimilitud-de-λ"><i class="fa fa-check"></i><b>2.1.2</b> Función de verosimilitud de λ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#distribuciones-binomiales-y-máxima-verosimilitud"><i class="fa fa-check"></i><b>2.2</b> Distribuciones binomiales y máxima verosimilitud</a></li>
+<li class="chapter" data-level="2.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#más-casillasdatos-multinomiales"><i class="fa fa-check"></i><b>2.3</b> Más casillas:datos multinomiales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#sesgo-de-nucleótidos"><i class="fa fa-check"></i><b>2.3.1</b> Sesgo de nucleótidos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-chi-cuadrado"><i class="fa fa-check"></i><b>2.4</b> La distribución Chi-Cuadrado</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#intermezzo-cuantiles-y-gráfico-cuantil-cuantil"><i class="fa fa-check"></i><b>2.4.1</b> Intermezzo: cuantiles y gráfico cuantil-cuantil</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#regla-de-chargaff"><i class="fa fa-check"></i><b>2.5</b> Regla de Chargaff</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#dos-variables-categóricas"><i class="fa fa-check"></i><b>2.5.1</b> Dos variables categóricas</a></li>
+<li class="chapter" data-level="2.5.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#daltonismo-y-sexo"><i class="fa fa-check"></i><b>2.5.2</b> <strong>Daltonismo y sexo</strong></a></li>
+<li class="chapter" data-level="2.5.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-multinomio-especial-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.3</b> Un multinomio especial: equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#comparación-visual-con-el-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.4</b> Comparación visual con el equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#concatenación-de-varios-multinomios-motivos-de-secuencia-y-logos"><i class="fa fa-check"></i><b>2.5.5</b> Concatenación de varios multinomios: motivos de secuencia y logos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-de-dependencias-secuenciales-cadenas-de-markov"><i class="fa fa-check"></i><b>2.6</b> Modelado de dependencias secuenciales: cadenas de Markov</a></li>
+<li class="chapter" data-level="2.7" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pensamiento-bayesiano"><i class="fa fa-check"></i><b>2.7</b> Pensamiento bayesiano</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#haplotipos"><i class="fa fa-check"></i><b>2.7.1</b> Haplotipos</a></li>
+<li class="chapter" data-level="2.7.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estudio-de-simulación-del-paradigma-bayesiano-para-el-binomio"><i class="fa fa-check"></i><b>2.7.2</b> Estudio de simulación del paradigma bayesiano para el binomio</a></li>
+<li class="chapter" data-level="2.7.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-de-y"><i class="fa fa-check"></i><b>2.7.3</b> La distribución de Y</a></li>
+<li class="chapter" data-level="2.7.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-posterior-también-es-una-beta."><i class="fa fa-check"></i><b>2.7.4</b> La distribución posterior también es una beta.</a></li>
+<li class="chapter" data-level="2.7.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#declaraciones-de-confianza-para-el-parámetro-de-proporción"><i class="fa fa-check"></i><b>2.7.5</b> Declaraciones de confianza para el parámetro de proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejemplo-aparición-de-un-patrón-de-nucleótidos-en-un-genoma"><i class="fa fa-check"></i><b>2.8</b> Ejemplo: aparición de un patrón de nucleótidos en un genoma</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-en-el-caso-de-dependencias"><i class="fa fa-check"></i><b>2.8.1</b> Modelado en el caso de dependencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#resumen-de-este-capítulo"><i class="fa fa-check"></i><b>2.9</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="2.10" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejercicios"><i class="fa fa-check"></i><b>2.10</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-1"><i class="fa fa-check"></i><b>2.10.1</b> Pregunta N° 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-2"><i class="fa fa-check"></i><b>2.10.2</b> pregunta N° 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><i class="fa fa-check"></i><b>3</b> CAPÍTULO N° 3 - Gráficos de alta calidad en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#objetivos-del-capítulo"><i class="fa fa-check"></i><b>3.1</b> Objetivos del capítulo</a></li>
+<li class="chapter" data-level="3.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazado-base-r"><i class="fa fa-check"></i><b>3.2</b> Trazado base R</a></li>
+<li class="chapter" data-level="3.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#un-conjunto-de-datos-de-ejemplo"><i class="fa fa-check"></i><b>3.3</b> Un conjunto de datos de ejemplo</a></li>
+<li class="chapter" data-level="3.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#ggplot2"><i class="fa fa-check"></i><b>3.4</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#estética"><i class="fa fa-check"></i><b>3.4.1</b> Estética</a></li>
+<li class="chapter" data-level="3.4.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#flujo-de-datos"><i class="fa fa-check"></i><b>3.4.2</b> Flujo de datos</a></li>
+<li class="chapter" data-level="3.4.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#guardar-cifras"><i class="fa fa-check"></i><b>3.4.3</b> Guardar cifras</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#la-gramática-de-los-gráficos"><i class="fa fa-check"></i><b>3.5</b> La gramática de los gráficos</a></li>
+<li class="chapter" data-level="3.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-1d"><i class="fa fa-check"></i><b>3.6</b> Visualización de datos en 1D</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-barras"><i class="fa fa-check"></i><b>3.6.1</b> Diagramas de barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-caja"><i class="fa fa-check"></i><b>3.6.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="3.6.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#violín"><i class="fa fa-check"></i><b>3.6.3</b> violín</a></li>
+<li class="chapter" data-level="3.6.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>3.6.4</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="3.6.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-ecdf"><i class="fa fa-check"></i><b>3.6.5</b> Gráficos ECDF</a></li>
+<li class="chapter" data-level="3.6.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#el-efecto-de-las-transformaciones-sobre-las-densidades"><i class="fa fa-check"></i><b>3.6.6</b> El efecto de las transformaciones sobre las densidades</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-2d-diagramas-de-dispersión"><i class="fa fa-check"></i><b>3.7</b> Visualización de datos en 2D: diagramas de dispersión</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#representada-como-un-gráfico-de-contorno-de-la-estimación-de-densidad-2d."><i class="fa fa-check"></i><b>3.7.1</b> Representada como un gráfico de contorno de la estimación de densidad 2D.</a></li>
+<li class="chapter" data-level="3.7.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazar-formas"><i class="fa fa-check"></i><b>3.7.2</b> Trazar formas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-más-de-dos-dimensiones"><i class="fa fa-check"></i><b>3.8</b> Visualización de más de dos dimensiones</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#facetado"><i class="fa fa-check"></i><b>3.8.1</b> Facetado</a></li>
+<li class="chapter" data-level="3.8.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-interactivos"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos interactivos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#color"><i class="fa fa-check"></i><b>3.9</b> Color</a></li>
+<li class="chapter" data-level="3.10" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#mapas-de-calor"><i class="fa fa-check"></i><b>3.10</b> Mapas de calor</a></li>
+<li class="chapter" data-level="3.11" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#transformaciones-de-datos"><i class="fa fa-check"></i><b>3.11</b> Transformaciones de datos</a></li>
+<li class="chapter" data-level="3.12" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#símbolos-matemáticos-y-otras-fuentes"><i class="fa fa-check"></i><b>3.12</b> Símbolos matemáticos y otras fuentes</a></li>
+<li class="chapter" data-level="3.13" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#datos-genómicos"><i class="fa fa-check"></i><b>3.13</b> Datos genómicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html"><i class="fa fa-check"></i><b>4</b> CAPÍTULO N° 4 - Modelos de mezcla</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#objetivos-de-este-capítulo"><i class="fa fa-check"></i><b>4.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-finitas"><i class="fa fa-check"></i><b>4.2</b> Mezclas finitas</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejemplos-sencillos-y-experimentos-informáticos"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplos sencillos y experimentos informáticos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#descubriendo-las-etiquetas-de-clase-ocultas"><i class="fa fa-check"></i><b>4.2.2</b> Descubriendo las etiquetas de clase ocultas</a></li>
+<li class="chapter" data-level="4.2.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#modelos-para-datos-inflados-a-cero"><i class="fa fa-check"></i><b>4.2.3</b> Modelos para datos inflados a cero</a></li>
+<li class="chapter" data-level="4.2.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#más-de-dos-componentes"><i class="fa fa-check"></i><b>4.2.4</b> Más de dos componentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#distribuciones-empíricas-y-bootstrap-no-paramétrico"><i class="fa fa-check"></i><b>4.3</b> Distribuciones empíricas y bootstrap no paramétrico</a></li>
+<li class="chapter" data-level="4.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas"><i class="fa fa-check"></i><b>4.4</b> Mezclas infinitas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezcla-infinita-de-normales"><i class="fa fa-check"></i><b>4.4.1</b> Mezcla infinita de normales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas-de-variables-de-poisson"><i class="fa fa-check"></i><b>4.4.2</b> Mezclas infinitas de variables de Poisson</a></li>
+<li class="chapter" data-level="4.4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#transformaciones-estabilizadoras-de-varianza"><i class="fa fa-check"></i><b>4.4.3</b> Transformaciones estabilizadoras de varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#resumen-de-este-capítulo-1"><i class="fa fa-check"></i><b>4.5</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="4.6" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicios-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.1"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 4.1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.2"><i class="fa fa-check"></i><b>4.6.2</b> Ejercicio 4.2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html"><i class="fa fa-check"></i><b>5</b> CAPÍTULO N° 5 - Clustering</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#objetivos-de-este-capítulo-1"><i class="fa fa-check"></i><b>5.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#qué-son-los-datos-y-por-qué-los-agrupamos"><i class="fa fa-check"></i><b>5.2</b> ¿Qué son los datos y por qué los agrupamos?</a></li>
+<li class="chapter" data-level="5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cálculos-relacionados-con-distancias-en-r"><i class="fa fa-check"></i><b>5.3</b> 5.3.1 Cálculos relacionados con distancias en R</a></li>
+<li class="chapter" data-level="5.4" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#detección-de-mezcla-no-paramétrica"><i class="fa fa-check"></i><b>5.4</b> Detección de mezcla no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#k-métodos-k--significa-k--medoides-y-pam"><i class="fa fa-check"></i><b>5.4.1</b> K-métodos: k -significa, k -medoides y PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejemplos-de-agrupamiento-citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5</b> Ejemplos de agrupamiento: citometría de flujo y citometría de masas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5.1</b> Citometría de flujo y citometría de masas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#preprocesamiento-de-datos"><i class="fa fa-check"></i><b>5.5.2</b> Preprocesamiento de datos</a></li>
+<li class="chapter" data-level="5.5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-basado-en-la-densidad"><i class="fa fa-check"></i><b>5.5.3</b> Agrupamiento basado en la densidad</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-jerárquico"><i class="fa fa-check"></i><b>5.6</b> Agrupamiento jerárquico</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cómo-calcular-des-similitudes-entre-clústeres-agregados"><i class="fa fa-check"></i><b>5.6.1</b> ¿Cómo calcular (des) similitudes entre clústeres agregados?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-y-elección-del-número-de-clústeres"><i class="fa fa-check"></i><b>5.7</b> Validación y elección del número de clústeres</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#uso-de-la-estadística-de-la-brecha"><i class="fa fa-check"></i><b>5.7.1</b> Uso de la estadística de la brecha</a></li>
+<li class="chapter" data-level="5.7.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-de-clúster-mediante-bootstrap"><i class="fa fa-check"></i><b>5.7.2</b> Validación de clúster mediante bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#el-agrupamiento-como-medio-para-eliminar-el-ruido"><i class="fa fa-check"></i><b>5.8</b> El agrupamiento como medio para eliminar el ruido</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#observaciones-ruidosas-con-diferentes-frecuencias-de-línea-de-base"><i class="fa fa-check"></i><b>5.8.1</b> Observaciones ruidosas con diferentes frecuencias de línea de base</a></li>
+<li class="chapter" data-level="5.8.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#inferir-variantes-de-secuencia"><i class="fa fa-check"></i><b>5.8.2</b> Inferir variantes de secuencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejercicios-2"><i class="fa fa-check"></i><b>5.9</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html"><i class="fa fa-check"></i><b>6</b> CAPÍTULO N° 6 - Testeo y Pruebas</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#objetivos-de-este-capítulo-2"><i class="fa fa-check"></i><b>6.1</b> Objetivos de este Capítulo</a></li>
+<li class="chapter" data-level="6.2" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#librerias"><i class="fa fa-check"></i><b>6.2</b> Librerias</a></li>
+<li class="chapter" data-level="6.3" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#un-ejemplo-lanzamiento-de-una-moneda"><i class="fa fa-check"></i><b>6.3</b> Un ejemplo: lanzamiento de una moneda</a></li>
+<li class="chapter" data-level="6.4" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#los-cinco-pasos-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>6.4</b> Los cinco pasos de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="6.5" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-prueba-t"><i class="fa fa-check"></i><b>6.5</b> La prueba t</a></li>
+<li class="chapter" data-level="6.6" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#pruebas-múltiples"><i class="fa fa-check"></i><b>6.6</b> Pruebas múltiples</a></li>
+<li class="chapter" data-level="6.7" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-tasa-de-error-inteligente-de-la-familia"><i class="fa fa-check"></i><b>6.7</b> La tasa de error inteligente de la familia</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#corrección-de-bonferroni"><i class="fa fa-check"></i><b>6.7.1</b> Corrección de Bonferroni</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-tasa-de-descubrimiento-falso"><i class="fa fa-check"></i><b>6.8</b> La tasa de descubrimiento falso</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-histograma-del-valor-p"><i class="fa fa-check"></i><b>6.8.1</b> El histograma del valor p</a></li>
+<li class="chapter" data-level="6.8.2" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-algoritmo-de-benjamini-hochberg-para-controlar-el-fdr"><i class="fa fa-check"></i><b>6.8.2</b> El algoritmo de Benjamini-Hochberg para controlar el FDR</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-fdr-local"><i class="fa fa-check"></i><b>6.9</b> El FDR local</a></li>
+<li class="chapter" data-level="6.10" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#filtrado-independiente-y-ponderación-de-hipótesis"><i class="fa fa-check"></i><b>6.10</b> Filtrado independiente y ponderación de hipótesis</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#pregunta"><i class="fa fa-check"></i><b>6.10.1</b> Pregunta</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html"><i class="fa fa-check"></i><b>7</b> CAPÍTULO N° 7 - Análisis multivariado</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#objetivos-de-este-capítulo-3"><i class="fa fa-check"></i><b>7.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="7.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#qué-son-los-datos-matrices-y-su-motivación."><i class="fa fa-check"></i><b>7.2</b> ¿Qué son los datos? Matrices y su motivación.</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#resúmenes-y-preparación-de-datos-de-baja-dimensión"><i class="fa fa-check"></i><b>7.2.1</b> Resúmenes y preparación de datos de baja dimensión</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#reducción-de-dimensiones"><i class="fa fa-check"></i><b>7.3</b> Reducción de dimensiones</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#proyecciones-de-menor-dimensión"><i class="fa fa-check"></i><b>7.3.1</b> Proyecciones de menor dimensión</a></li>
+<li class="chapter" data-level="7.3.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-resumimos-los-datos-bidimensionales-en-una-línea"><i class="fa fa-check"></i><b>7.3.2</b> ¿Cómo resumimos los datos bidimensionales en una línea?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#el-funcionamiento-interno-de-pca-reducción-de-rango"><i class="fa fa-check"></i><b>7.4</b> El funcionamiento interno de PCA: reducción de rango</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#matrices-de-rango-uno"><i class="fa fa-check"></i><b>7.4.1</b> Matrices de rango uno</a></li>
+<li class="chapter" data-level="7.4.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-encontramos-tal-descomposición-de-una-manera-única"><i class="fa fa-check"></i><b>7.4.2</b> ¿Cómo encontramos tal descomposición de una manera única?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#trazado-de-las-observaciones-en-el-plano-principal"><i class="fa fa-check"></i><b>7.5</b> Trazado de las observaciones en el plano principal</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#pca-de-los-datos-de-las-tortugas"><i class="fa fa-check"></i><b>7.5.1</b> PCA de los datos de las tortugas</a></li>
+<li class="chapter" data-level="7.5.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#un-análisis-completo-los-atletas-de-decatlón"><i class="fa fa-check"></i><b>7.5.2</b> Un análisis completo: los atletas de decatlón</a></li>
+<li class="chapter" data-level="7.5.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-elegir-k-el-número-de-dimensiones"><i class="fa fa-check"></i><b>7.5.3</b> Cómo elegir k , el número de dimensiones ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#pca-como-herramienta-exploratoria-uso-de-información-adicional."><i class="fa fa-check"></i><b>7.6</b> PCA como herramienta exploratoria: uso de información adicional.</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#análisis-de-datos-de-espectroscopia-de-masas"><i class="fa fa-check"></i><b>7.6.1</b> Análisis de datos de espectroscopia de masas</a></li>
+<li class="chapter" data-level="7.6.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#biplots-y-escalado"><i class="fa fa-check"></i><b>7.6.2</b> Biplots y escalado</a></li>
+<li class="chapter" data-level="7.6.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#un-ejemplo-de-pca-ponderado"><i class="fa fa-check"></i><b>7.6.3</b> Un ejemplo de PCA ponderado</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#resumen-de-este-capítulo-2"><i class="fa fa-check"></i><b>7.7</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="7.8" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#ejercicios-3"><i class="fa fa-check"></i><b>7.8</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><i class="fa fa-check"></i><b>8</b> CAPÍTULO N° 8 - Datos de Conteo de Alto Rendimiento</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#objetivos-del-cápitulo"><i class="fa fa-check"></i><b>8.1</b> Objetivos del Cápitulo</a></li>
+<li class="chapter" data-level="8.2" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#datos-de-recuento"><i class="fa fa-check"></i><b>8.2</b> Datos de Recuento</a></li>
+<li class="chapter" data-level="8.3" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#modelado-de-datos-de-conteo"><i class="fa fa-check"></i><b>8.3</b> Modelado de Datos de Conteo</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#normalización"><i class="fa fa-check"></i><b>8.3.1</b> Normalización</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#un-análisis-básico"><i class="fa fa-check"></i><b>8.4</b> Un Análisis Básico</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#exploración-de-resultados"><i class="fa fa-check"></i><b>8.4.1</b> Exploración de Resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#otros-conceptos-estadísticos"><i class="fa fa-check"></i><b>8.5</b> Otros conceptos estadísticos</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#intercambio-de-información-de-dispersión-entre-genes"><i class="fa fa-check"></i><b>8.5.1</b> Intercambio de información de dispersión entre genes</a></li>
+<li class="chapter" data-level="8.5.2" data-path="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#transformaciones-de-datos-de-conteo"><i class="fa fa-check"></i><b>8.5.2</b> Transformaciones de datos de conteo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><i class="fa fa-check"></i><b>9</b> CAPÍTULO N° 9 - Métodos Multivariados para Datos Heterogéneos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#objetivos-de-este-capítulo-4"><i class="fa fa-check"></i><b>9.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="9.2" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#escalamiento-y-ordenación-multidimensional"><i class="fa fa-check"></i><b>9.2</b> Escalamiento y ordenación multidimensional</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#cómo-funciona-el-método"><i class="fa fa-check"></i><b>9.2.1</b> ¿Cómo funciona el método?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#versiones-robustas-de-mds"><i class="fa fa-check"></i><b>9.2.2</b> Versiones robustas de MDS</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#información-contigua-o-complementaria"><i class="fa fa-check"></i><b>9.3</b> Información contigua o complementaria</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#lotes-conocidos-en-datos"><i class="fa fa-check"></i><b>9.3.1</b> Lotes conocidos en datos</a></li>
+<li class="chapter" data-level="9.3.2" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#contenedores-híbridos-de-datos-y-bioconductores"><i class="fa fa-check"></i><b>9.3.2</b> Contenedores híbridos de datos y bioconductores</a></li>
+<li class="chapter" data-level="9.3.3" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#coincidencia-de-color-de-cabello-color-de-ojos-y-fenotipo"><i class="fa fa-check"></i><b>9.3.3</b> Coincidencia de color de cabello, color de ojos y fenotipo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#encontrar-tiempo-y-otros-gradientes-importantes."><i class="fa fa-check"></i><b>9.4</b> Encontrar tiempo… y otros gradientes importantes.</a></li>
+<li class="chapter" data-level="9.5" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#dinámica-del-desarrollo-celular"><i class="fa fa-check"></i><b>9.5</b> Dinámica del desarrollo celular</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#métodos-locales-no-lineales"><i class="fa fa-check"></i><b>9.5.1</b> Métodos locales no lineales</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#técnicas-multimesa"><i class="fa fa-check"></i><b>9.6</b> Técnicas multimesa</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#análisis-de-correlación-canónica-dispersa"><i class="fa fa-check"></i><b>9.6.1</b> Análisis de correlación canónica dispersa</a></li>
+<li class="chapter" data-level="9.6.2" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#análisis-de-correspondencia-canónica-o-restringida"><i class="fa fa-check"></i><b>9.6.2</b> Análisis de correspondencia canónica (o restringida)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html"><a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html#ejercicios-4"><i class="fa fa-check"></i><b>9.7</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>10</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>10.1</b> Footnotes</a></li>
+<li class="chapter" data-level="10.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>10.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>11</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>11.1</b> Equations</a></li>
+<li class="chapter" data-level="11.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>11.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="11.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>11.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>12</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>12.1</b> Publishing</a></li>
+<li class="chapter" data-level="12.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>12.2</b> 404 pages</a></li>
+<li class="chapter" data-level="12.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>12.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guía de Bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="capítulo-n-8---datos-de-conteo-de-alto-rendimiento" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> CAPÍTULO N° 8 - Datos de Conteo de Alto Rendimiento<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#capítulo-n-8---datos-de-conteo-de-alto-rendimiento" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Capítulo N° 8 recuperado de <a href="https://web.stanford.edu/class/bios221/book/Chap-Models.html">Estadísticas modernas para la biología moderna</a></strong></p>
+<div id="objetivos-del-cápitulo" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objetivos del Cápitulo<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#objetivos-del-cápitulo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Familiarizaremos con los datos de conteo en aplicaciones de secuenciación de alto rendimiento como RNA-Seq.</li>
+<li>Comprenderemos y modelaremos los procesos de muestreo que subyacen a los datos para poder interpretarlos.</li>
+<li>Detectar y cuantificar cambios sistemáticos entre muestras de diferentes condiciones,no tratadas versus tratadas , donde la tarea es distinguir dichos cambios sistemáticos de las variaciones de muestreo y la variabilidad experimental dentro de las mismas condiciones.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PAQUETES</span></span>
+<span id="cb1-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(ggplot2,dplyr)</span></code></pre></div>
+</div>
+<div id="datos-de-recuento" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Datos de Recuento<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#datos-de-recuento" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;pasilla&quot;</span>)</span>
+<span id="cb2-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb2-2" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">=</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;pasilla_gene_counts.tsv&quot;</span>,</span>
+<span id="cb2-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb2-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">package =</span> <span class="st">&quot;pasilla&quot;</span>, <span class="at">mustWork =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb2-4" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">read.csv</span>(fn, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>, <span class="at">row.names =</span> <span class="st">&quot;gene_id&quot;</span>))</span></code></pre></div>
+<p>Los datos se almacenan como una tabla rectangular en un archivo delimitado por tabuladores, que se ha leído en la matriz counts.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code></pre></div>
+<pre><code>## [1] 14599     7</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb5-1" aria-hidden="true" tabindex="-1"></a>counts[ <span class="dv">2000</span><span class="sc">+</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>), ]</span></code></pre></div>
+<pre><code>##             untreated1 untreated2 untreated3 untreated4 treated1 treated2
+## FBgn0020369       3387       4295       1315       1853     4884     2133
+## FBgn0020370       3186       4305       1824       2094     3525     1973
+## FBgn0020371          1          0          1          1        1        0
+## FBgn0020372         38         84         29         28       63       28
+##             treated3
+## FBgn0020369     2165
+## FBgn0020370     2120
+## FBgn0020371        0
+## FBgn0020372       27</code></pre>
+<p>La matriz cuenta el número de lecturas vistas para cada gen en cada muestra.</p>
+</div>
+<div id="modelado-de-datos-de-conteo" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Modelado de Datos de Conteo<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#modelado-de-datos-de-conteo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="normalización" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Normalización<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#normalización" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb7-1" aria-hidden="true" tabindex="-1"></a>conditionNames <span class="ot">=</span> (<span class="fu">sub</span>(<span class="st">&quot;[[:digit:]]$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(counts))) <span class="co">#$</span></span>
+<span id="cb7-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(<span class="fu">unique</span>(conditionNames)) <span class="sc">==</span> <span class="dv">2</span>,</span>
+<span id="cb7-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(conditionNames<span class="sc">==</span><span class="st">&quot;untreated&quot;</span>) <span class="sc">==</span> <span class="dv">4</span>,</span>
+<span id="cb7-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(conditionNames<span class="sc">==</span><span class="st">&quot;treated&quot;</span>)   <span class="sc">==</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-1" aria-hidden="true" tabindex="-1"></a>szfcDemo <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">6</span>,  <span class="dv">8</span>) <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb8-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">12</span>) <span class="sc">*</span> <span class="dv">10</span>,</span>
+<span id="cb8-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb8-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-6" aria-hidden="true" tabindex="-1"></a>slopes <span class="ot">=</span>  <span class="fu">c</span>(</span>
+<span id="cb8-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">blue =</span> <span class="fu">with</span>(szfcDemo, <span class="fu">sum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(x)),</span>
+<span id="cb8-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">red =</span> szfcDemo[, <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-9" aria-hidden="true" tabindex="-1"></a>    (DESeq2<span class="sc">::</span>estimateSizeFactorsForMatrix)() <span class="sc">|&gt;</span> (\(x) x[<span class="dv">2</span>]<span class="sc">/</span>x[<span class="dv">1</span>])() <span class="sc">|&gt;</span> <span class="fu">as.vector</span>()</span>
+<span id="cb8-10"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-11"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(szfcDemo, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> name)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-12"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">128</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">128</span>)) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;sample 1&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;sample 2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">hjust=</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> slopes[<span class="dv">1</span>], <span class="at">col =</span> <span class="fu">names</span>(slopes)[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> slopes[<span class="dv">2</span>], <span class="at">col =</span> <span class="fu">names</span>(slopes)[<span class="dv">2</span>])</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;tibble&quot;</span>,<span class="st">&quot;DESeq2&quot;</span>)</span>
+<span id="cb9-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(</span>
+<span id="cb9-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">size factor</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">estimateSizeFactorsForMatrix</span>(counts),</span>
+<span id="cb9-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">sum</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">colSums</span>(counts)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">size factor</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">sum</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;matrixStats&quot;</span>)</span>
+<span id="cb10-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-2" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="fu">estimateSizeFactorsForMatrix</span>(counts)</span>
+<span id="cb10-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-3" aria-hidden="true" tabindex="-1"></a>ncounts  <span class="ot">=</span> counts <span class="sc">/</span> <span class="fu">matrix</span>(sf,</span>
+<span id="cb10-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="fu">ncol</span>(counts), <span class="at">nrow =</span> <span class="fu">nrow</span>(counts))</span>
+<span id="cb10-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-5" aria-hidden="true" tabindex="-1"></a>uncounts <span class="ot">=</span> ncounts[, <span class="fu">grep</span>(<span class="st">&quot;^untreated&quot;</span>, <span class="fu">colnames</span>(ncounts)),</span>
+<span id="cb10-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-6" aria-hidden="true" tabindex="-1"></a>                     drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb10-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(</span>
+<span id="cb10-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">rowMeans</span>(uncounts),</span>
+<span id="cb10-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">var  =</span> <span class="fu">rowVars</span>( uncounts)),</span>
+<span id="cb10-10"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(mean), <span class="at">y =</span> <span class="fu">log</span>(var))) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>() <span class="sc">+</span> <span class="fu">coord_fixed</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">color =</span> <span class="fu">c</span>(<span class="st">&quot;forestgreen&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 2713 rows containing non-finite values (stat_binhex).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="un-análisis-básico" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Un Análisis Básico<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#un-análisis-básico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb12-1" aria-hidden="true" tabindex="-1"></a>annotationFile <span class="ot">=</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,</span>
+<span id="cb12-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pasilla_sample_annotation.csv&quot;</span>,</span>
+<span id="cb12-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">package =</span> <span class="st">&quot;pasilla&quot;</span>, <span class="at">mustWork =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb12-4" aria-hidden="true" tabindex="-1"></a>pasillaSampleAnno <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(annotationFile)</span></code></pre></div>
+<pre><code>## Rows: 7 Columns: 6
+## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (4): file, condition, type, total number of reads
+## dbl (2): number of lanes, exon counts
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb14-1" aria-hidden="true" tabindex="-1"></a>pasillaSampleAnno</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 6
+##   file         condition type    `number of lan~` `total number ~` `exon counts`
+##   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;
+## 1 treated1fb   treated   single~                5 35158667              15679615
+## 2 treated2fb   treated   paired~                2 12242535 (x2)         15620018
+## 3 treated3fb   treated   paired~                2 12443664 (x2)         12733865
+## 4 untreated1fb untreated single~                2 17812866              14924838
+## 5 untreated2fb untreated single~                6 34284521              20764558
+## 6 untreated3fb untreated paired~                2 10542625 (x2)         10283129
+## 7 untreated4fb untreated paired~                2 12214974 (x2)         11653031</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb16-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb16-2" aria-hidden="true" tabindex="-1"></a>pasillaSampleAnno <span class="ot">=</span> <span class="fu">mutate</span>(pasillaSampleAnno,</span>
+<span id="cb16-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">condition =</span> <span class="fu">factor</span>(condition, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;untreated&quot;</span>, <span class="st">&quot;treated&quot;</span>)),</span>
+<span id="cb16-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">type =</span> <span class="fu">factor</span>(<span class="fu">sub</span>(<span class="st">&quot;-.*&quot;</span>, <span class="st">&quot;&quot;</span>, type), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;single&quot;</span>, <span class="st">&quot;paired&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb17-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">any</span>(<span class="fu">is.na</span>(pasillaSampleAnno<span class="sc">$</span>condition)),</span>
+<span id="cb17-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">any</span>(<span class="fu">is.na</span>(pasillaSampleAnno<span class="sc">$</span>type)),</span>
+<span id="cb17-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(pasillaSampleAnno<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;single&quot;</span>) <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb17-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(pasillaSampleAnno<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;paired&quot;</span>) <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
+<p>Se obaserva que el diseño está aproximadamente equilibrado entre el factor de interés, condition, y el “factor de molestia” type:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(pasillaSampleAnno,</span>
+<span id="cb18-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">table</span>(condition, type))</span></code></pre></div>
+<pre><code>##            type
+## condition   single paired
+##   untreated      2      2
+##   treated        1      2</code></pre>
+<p>Se usa la función constructora DESeqDataSetFromMatrixpara crear un DESeqDataSet a partir de la matriz de datos de conteo countsy el marco de datos de anotación de muestra pasilla.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-1" aria-hidden="true" tabindex="-1"></a>mt <span class="ot">=</span> <span class="fu">match</span>(<span class="fu">colnames</span>(counts), <span class="fu">sub</span>(<span class="st">&quot;fb$&quot;</span>, <span class="st">&quot;&quot;</span>, pasillaSampleAnno<span class="sc">$</span>file))</span>
+<span id="cb20-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">any</span>(<span class="fu">is.na</span>(mt)))</span>
+<span id="cb20-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;DESeq2&quot;</span>)</span>
+<span id="cb20-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-4" aria-hidden="true" tabindex="-1"></a>pasilla <span class="ot">=</span> <span class="fu">DESeqDataSetFromMatrix</span>(</span>
+<span id="cb20-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">countData =</span> counts,</span>
+<span id="cb20-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">colData   =</span> pasillaSampleAnno[mt, ],</span>
+<span id="cb20-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">design    =</span> <span class="sc">~</span> condition)</span>
+<span id="cb20-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(pasilla)</span></code></pre></div>
+<pre><code>## [1] &quot;DESeqDataSet&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;DESeq2&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is</span>(pasilla, <span class="st">&quot;SummarizedExperiment&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>Ejercicio</strong></p>
+<p>¿Cómo podemos acceder a los metadatos de fila de un SummarizedExperiment , es decir, cómo podemos leerlo, cómo podemos cambiarlo?</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb24-1" aria-hidden="true" tabindex="-1"></a>pasilla <span class="ot">=</span> <span class="fu">DESeq</span>(pasilla)</span></code></pre></div>
+<pre><code>## estimating size factors</code></pre>
+<pre><code>## estimating dispersions</code></pre>
+<pre><code>## gene-wise dispersion estimates</code></pre>
+<pre><code>## mean-dispersion relationship</code></pre>
+<pre><code>## final dispersion estimates</code></pre>
+<pre><code>## fitting model and testing</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb31-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">results</span>(pasilla)</span>
+<span id="cb31-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb31-2" aria-hidden="true" tabindex="-1"></a>res[<span class="fu">order</span>(res<span class="sc">$</span>padj), ] <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## log2 fold change (MLE): condition treated vs untreated 
+## Wald test p-value: condition treated vs untreated 
+## DataFrame with 6 rows and 6 columns
+##              baseMean log2FoldChange     lfcSE      stat       pvalue
+##             &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;
+## FBgn0039155   730.596       -4.61901 0.1687068  -27.3789 4.88599e-165
+## FBgn0025111  1501.411        2.89986 0.1269205   22.8479 1.53430e-115
+## FBgn0029167  3706.117       -2.19700 0.0969888  -22.6521 1.33042e-113
+## FBgn0003360  4343.035       -3.17967 0.1435264  -22.1539 9.56283e-109
+## FBgn0035085   638.233       -2.56041 0.1372952  -18.6490  1.28772e-77
+## FBgn0039827   261.916       -4.16252 0.2325888  -17.8965  1.25663e-71
+##                     padj
+##                &lt;numeric&gt;
+## FBgn0039155 4.06661e-161
+## FBgn0025111 6.38497e-112
+## FBgn0029167 3.69104e-110
+## FBgn0003360 1.98979e-105
+## FBgn0035085  2.14354e-74
+## FBgn0039827  1.74316e-68</code></pre>
+<div id="exploración-de-resultados" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Exploración de Resultados<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#exploración-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">as</span>(res, <span class="st">&quot;data.frame&quot;</span>), <span class="fu">aes</span>(<span class="at">x =</span> pvalue)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>, <span class="at">fill =</span> <span class="st">&quot;Royalblue&quot;</span>, <span class="at">boundary =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 2241 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Histograma de valores p de un análisis de expresión diferencial.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb35-1" aria-hidden="true" tabindex="-1"></a>thehist <span class="ot">=</span> <span class="fu">hist</span>(res<span class="sc">$</span>pvalue, <span class="at">breaks =</span> <span class="dv">100</span>, <span class="at">plot=</span><span class="cn">FALSE</span>)</span>
+<span id="cb35-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb35-2" aria-hidden="true" tabindex="-1"></a>thehist<span class="sc">$</span>bgl <span class="ot">=</span> <span class="fu">median</span>(thehist<span class="sc">$</span>counts)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMA</span>(pasilla, <span class="at">ylim =</span> <span class="fu">c</span>( <span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Cambio de pliegue frente a la media de recuentos normalizados por factor de tamaño.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb37-1" aria-hidden="true" tabindex="-1"></a>pas_rlog <span class="ot">=</span> <span class="fu">rlogTransformation</span>(pasilla)</span>
+<span id="cb37-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(pas_rlog, <span class="at">intgroup=</span><span class="fu">c</span>(<span class="st">&quot;condition&quot;</span>, <span class="st">&quot;type&quot;</span>)) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+Las 7 muestras se muestran en el plano 2D atravesadas por sus dos primeros componentes principales.</p>
+<p><strong>Ejercicio</strong></p>
+<p>¿Los ejes del gráfico PCA siempre tienen que alinearse con covariables experimentales específicas?</p>
+<p>Los mapas de calor pueden ser una forma poderosa de obtener rápidamente una descripción general de un conjunto de datos similar a una matriz, incluidas las tablas de conteo.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;pheatmap&quot;</span>)</span>
+<span id="cb39-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-2" aria-hidden="true" tabindex="-1"></a>select <span class="ot">=</span> <span class="fu">order</span>(<span class="fu">rowMeans</span>(<span class="fu">assay</span>(pas_rlog)), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>]</span>
+<span id="cb39-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>( <span class="fu">assay</span>(pas_rlog)[select, ],</span>
+<span id="cb39-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">scale =</span> <span class="st">&quot;row&quot;</span>,</span>
+<span id="cb39-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">annotation_col =</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb39-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colData</span>(pas_rlog)[, <span class="fu">c</span>(<span class="st">&quot;condition&quot;</span>, <span class="st">&quot;type&quot;</span>)] ))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+Mapa de calor de datos transformados logarítmicos regularizados de los 30 genes principales.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#guardar resultado en un csv</span></span>
+<span id="cb40-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write.csv(as.data.frame(res), file = &quot;treated_vs_untreated.csv&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">=</span> <span class="cf">function</span>(x, s)</span>
+<span id="cb41-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">abs</span>(x) <span class="sc">&lt;</span> s, x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>,  s <span class="sc">*</span> <span class="fu">abs</span>(x) <span class="sc">-</span> s<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb41-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb41-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x        =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">7</span>, <span class="at">length.out =</span> <span class="dv">100</span>),</span>
+<span id="cb41-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parabola =</span> x <span class="sc">^</span> <span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb41-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Huber    =</span> <span class="fu">rho</span>(x, <span class="at">s =</span> <span class="dv">2</span>))</span>
+<span id="cb41-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reshape2<span class="sc">::</span><span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="st">&quot;x&quot;</span>),</span>
+<span id="cb41-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> value, <span class="at">col =</span> variable)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+## Análisis de dos factores de los datos del corredor</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb42-1" aria-hidden="true" tabindex="-1"></a>pasillaTwoFactor <span class="ot">=</span> pasilla</span>
+<span id="cb42-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">design</span>(pasillaTwoFactor) <span class="ot">=</span> <span class="fu">formula</span>(<span class="sc">~</span> type <span class="sc">+</span> condition)</span>
+<span id="cb42-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb42-3" aria-hidden="true" tabindex="-1"></a>pasillaTwoFactor <span class="ot">=</span> <span class="fu">DESeq</span>(pasillaTwoFactor)</span></code></pre></div>
+<pre><code>## using pre-existing size factors</code></pre>
+<pre><code>## estimating dispersions</code></pre>
+<pre><code>## found already estimated dispersions, replacing these</code></pre>
+<pre><code>## gene-wise dispersion estimates</code></pre>
+<pre><code>## mean-dispersion relationship</code></pre>
+<pre><code>## final dispersion estimates</code></pre>
+<pre><code>## fitting model and testing</code></pre>
+<p>Nuevamente, accedemos a los resultados usando el resultsfunción, que devuelve un dataframe con las estadísticas de cada gen.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb50-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">=</span> <span class="fu">results</span>(pasillaTwoFactor)</span>
+<span id="cb50-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res2, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## log2 fold change (MLE): condition treated vs untreated 
+## Wald test p-value: condition treated vs untreated 
+## DataFrame with 3 rows and 6 columns
+##              baseMean log2FoldChange     lfcSE       stat    pvalue      padj
+##             &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+## FBgn0000003  0.171569      0.6745518  3.871091  0.1742537  0.861666        NA
+## FBgn0000008 95.144079     -0.0406731  0.222215 -0.1830351  0.854770  0.951975
+## FBgn0000014  1.056572     -0.0849880  2.111821 -0.0402439  0.967899        NA</code></pre>
+<p>La función resultstoma un argumento contrastque permite especificar el nombre de la variable, el nivel que corresponde al numerador del cambio de pliegue y el nivel que corresponde al denominador del cambio de pliegue.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb52-1" aria-hidden="true" tabindex="-1"></a>resType <span class="ot">=</span> <span class="fu">results</span>(pasillaTwoFactor,</span>
+<span id="cb52-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;single&quot;</span>, <span class="st">&quot;paired&quot;</span>))</span>
+<span id="cb52-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resType, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## log2 fold change (MLE): type single vs paired 
+## Wald test p-value: type single vs paired 
+## DataFrame with 3 rows and 6 columns
+##              baseMean log2FoldChange     lfcSE      stat    pvalue      padj
+##             &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+## FBgn0000003  0.171569      -1.611546  3.871083 -0.416304  0.677188        NA
+## FBgn0000008 95.144079      -0.262255  0.220686 -1.188362  0.234691  0.543822
+## FBgn0000014  1.056572       3.290586  2.087243  1.576522  0.114905        NA</code></pre>
+<p>Grafiquemos los valores p de ambos análisis uno contra el otro.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-1" aria-hidden="true" tabindex="-1"></a>trsf <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(<span class="fu">is.na</span>(x), <span class="dv">0</span>, (<span class="sc">-</span><span class="fu">log10</span>(x)) <span class="sc">^</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>))</span>
+<span id="cb54-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">pOne =</span> res<span class="sc">$</span>pvalue,</span>
+<span id="cb54-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">pTwo =</span> res2<span class="sc">$</span>pvalue),</span>
+<span id="cb54-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">trsf</span>(pOne), <span class="at">y =</span> <span class="fu">trsf</span>(pTwo))) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">75</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb54-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Single factor analysis (condition)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Two factor analysis (type + condition)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+Los valores p en el análisis de dos factores son similares a los del análisis de un factor, pero generalmente son más pequeños. El análisis más sofisticado ha llevado a un aumento de poder, aunque modesto.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb55-1" aria-hidden="true" tabindex="-1"></a>compareRes <span class="ot">=</span> <span class="fu">table</span>(</span>
+<span id="cb55-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb55-2" aria-hidden="true" tabindex="-1"></a>   <span class="st">`</span><span class="at">simple analysis</span><span class="st">`</span> <span class="ot">=</span> res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.1</span>,</span>
+<span id="cb55-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb55-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">`</span><span class="at">two factor</span><span class="st">`</span> <span class="ot">=</span> res2<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.1</span> )</span>
+<span id="cb55-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>( compareRes )</span></code></pre></div>
+<pre><code>##                two factor
+## simple analysis FALSE TRUE  Sum
+##           FALSE  6973  289 7262
+##           TRUE     25 1036 1061
+##           Sum    6998 1325 8323</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code is based on guidance from Mike Love</span></span>
+<span id="cb57-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb57-2" aria-hidden="true" tabindex="-1"></a>res1  <span class="ot">=</span> <span class="fu">results</span>(pasilla, <span class="at">cooksCutoff =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb57-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb57-3" aria-hidden="true" tabindex="-1"></a>res2  <span class="ot">=</span> <span class="fu">lfcShrink</span>(pasilla, <span class="at">coef =</span> <span class="st">&quot;condition_treated_vs_untreated&quot;</span>, <span class="at">type=</span><span class="st">&quot;normal&quot;</span>, <span class="at">res =</span> res1)</span></code></pre></div>
+<pre><code>## using &#39;normal&#39; for LFC shrinkage, the Normal prior from Love et al (2014).
+## 
+## Note that type=&#39;apeglm&#39; and type=&#39;ashr&#39; have shown to have less bias than type=&#39;normal&#39;.
+## See ?lfcShrink for more details on shrinkage type, and the DESeq2 vignette.
+## Reference: https://doi.org/10.1093/bioinformatics/bty895</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Something like the two lines commented out below may be used to reproduce   </span></span>
+<span id="cb59-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># how Mike Love selected the two genes: they should have similar intercepts,</span></span>
+<span id="cb59-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># large unshrunken fold change and very different Wald statistic (i.e., have</span></span>
+<span id="cb59-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># small / large dispersion, respectively):</span></span>
+<span id="cb59-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb59-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># with(res1,</span></span>
+<span id="cb59-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  plot(baseMean, log2FoldChange, log = &quot;x&quot;, ylim = c(0, 3), xlim = c(10, 1e5),</span></span>
+<span id="cb59-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co">#       col = ifelse(padj &lt; 0.1, &quot;red&quot;, &quot;black&quot;), cex = log(abs(stat))))</span></span>
+<span id="cb59-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># rownames(res1)[with(res1, identify(baseMean, log2FoldChange))]</span></span>
+<span id="cb59-10"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-10" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">=</span> <span class="fu">c</span>(<span class="at">A =</span> <span class="st">&quot;FBgn0053926&quot;</span>, <span class="at">B =</span> <span class="st">&quot;FBgn0260933&quot;</span>)</span>
+<span id="cb59-11"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-11" aria-hidden="true" tabindex="-1"></a>cols  <span class="ot">=</span> <span class="fu">c</span>(<span class="at">FBgn0053926 =</span> <span class="st">&quot;forestgreen&quot;</span>, <span class="at">FBgn0260933 =</span> <span class="st">&quot;dodgerblue3&quot;</span>, <span class="at">prior =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb59-12"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-12" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb59-13"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">k         =</span> <span class="fu">as.vector</span>(<span class="fu">counts</span>(pasilla, <span class="at">normalized =</span> <span class="cn">TRUE</span>)[genes, ]),</span>
+<span id="cb59-14"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">rep</span>(<span class="fu">colData</span>(pasilla)[[<span class="st">&quot;condition&quot;</span>]], <span class="at">each =</span> <span class="fu">length</span>(genes)),</span>
+<span id="cb59-15"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">gene      =</span> <span class="fu">rep</span>(genes, <span class="at">times =</span> <span class="fu">ncol</span>(pasilla)))</span>
+<span id="cb59-16"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-16" aria-hidden="true" tabindex="-1"></a>beta    <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">to =</span> <span class="fl">1.5</span>, <span class="at">length =</span> <span class="dv">500</span>)</span>
+<span id="cb59-17"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-17" aria-hidden="true" tabindex="-1"></a>kounts  <span class="ot">=</span> <span class="fu">counts</span>(pasilla)[genes,, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb59-18"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-18" aria-hidden="true" tabindex="-1"></a>disps   <span class="ot">=</span> <span class="fu">dispersions</span>(pasilla[genes, ]) <span class="sc">|&gt;</span> <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(genes)</span>
+<span id="cb59-19"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-19" aria-hidden="true" tabindex="-1"></a>sf      <span class="ot">=</span> <span class="fu">sizeFactors</span>(pasilla)</span>
+<span id="cb59-20"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-20" aria-hidden="true" tabindex="-1"></a>cond    <span class="ot">=</span> <span class="fu">as.numeric</span>(pasilla<span class="sc">$</span>condition)<span class="sc">-</span><span class="dv">1</span> </span>
+<span id="cb59-21"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-21" aria-hidden="true" tabindex="-1"></a>betaPriorVar <span class="ot">=</span> <span class="fu">priorInfo</span>(res2)<span class="sc">$</span>betaPriorVar</span>
+<span id="cb59-22"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-22" aria-hidden="true" tabindex="-1"></a>priorSigma <span class="ot">=</span> <span class="fu">sqrt</span>(betaPriorVar[<span class="st">&quot;conditiontreated&quot;</span>])</span>
+<span id="cb59-23"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-23" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">=</span> <span class="fu">dnorm</span>(beta, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> priorSigma)</span>
+<span id="cb59-24"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-24" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">=</span> <span class="cf">function</span>(k, alpha, intercept) {</span>
+<span id="cb59-25"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-25" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">=</span> <span class="fu">vapply</span>(beta, <span class="cf">function</span>(b) {</span>
+<span id="cb59-26"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prod</span>(<span class="fu">dnbinom</span>(k, <span class="at">mu =</span> sf <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span>(intercept <span class="sc">+</span> b <span class="sc">*</span> cond), <span class="at">size =</span> <span class="dv">1</span><span class="sc">/</span>alpha))</span>
+<span id="cb59-27"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-27" aria-hidden="true" tabindex="-1"></a>  }, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb59-28"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-28" aria-hidden="true" tabindex="-1"></a>  z <span class="sc">/</span> (<span class="fu">sum</span>(z) <span class="sc">*</span> <span class="fu">diff</span>(beta[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
+<span id="cb59-29"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-30"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-30" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">=</span> <span class="cf">function</span>(k, alpha, intercept) {</span>
+<span id="cb59-31"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-31" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">=</span> <span class="fu">likelihood</span>(k, alpha, intercept) <span class="sc">*</span> prior</span>
+<span id="cb59-32"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-32" aria-hidden="true" tabindex="-1"></a>  z <span class="sc">/</span> (<span class="fu">sum</span>(z) <span class="sc">*</span> <span class="fu">diff</span>(beta[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
+<span id="cb59-33"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-34"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-34" aria-hidden="true" tabindex="-1"></a>intercepts <span class="ot">=</span> <span class="fu">with</span>(<span class="fu">mcols</span>(pasilla[genes,]), Intercept) <span class="sc">|&gt;</span> <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(genes)</span>
+<span id="cb59-35"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-35" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb59-36"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">beta =</span> beta, <span class="at">y =</span> prior, <span class="at">gene =</span> <span class="st">&quot;prior&quot;</span>, <span class="at">what =</span> <span class="st">&quot;pre&quot;</span>),</span>
+<span id="cb59-37"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb59-38"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(genes, <span class="cf">function</span>(i) <span class="fu">bind_rows</span>(</span>
+<span id="cb59-39"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">beta =</span> beta, <span class="at">gene =</span> i, <span class="at">what =</span> <span class="st">&quot;pre&quot;</span>,</span>
+<span id="cb59-40"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-40" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">likelihood</span>(<span class="at">k =</span> kounts[i, ], <span class="at">alpha =</span> disps[i],</span>
+<span id="cb59-41"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-41" aria-hidden="true" tabindex="-1"></a>                          <span class="at">intercept =</span> intercepts[i])),</span>
+<span id="cb59-42"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">beta =</span> beta, <span class="at">gene =</span> i, <span class="at">what =</span> <span class="st">&quot;post&quot;</span>,</span>
+<span id="cb59-43"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-43" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">posterior</span>(<span class="at">k =</span> kounts[i, ], <span class="at">alpha =</span> disps[i],</span>
+<span id="cb59-44"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-44" aria-hidden="true" tabindex="-1"></a>                         <span class="at">intercept =</span> intercepts[i]))))</span>
+<span id="cb59-45"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-46"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb59-47"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-47" aria-hidden="true" tabindex="-1"></a>is_max <span class="ot">=</span> <span class="cf">function</span>(y)</span>
+<span id="cb59-48"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">seq</span>(<span class="at">along =</span> y) <span class="sc">==</span> <span class="fu">which.max</span>(y), y, <span class="cn">NA_real_</span>)</span>
+<span id="cb59-49"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-49" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&lt;&gt;%</span> <span class="fu">group_by</span>(gene, what) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">py =</span> <span class="fu">is_max</span>(y))</span>
+<span id="cb59-50"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-50" aria-hidden="true" tabindex="-1"></a><span class="do">## some consistency checks:</span></span>
+<span id="cb59-51"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-51" aria-hidden="true" tabindex="-1"></a>deseqNoPrior <span class="ot">=</span> res1[genes, <span class="st">&quot;log2FoldChange&quot;</span>]</span>
+<span id="cb59-52"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-52" aria-hidden="true" tabindex="-1"></a>deseqPrior   <span class="ot">=</span> res2[genes, <span class="st">&quot;log2FoldChange&quot;</span>]</span>
+<span id="cb59-53"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-53" aria-hidden="true" tabindex="-1"></a>mleFromPlot  <span class="ot">=</span> <span class="fu">c</span>(beta[<span class="fu">which.max</span>(<span class="fu">likelihood</span>(kounts[<span class="dv">1</span>,], disps[<span class="dv">1</span>], intercepts[<span class="dv">1</span>]))],</span>
+<span id="cb59-54"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-54" aria-hidden="true" tabindex="-1"></a>                 beta[<span class="fu">which.max</span>(<span class="fu">likelihood</span>(kounts[<span class="dv">2</span>,], disps[<span class="dv">2</span>], intercepts[<span class="dv">2</span>]))])</span>
+<span id="cb59-55"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-55" aria-hidden="true" tabindex="-1"></a>mapFromPlot  <span class="ot">=</span> <span class="fu">c</span>(beta[<span class="fu">which.max</span>( <span class="fu">posterior</span>(kounts[<span class="dv">1</span>,], disps[<span class="dv">1</span>], intercepts[<span class="dv">1</span>]))],</span>
+<span id="cb59-56"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-56" aria-hidden="true" tabindex="-1"></a>                 beta[<span class="fu">which.max</span>( <span class="fu">posterior</span>(kounts[<span class="dv">2</span>,], disps[<span class="dv">2</span>], intercepts[<span class="dv">2</span>]))])</span>
+<span id="cb59-57"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb59-57" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">abs</span>(deseqNoPrior <span class="sc">-</span> mleFromPlot) <span class="sc">&lt;</span> <span class="fl">0.002</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="otros-conceptos-estadísticos" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Otros conceptos estadísticos<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#otros-conceptos-estadísticos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intercambio-de-información-de-dispersión-entre-genes" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Intercambio de información de dispersión entre genes<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#intercambio-de-información-de-dispersión-entre-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ggbeeswarm&quot;</span>)</span>
+<span id="cb60-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> k, <span class="at">col =</span> gene)) <span class="sc">+</span> <span class="fu">geom_beeswarm</span>(<span class="at">cex =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb60-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_grid</span>(. <span class="sc">~</span> gene) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;normalized counts&quot;</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb60-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb60-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cols) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x =</span> beta, <span class="at">col =</span> gene, <span class="at">linetype =</span> what)) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> py)) <span class="sc">+</span></span>
+<span id="cb61-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cols) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb61-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">pre =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">post =</span> <span class="st">&quot;dotted&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb61-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(beta)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;density&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 2495 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+</div>
+<div id="transformaciones-de-datos-de-conteo" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Transformaciones de datos de conteo<a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#transformaciones-de-datos-de-conteo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb63-1" aria-hidden="true" tabindex="-1"></a>vsp <span class="ot">=</span> <span class="fu">varianceStabilizingTransformation</span>(pasilla)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-1" aria-hidden="true" tabindex="-1"></a>j <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb64-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(</span>
+<span id="cb64-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">x    =</span> <span class="fu">assay</span>(pasilla)[, j],</span>
+<span id="cb64-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">VST  =</span> <span class="fu">assay</span>(vsp)[, j],</span>
+<span id="cb64-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">log2 =</span> <span class="fu">log2</span>(<span class="fu">assay</span>(pasilla)[, j])) <span class="sc">|&gt;</span></span>
+<span id="cb64-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-6" aria-hidden="true" tabindex="-1"></a>             reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">id.vars =</span> <span class="st">&quot;x&quot;</span>),</span>
+<span id="cb64-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> value, <span class="at">col =</span> variable)) <span class="sc">+</span></span>
+<span id="cb64-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">600</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">9</span>)) <span class="sc">+</span></span>
+<span id="cb64-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb64-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;counts&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;transformed&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 8234 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Gráfica de transformación estabilizadora de varianza para los datos de una de las muestras, y para comparación también del log 2.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;vsn&quot;</span>)</span>
+<span id="cb66-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-2" aria-hidden="true" tabindex="-1"></a>rlp <span class="ot">=</span> <span class="fu">rlogTransformation</span>(pasilla)</span>
+<span id="cb66-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-3" aria-hidden="true" tabindex="-1"></a>msd <span class="ot">=</span> <span class="cf">function</span>(x)</span>
+<span id="cb66-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">meanSdPlot</span>(x, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>gg <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb66-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb66-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(</span>
+<span id="cb66-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">msd</span>(<span class="fu">log2</span>(<span class="fu">counts</span>(pasilla, <span class="at">normalized =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb66-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;sd(log2)&quot;</span>),</span>
+<span id="cb66-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">msd</span>(<span class="fu">assay</span>(vsp)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;sd(vst)&quot;</span>),</span>
+<span id="cb66-10"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">msd</span>(<span class="fu">assay</span>(rlp)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;sd(rlog)&quot;</span>),</span>
+<span id="cb66-11"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span></span>
+<span id="cb66-12"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb66-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_binhex).</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_hex).</code></pre>
+<pre><code>## Warning: Removed 21 rows containing non-finite values (stat_binhex).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_hex).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite values (stat_binhex).</code></pre>
+<pre><code>## Warning: Removed 20 rows containing missing values (geom_hex).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+### Pruebas de log 2 cambio de pliegue por encima o por debajo de un umbral</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb73-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-2" aria-hidden="true" tabindex="-1"></a>myMA <span class="ot">=</span> <span class="cf">function</span>(h, v, <span class="at">theta =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb73-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotMA</span>(pasilla, <span class="at">lfcThreshold =</span> theta, <span class="at">altHypothesis =</span> h,</span>
+<span id="cb73-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>))</span>
+<span id="cb73-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> v <span class="sc">*</span> theta, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb73-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb73-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="fu">myMA</span>(<span class="st">&quot;greaterAbs&quot;</span>, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb73-8"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">myMA</span>(<span class="st">&quot;lessAbs&quot;</span>,    <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb73-9"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="fu">myMA</span>(<span class="st">&quot;greater&quot;</span>,          <span class="dv">1</span>)</span>
+<span id="cb73-10"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="fu">myMA</span>(<span class="st">&quot;less&quot;</span>,         <span class="sc">-</span><span class="dv">1</span>   )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+## Ejercicios</p>
+<p>Considere el siguiente modelo generativo simple para un histograma de valores p que muestra un agotamiento de valores p pequeños. Los valores p se muestran a partir de un análisis de expresión diferencial (en este caso, simple t -pruebas) en ausencia de una asociación con la variable categórica de dos niveles probada groups. Mientras que el histograma es aproximadamente uniforme para x1, los valores p pequeños se agotan para x2. Esto se debe a que el lote (codificado por la variable homónima), que es ortogonal a groupsy equilibrado, introduce una variabilidad adicional que infla el denominador del estadístico de prueba.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
+<span id="cb74-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb74-2" aria-hidden="true" tabindex="-1"></a>ng <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb74-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb74-3" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb74-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb74-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> x2 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(ns <span class="sc">*</span> ng), <span class="at">ncol =</span> ns, <span class="at">nrow=</span> ng)</span>
+<span id="cb74-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb74-5" aria-hidden="true" tabindex="-1"></a>group <span class="ot">=</span> <span class="fu">factor</span>(letters[<span class="dv">1</span> <span class="sc">+</span> <span class="fu">seq_len</span>(ns) <span class="sc">%%</span> <span class="dv">2</span>])  <span class="sc">%T&gt;%</span> print</span></code></pre></div>
+<pre><code>##  [1] b a b a b a b a b a b a
+## Levels: a b</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb76-1" aria-hidden="true" tabindex="-1"></a>batch <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(<span class="fu">seq_len</span>(ns) <span class="sc">&lt;=</span> ns<span class="sc">/</span><span class="dv">2</span>, <span class="st">&quot;B1&quot;</span>, <span class="st">&quot;B2&quot;</span>)) <span class="sc">%T&gt;%</span> print</span></code></pre></div>
+<pre><code>##  [1] B1 B1 B1 B1 B1 B1 B2 B2 B2 B2 B2 B2
+## Levels: B1 B2</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(group, batch)</span></code></pre></div>
+<pre><code>##      batch
+## group B1 B2
+##     a  3  3
+##     b  3  3</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-1" aria-hidden="true" tabindex="-1"></a>x2[, batch<span class="sc">==</span><span class="st">&quot;B2&quot;</span>] <span class="ot">=</span> x2[, batch<span class="sc">==</span><span class="st">&quot;B2&quot;</span>] <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">rnorm</span>(ng)</span>
+<span id="cb80-2"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-2" aria-hidden="true" tabindex="-1"></a>pvals <span class="ot">=</span> <span class="fu">rbind</span>(</span>
+<span id="cb80-3"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">type =</span> <span class="st">&quot;x1&quot;</span>, genefilter<span class="sc">::</span><span class="fu">rowttests</span>(x1, <span class="at">fac =</span> group)),</span>
+<span id="cb80-4"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">type =</span> <span class="st">&quot;x2&quot;</span>, genefilter<span class="sc">::</span><span class="fu">rowttests</span>(x2, <span class="at">fac =</span> group)))</span>
+<span id="cb80-5"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pvals, <span class="fu">aes</span>(<span class="at">x =</span> p.value)) <span class="sc">+</span> </span>
+<span id="cb80-6"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.02</span>, <span class="at">boundary =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb80-7"><a href="capítulo-n-8---datos-de-conteo-de-alto-rendimiento.html#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(type <span class="sc">~</span> .)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="capítulo-n-7---análisis-multivariado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="capítulo-n-9---métodos-multivariados-para-datos-heterogéneos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-C8-Datos-de-Conteo-de-Alto-Rendimiento.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

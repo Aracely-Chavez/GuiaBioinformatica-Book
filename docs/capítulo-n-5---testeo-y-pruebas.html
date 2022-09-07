@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 CAPÍTULO N° 5 - Testeo y Pruebas | Guía de Bioestadistica</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 CAPÍTULO N° 5 - Testeo y Pruebas | Guía de Bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 CAPÍTULO N° 5 - Testeo y Pruebas | Guía de Bioestadistica" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+
+
+<meta name="date" content="2022-08-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="blocks.html"/>
+<link rel="next" href="objetivos-de-este-capítulo-3.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdución</a></li>
+<li class="chapter" data-level="2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html"><i class="fa fa-check"></i><b>2</b> CAPÍTULO N° 2 - Modelamiento Estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-ejemplo-simple-de-modelado-estadístico"><i class="fa fa-check"></i><b>2.1</b> Un ejemplo simple de modelado estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estimación-del-parámetro-de-la-distribución-de-poisson"><i class="fa fa-check"></i><b>2.1.1</b> Estimación del parámetro de la distribución de Poisson</a></li>
+<li class="chapter" data-level="2.1.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#función-de-verosimilitud-de-λ"><i class="fa fa-check"></i><b>2.1.2</b> Función de verosimilitud de λ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#distribuciones-binomiales-y-máxima-verosimilitud"><i class="fa fa-check"></i><b>2.2</b> Distribuciones binomiales y máxima verosimilitud</a></li>
+<li class="chapter" data-level="2.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#más-casillasdatos-multinomiales"><i class="fa fa-check"></i><b>2.3</b> Más casillas:datos multinomiales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#sesgo-de-nucleótidos"><i class="fa fa-check"></i><b>2.3.1</b> Sesgo de nucleótidos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-chi-cuadrado"><i class="fa fa-check"></i><b>2.4</b> La distribución Chi-Cuadrado</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#intermezzo-cuantiles-y-gráfico-cuantil-cuantil"><i class="fa fa-check"></i><b>2.4.1</b> Intermezzo: cuantiles y gráfico cuantil-cuantil</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#regla-de-chargaff"><i class="fa fa-check"></i><b>2.5</b> Regla de Chargaff</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#dos-variables-categóricas"><i class="fa fa-check"></i><b>2.5.1</b> Dos variables categóricas</a></li>
+<li class="chapter" data-level="2.5.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#daltonismo-y-sexo"><i class="fa fa-check"></i><b>2.5.2</b> <strong>Daltonismo y sexo</strong></a></li>
+<li class="chapter" data-level="2.5.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-multinomio-especial-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.3</b> Un multinomio especial: equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#comparación-visual-con-el-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.4</b> Comparación visual con el equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#concatenación-de-varios-multinomios-motivos-de-secuencia-y-logos"><i class="fa fa-check"></i><b>2.5.5</b> Concatenación de varios multinomios: motivos de secuencia y logos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-de-dependencias-secuenciales-cadenas-de-markov"><i class="fa fa-check"></i><b>2.6</b> Modelado de dependencias secuenciales: cadenas de Markov</a></li>
+<li class="chapter" data-level="2.7" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pensamiento-bayesiano"><i class="fa fa-check"></i><b>2.7</b> Pensamiento bayesiano</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#haplotipos"><i class="fa fa-check"></i><b>2.7.1</b> Haplotipos</a></li>
+<li class="chapter" data-level="2.7.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estudio-de-simulación-del-paradigma-bayesiano-para-el-binomio"><i class="fa fa-check"></i><b>2.7.2</b> Estudio de simulación del paradigma bayesiano para el binomio</a></li>
+<li class="chapter" data-level="2.7.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-de-y"><i class="fa fa-check"></i><b>2.7.3</b> La distribución de Y</a></li>
+<li class="chapter" data-level="2.7.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-posterior-también-es-una-beta."><i class="fa fa-check"></i><b>2.7.4</b> La distribución posterior también es una beta.</a></li>
+<li class="chapter" data-level="2.7.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#declaraciones-de-confianza-para-el-parámetro-de-proporción"><i class="fa fa-check"></i><b>2.7.5</b> Declaraciones de confianza para el parámetro de proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejemplo-aparición-de-un-patrón-de-nucleótidos-en-un-genoma"><i class="fa fa-check"></i><b>2.8</b> Ejemplo: aparición de un patrón de nucleótidos en un genoma</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-en-el-caso-de-dependencias"><i class="fa fa-check"></i><b>2.8.1</b> Modelado en el caso de dependencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#resumen-de-este-capítulo"><i class="fa fa-check"></i><b>2.9</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="2.10" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejercicios"><i class="fa fa-check"></i><b>2.10</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-1"><i class="fa fa-check"></i><b>2.10.1</b> Pregunta N° 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-2"><i class="fa fa-check"></i><b>2.10.2</b> pregunta N° 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><i class="fa fa-check"></i><b>3</b> CAPÍTULO N° 3 - Gráficos de alta calidad en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#objetivos-del-capítulo"><i class="fa fa-check"></i><b>3.1</b> Objetivos del capítulo</a></li>
+<li class="chapter" data-level="3.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazado-base-r"><i class="fa fa-check"></i><b>3.2</b> Trazado base R</a></li>
+<li class="chapter" data-level="3.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#un-conjunto-de-datos-de-ejemplo"><i class="fa fa-check"></i><b>3.3</b> Un conjunto de datos de ejemplo</a></li>
+<li class="chapter" data-level="3.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#ggplot2"><i class="fa fa-check"></i><b>3.4</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#estética"><i class="fa fa-check"></i><b>3.4.1</b> Estética</a></li>
+<li class="chapter" data-level="3.4.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#flujo-de-datos"><i class="fa fa-check"></i><b>3.4.2</b> Flujo de datos</a></li>
+<li class="chapter" data-level="3.4.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#guardar-cifras"><i class="fa fa-check"></i><b>3.4.3</b> Guardar cifras</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#la-gramática-de-los-gráficos"><i class="fa fa-check"></i><b>3.5</b> La gramática de los gráficos</a></li>
+<li class="chapter" data-level="3.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-1d"><i class="fa fa-check"></i><b>3.6</b> Visualización de datos en 1D</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-barras"><i class="fa fa-check"></i><b>3.6.1</b> Diagramas de barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-caja"><i class="fa fa-check"></i><b>3.6.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="3.6.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#violín"><i class="fa fa-check"></i><b>3.6.3</b> violín</a></li>
+<li class="chapter" data-level="3.6.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>3.6.4</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="3.6.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-ecdf"><i class="fa fa-check"></i><b>3.6.5</b> Gráficos ECDF</a></li>
+<li class="chapter" data-level="3.6.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#el-efecto-de-las-transformaciones-sobre-las-densidades"><i class="fa fa-check"></i><b>3.6.6</b> El efecto de las transformaciones sobre las densidades</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-2d-diagramas-de-dispersión"><i class="fa fa-check"></i><b>3.7</b> Visualización de datos en 2D: diagramas de dispersión</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#representada-como-un-gráfico-de-contorno-de-la-estimación-de-densidad-2d."><i class="fa fa-check"></i><b>3.7.1</b> Representada como un gráfico de contorno de la estimación de densidad 2D.</a></li>
+<li class="chapter" data-level="3.7.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazar-formas"><i class="fa fa-check"></i><b>3.7.2</b> Trazar formas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-más-de-dos-dimensiones"><i class="fa fa-check"></i><b>3.8</b> Visualización de más de dos dimensiones</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#facetado"><i class="fa fa-check"></i><b>3.8.1</b> Facetado</a></li>
+<li class="chapter" data-level="3.8.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-interactivos"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos interactivos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#color"><i class="fa fa-check"></i><b>3.9</b> Color</a></li>
+<li class="chapter" data-level="3.10" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#mapas-de-calor"><i class="fa fa-check"></i><b>3.10</b> Mapas de calor</a></li>
+<li class="chapter" data-level="3.11" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#transformaciones-de-datos"><i class="fa fa-check"></i><b>3.11</b> Transformaciones de datos</a></li>
+<li class="chapter" data-level="3.12" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#símbolos-matemáticos-y-otras-fuentes"><i class="fa fa-check"></i><b>3.12</b> Símbolos matemáticos y otras fuentes</a></li>
+<li class="chapter" data-level="3.13" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#datos-genómicos"><i class="fa fa-check"></i><b>3.13</b> Datos genómicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html"><i class="fa fa-check"></i><b>4</b> CAPÍTULO N° 4 - Modelos de mezcla</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#objetivos-de-este-capítulo"><i class="fa fa-check"></i><b>4.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-finitas"><i class="fa fa-check"></i><b>4.2</b> Mezclas finitas</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejemplos-sencillos-y-experimentos-informáticos"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplos sencillos y experimentos informáticos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#descubriendo-las-etiquetas-de-clase-ocultas"><i class="fa fa-check"></i><b>4.2.2</b> Descubriendo las etiquetas de clase ocultas</a></li>
+<li class="chapter" data-level="4.2.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#modelos-para-datos-inflados-a-cero"><i class="fa fa-check"></i><b>4.2.3</b> Modelos para datos inflados a cero</a></li>
+<li class="chapter" data-level="4.2.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#más-de-dos-componentes"><i class="fa fa-check"></i><b>4.2.4</b> Más de dos componentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#distribuciones-empíricas-y-bootstrap-no-paramétrico"><i class="fa fa-check"></i><b>4.3</b> Distribuciones empíricas y bootstrap no paramétrico</a></li>
+<li class="chapter" data-level="4.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas"><i class="fa fa-check"></i><b>4.4</b> Mezclas infinitas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezcla-infinita-de-normales"><i class="fa fa-check"></i><b>4.4.1</b> Mezcla infinita de normales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas-de-variables-de-poisson"><i class="fa fa-check"></i><b>4.4.2</b> Mezclas infinitas de variables de Poisson</a></li>
+<li class="chapter" data-level="4.4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#transformaciones-estabilizadoras-de-varianza"><i class="fa fa-check"></i><b>4.4.3</b> Transformaciones estabilizadoras de varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#resumen-de-este-capítulo-1"><i class="fa fa-check"></i><b>4.5</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="4.6" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicios-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.1"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 4.1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.2"><i class="fa fa-check"></i><b>4.6.2</b> Ejercicio 4.2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html"><i class="fa fa-check"></i><b>5</b> CAPÍTULO N° 5 - Clustering</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#objetivos-de-este-capítulo-1"><i class="fa fa-check"></i><b>5.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#qué-son-los-datos-y-por-qué-los-agrupamos"><i class="fa fa-check"></i><b>5.2</b> ¿Qué son los datos y por qué los agrupamos?</a></li>
+<li class="chapter" data-level="5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cálculos-relacionados-con-distancias-en-r"><i class="fa fa-check"></i><b>5.3</b> 5.3.1 Cálculos relacionados con distancias en R</a></li>
+<li class="chapter" data-level="5.4" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#detección-de-mezcla-no-paramétrica"><i class="fa fa-check"></i><b>5.4</b> Detección de mezcla no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#k-métodos-k--significa-k--medoides-y-pam"><i class="fa fa-check"></i><b>5.4.1</b> K-métodos: k -significa, k -medoides y PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejemplos-de-agrupamiento-citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5</b> Ejemplos de agrupamiento: citometría de flujo y citometría de masas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5.1</b> Citometría de flujo y citometría de masas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#preprocesamiento-de-datos"><i class="fa fa-check"></i><b>5.5.2</b> Preprocesamiento de datos</a></li>
+<li class="chapter" data-level="5.5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-basado-en-la-densidad"><i class="fa fa-check"></i><b>5.5.3</b> Agrupamiento basado en la densidad</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-jerárquico"><i class="fa fa-check"></i><b>5.6</b> Agrupamiento jerárquico</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cómo-calcular-des-similitudes-entre-clústeres-agregados"><i class="fa fa-check"></i><b>5.6.1</b> ¿Cómo calcular (des) similitudes entre clústeres agregados?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-y-elección-del-número-de-clústeres"><i class="fa fa-check"></i><b>5.7</b> Validación y elección del número de clústeres</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#uso-de-la-estadística-de-la-brecha"><i class="fa fa-check"></i><b>5.7.1</b> Uso de la estadística de la brecha</a></li>
+<li class="chapter" data-level="5.7.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-de-clúster-mediante-bootstrap"><i class="fa fa-check"></i><b>5.7.2</b> Validación de clúster mediante bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#el-agrupamiento-como-medio-para-eliminar-el-ruido"><i class="fa fa-check"></i><b>5.8</b> El agrupamiento como medio para eliminar el ruido</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#observaciones-ruidosas-con-diferentes-frecuencias-de-línea-de-base"><i class="fa fa-check"></i><b>5.8.1</b> Observaciones ruidosas con diferentes frecuencias de línea de base</a></li>
+<li class="chapter" data-level="5.8.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#inferir-variantes-de-secuencia"><i class="fa fa-check"></i><b>5.8.2</b> Inferir variantes de secuencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejercicios-2"><i class="fa fa-check"></i><b>5.9</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>6</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>6.1</b> Footnotes</a></li>
+<li class="chapter" data-level="6.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>6.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>7</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>7.1</b> Equations</a></li>
+<li class="chapter" data-level="7.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>7.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="7.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>7.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html"><i class="fa fa-check"></i><b>8</b> CAPÍTULO N° 5 - Testeo y Pruebas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#objetivos-de-este-capítulo-2"><i class="fa fa-check"></i><b>8.1</b> Objetivos de este Capítulo</a></li>
+<li class="chapter" data-level="8.2" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#librerias"><i class="fa fa-check"></i><b>8.2</b> Librerias</a></li>
+<li class="chapter" data-level="8.3" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#un-ejemplo-lanzamiento-de-una-moneda"><i class="fa fa-check"></i><b>8.3</b> Un ejemplo: lanzamiento de una moneda</a></li>
+<li class="chapter" data-level="8.4" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#los-cinco-pasos-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>8.4</b> Los cinco pasos de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="8.5" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#la-prueba-t"><i class="fa fa-check"></i><b>8.5</b> La prueba t</a></li>
+<li class="chapter" data-level="8.6" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#pruebas-múltiples"><i class="fa fa-check"></i><b>8.6</b> Pruebas múltiples</a></li>
+<li class="chapter" data-level="8.7" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#la-tasa-de-error-inteligente-de-la-familia"><i class="fa fa-check"></i><b>8.7</b> La tasa de error inteligente de la familia</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#corrección-de-bonferroni"><i class="fa fa-check"></i><b>8.7.1</b> Corrección de Bonferroni</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#la-tasa-de-descubrimiento-falso"><i class="fa fa-check"></i><b>8.8</b> La tasa de descubrimiento falso</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#el-histograma-del-valor-p"><i class="fa fa-check"></i><b>8.8.1</b> El histograma del valor p</a></li>
+<li class="chapter" data-level="8.8.2" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#el-algoritmo-de-benjamini-hochberg-para-controlar-el-fdr"><i class="fa fa-check"></i><b>8.8.2</b> El algoritmo de Benjamini-Hochberg para controlar el FDR</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#el-fdr-local"><i class="fa fa-check"></i><b>8.9</b> El FDR local</a></li>
+<li class="chapter" data-level="8.10" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#filtrado-independiente-y-ponderación-de-hipótesis"><i class="fa fa-check"></i><b>8.10</b> Filtrado independiente y ponderación de hipótesis</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="capítulo-n-5---testeo-y-pruebas.html"><a href="capítulo-n-5---testeo-y-pruebas.html#pregunta"><i class="fa fa-check"></i><b>8.10.1</b> Pregunta</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html"><i class="fa fa-check"></i><b>9</b> 7.1 Objetivos de este capítulo</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#resúmenes-y-preparación-de-datos-de-baja-dimensión"><i class="fa fa-check"></i><b>9.1</b> 7.2.1 Resúmenes y preparación de datos de baja dimensión</a></li>
+<li class="chapter" data-level="9.2" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#proyecciones-de-menor-dimensión"><i class="fa fa-check"></i><b>9.2</b> 7.3.1 Proyecciones de menor dimensión</a></li>
+<li class="chapter" data-level="9.3" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#cómo-resumimos-los-datos-bidimensionales-en-una-línea"><i class="fa fa-check"></i><b>9.3</b> 7.3.2 ¿Cómo resumimos los datos bidimensionales en una línea?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#regresión-de-una-variable-sobre-la-otra"><i class="fa fa-check"></i><b>9.3.1</b> Regresión de una variable sobre la otra</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#matrices-de-rango-uno"><i class="fa fa-check"></i><b>9.4</b> 7.6.1 Matrices de rango uno</a></li>
+<li class="chapter" data-level="9.5" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#cómo-encontramos-tal-descomposición-de-una-manera-única"><i class="fa fa-check"></i><b>9.5</b> 7.6.2 ¿Cómo encontramos tal descomposición de una manera única?</a></li>
+<li class="chapter" data-level="9.6" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#pca-de-los-datos-de-las-tortugas"><i class="fa fa-check"></i><b>9.6</b> 7.7.1 PCA de los datos de las tortugas</a></li>
+<li class="chapter" data-level="9.7" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#un-análisis-completo-los-atletas-de-decatlón"><i class="fa fa-check"></i><b>9.7</b> 7.7.2 Un análisis completo: los atletas de decatlón</a></li>
+<li class="chapter" data-level="9.8" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#cómo-elegir-k-el-número-de-dimensiones"><i class="fa fa-check"></i><b>9.8</b> 7.7.3 Cómo elegir k , el número de dimensiones ?</a></li>
+<li class="chapter" data-level="9.9" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#análisis-de-datos-de-espectroscopia-de-masas"><i class="fa fa-check"></i><b>9.9</b> 7.8.1 Análisis de datos de espectroscopia de masas</a></li>
+<li class="chapter" data-level="9.10" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#biplots-y-escalado"><i class="fa fa-check"></i><b>9.10</b> 7.8.2 Biplots y escalado</a></li>
+<li class="chapter" data-level="9.11" data-path="objetivos-de-este-capítulo-3.html"><a href="objetivos-de-este-capítulo-3.html#un-ejemplo-de-pca-ponderado"><i class="fa fa-check"></i><b>9.11</b> 7.8.3 Un ejemplo de PCA ponderado</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guía de Bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="capítulo-n-5---testeo-y-pruebas" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> CAPÍTULO N° 5 - Testeo y Pruebas<a href="capítulo-n-5---testeo-y-pruebas.html#capítulo-n-5---testeo-y-pruebas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivos-de-este-capítulo-2" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objetivos de este Capítulo<a href="capítulo-n-5---testeo-y-pruebas.html#objetivos-de-este-capítulo-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Familiarizarnos con la maquinaria estadística de la prueba de hipótesis, su vocabulario, su propósito y sus fortalezas y limitaciones.</p></li>
+<li><p>Comprenda lo que significan las pruebas múltiples.</p>
+<p>Vea que las pruebas múltiples no son un problema, sino más bien una oportunidad, ya que supera muchas de las limitaciones de las pruebas individuales.</p></li>
+<li><p>Comprender la tasa de descubrimiento falso.</p></li>
+<li><p>Aprenda a hacer diagramas de diagnóstico.</p></li>
+<li><p>Utilice la ponderación de hipótesis para aumentar el poder de nuestros análisis.</p></li>
+</ul>
+</div>
+<div id="librerias" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Librerias<a href="capítulo-n-5---testeo-y-pruebas.html#librerias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;tibble&quot;</span>,<span class="st">&quot;dplyr&quot;</span>,<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;gganimate&quot;</span>,<span class="st">&quot;magick&quot;</span>,<span class="st">&quot;transformr&quot;</span>)</span>
+<span id="cb1-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;transformr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-1" aria-hidden="true" tabindex="-1"></a>makedata <span class="ot">=</span> <span class="cf">function</span>(px, f1, f2, pi0, xcut, what) {</span>
+<span id="cb2-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(px)<span class="sc">==</span><span class="fu">length</span>(f1), </span>
+<span id="cb2-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">length</span>(px)<span class="sc">==</span><span class="fu">length</span>(f2), </span>
+<span id="cb2-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">length</span>(pi0)<span class="sc">==</span><span class="dv">1</span>, </span>
+<span id="cb2-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">length</span>(xcut)<span class="sc">==</span><span class="dv">1</span>,</span>
+<span id="cb2-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">length</span>(what)<span class="sc">==</span><span class="dv">1</span>,</span>
+<span id="cb2-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-7" aria-hidden="true" tabindex="-1"></a>            pi0<span class="sc">&gt;=</span><span class="dv">0</span>, pi0<span class="sc">&lt;=</span><span class="dv">1</span>)</span>
+<span id="cb2-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  f1 <span class="ot">=</span> f1 <span class="sc">*</span> pi0</span>
+<span id="cb2-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-9" aria-hidden="true" tabindex="-1"></a>  f2 <span class="ot">=</span> f2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>pi0)</span>
+<span id="cb2-10"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-10" aria-hidden="true" tabindex="-1"></a>  i1 <span class="ot">=</span> <span class="fu">which</span>(px <span class="sc">&gt;=</span> xcut)</span>
+<span id="cb2-11"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-11" aria-hidden="true" tabindex="-1"></a>  i2 <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>, i1[<span class="dv">1</span>], <span class="at">by =</span> 1L)</span>
+<span id="cb2-12"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-12" aria-hidden="true" tabindex="-1"></a>  maxf1 <span class="ot">=</span> <span class="fu">max</span>(f1)</span>
+<span id="cb2-13"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-13" aria-hidden="true" tabindex="-1"></a>  maxf2 <span class="ot">=</span> <span class="fu">max</span>(f2)</span>
+<span id="cb2-14"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(  </span>
+<span id="cb2-15"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-16"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> px[<span class="fu">c</span>(i1, <span class="fu">rev</span>(i1))],</span>
+<span id="cb2-17"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(f1[i1], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(i1))),</span>
+<span id="cb2-18"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;True Negative&quot;</span>),</span>
+<span id="cb2-19"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-20"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> px[<span class="fu">c</span>(i2, <span class="fu">rev</span>(i2))],</span>
+<span id="cb2-21"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(f1[i2], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(i2))),</span>
+<span id="cb2-22"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;False Positive&quot;</span>),</span>
+<span id="cb2-23"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-24"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> px[<span class="fu">c</span>(i1, <span class="fu">rev</span>(i1))],</span>
+<span id="cb2-25"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(f2[i1], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(i1))) <span class="sc">+</span> maxf1,</span>
+<span id="cb2-26"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;False Negative&quot;</span>),</span>
+<span id="cb2-27"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-28"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> px[<span class="fu">c</span>(i2, <span class="fu">rev</span>(i2))],</span>
+<span id="cb2-29"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(f2[i2], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(i2))) <span class="sc">+</span> maxf1,</span>
+<span id="cb2-30"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;True Positive&quot;</span>),</span>
+<span id="cb2-31"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-32"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">rep</span>(xcut, 3L),</span>
+<span id="cb2-33"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, maxf1<span class="sc">+</span>maxf2, <span class="dv">0</span>),</span>
+<span id="cb2-34"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb2-35"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-35" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb2-36"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">tibble</span>(<span class="at">xcut =</span> xcut, <span class="at">what =</span> what))</span>
+<span id="cb2-37"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-37" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb2-38"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-38" aria-hidden="true" tabindex="-1"></a>findclosest <span class="ot">=</span> <span class="cf">function</span>(x, x0) {x[<span class="fu">which.min</span>(<span class="fu">abs</span>(x<span class="sc">-</span>x0))]}</span>
+<span id="cb2-39"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-39" aria-hidden="true" tabindex="-1"></a>pi0 <span class="ot">=</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb2-40"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-40" aria-hidden="true" tabindex="-1"></a>t_df <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb2-41"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-41" aria-hidden="true" tabindex="-1"></a>pxa <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb2-42"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-42" aria-hidden="true" tabindex="-1"></a>pxb <span class="ot">=</span> <span class="fu">pt</span>(pxa, <span class="at">df =</span> t_df)</span>
+<span id="cb2-43"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-43" aria-hidden="true" tabindex="-1"></a>xcuta <span class="ot">=</span> <span class="fu">findclosest</span>(pxa, <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df =</span> t_df))</span>
+<span id="cb2-44"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-44" aria-hidden="true" tabindex="-1"></a>xcutb <span class="ot">=</span> <span class="fu">findclosest</span>(pxb,    <span class="fl">0.05</span>)</span>
+<span id="cb2-45"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-45" aria-hidden="true" tabindex="-1"></a>f1a <span class="ot">=</span> <span class="fu">dt</span>(pxa, <span class="at">df =</span> t_df) </span>
+<span id="cb2-46"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-46" aria-hidden="true" tabindex="-1"></a>f2a <span class="ot">=</span> <span class="fu">dgamma</span>(pxa <span class="sc">+</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">rate =</span> <span class="fl">0.8</span>) </span>
+<span id="cb2-47"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-47" aria-hidden="true" tabindex="-1"></a>chainrulefac <span class="ot">=</span> (<span class="fu">diff</span>(pxa)<span class="sc">/</span><span class="fu">diff</span>(pxb)) <span class="sc">|&gt;</span> {\(x) <span class="fu">c</span>(x, <span class="fu">last</span>(x))}()</span>
+<span id="cb2-48"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-48" aria-hidden="true" tabindex="-1"></a>f1b <span class="ot">=</span> f1a <span class="sc">*</span> chainrulefac <span class="sc">|&gt;</span> {\(x) x<span class="sc">/</span><span class="fu">sum</span>(x)}()</span>
+<span id="cb2-49"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-49" aria-hidden="true" tabindex="-1"></a>f2b <span class="ot">=</span> f2a <span class="sc">*</span> chainrulefac <span class="sc">|&gt;</span> {\(x) x<span class="sc">/</span><span class="fu">sum</span>(x)}()</span>
+<span id="cb2-50"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-50" aria-hidden="true" tabindex="-1"></a>f1b <span class="ot">=</span> f1b<span class="sc">/</span><span class="fu">sum</span>(f1b)</span>
+<span id="cb2-51"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-51" aria-hidden="true" tabindex="-1"></a>f2b <span class="ot">=</span> f2b<span class="sc">/</span><span class="fu">sum</span>(f2b)</span>
+<span id="cb2-52"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-52" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb2-53"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makedata</span>(pxa, f1a, f2a, pi0, xcuta, <span class="st">&quot;x&quot;</span>),</span>
+<span id="cb2-54"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">makedata</span>(pxb, f1b, f2b, pi0, xcutb, <span class="st">&quot;p-value&quot;</span>)</span>
+<span id="cb2-55"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-55" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb2-56"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-56" aria-hidden="true" tabindex="-1"></a>make_static_plot <span class="ot">=</span> <span class="cf">function</span>(df) {</span>
+<span id="cb2-57"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">nrow</span>(df)<span class="sc">&gt;=</span><span class="dv">3</span>)</span>
+<span id="cb2-58"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-58" aria-hidden="true" tabindex="-1"></a>  colpal <span class="ot">=</span> <span class="fu">setNames</span>(</span>
+<span id="cb2-59"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">&quot;Paired&quot;</span>)[<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>)], <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb2-60"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">&quot;True Positive&quot;</span>, <span class="st">&quot;False Negative&quot;</span>,</span>
+<span id="cb2-61"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;False Positive&quot;</span>, <span class="st">&quot;True Negative&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2-62"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> outcome, <span class="at">col =</span> outcome)) <span class="sc">+</span> </span>
+<span id="cb2-63"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
+<span id="cb2-64"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colpal) <span class="sc">+</span></span>
+<span id="cb2-65"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> colpal) <span class="sc">+</span></span>
+<span id="cb2-66"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb2-67"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb2-68"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-68" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb2-69"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-69" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb2-70"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-70" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y  =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb2-71"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-71" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb2-72"><a href="capítulo-n-5---testeo-y-pruebas.html#cb2-72" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_static_plot</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(df, what <span class="sc">==</span> <span class="st">&quot;x&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_static_plot</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(df, what <span class="sc">==</span> <span class="st">&quot;p-value&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">make_static_plot</span>(df) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;{closest_state}&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(what,</span>
+<span id="cb5-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">transition_length =</span> <span class="dv">3</span>,</span>
+<span id="cb5-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">state_length =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view_follow</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&quot;cubic-in-out&quot;</span>)</span>
+<span id="cb5-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(p1, <span class="at">renderer =</span> <span class="fu">magick_renderer</span>(), <span class="at">width =</span> <span class="fl">5.6</span>, <span class="at">height =</span> <span class="dv">3</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">150</span>, <span class="at">device =</span> <span class="st">&quot;png&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.gif" /><!-- --></p>
+</div>
+<div id="un-ejemplo-lanzamiento-de-una-moneda" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Un ejemplo: lanzamiento de una moneda<a href="capítulo-n-5---testeo-y-pruebas.html#un-ejemplo-lanzamiento-de-una-moneda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0xdada</span>)</span>
+<span id="cb6-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-2" aria-hidden="true" tabindex="-1"></a>numFlips <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb6-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-3" aria-hidden="true" tabindex="-1"></a>probHead <span class="ot">=</span> <span class="fl">0.6</span></span>
+<span id="cb6-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-4" aria-hidden="true" tabindex="-1"></a>coinFlips <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="at">size =</span> numFlips,</span>
+<span id="cb6-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(probHead, <span class="dv">1</span> <span class="sc">-</span> probHead))</span>
+<span id="cb6-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(coinFlips)</span></code></pre></div>
+<pre><code>## [1] &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(coinFlips)</span></code></pre></div>
+<pre><code>## coinFlips
+##  H  T 
+## 59 41</code></pre>
+<p>Graficamos la Ecuación; en buena medida, también marcamos el valor observado numHeadscon una línea azul vertical.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb10-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb10-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span>numFlips</span>
+<span id="cb10-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb10-3" aria-hidden="true" tabindex="-1"></a>numHeads <span class="ot">=</span> <span class="fu">sum</span>(coinFlips <span class="sc">==</span> <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb10-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb10-4" aria-hidden="true" tabindex="-1"></a>binomDensity <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">k =</span> k,</span>
+<span id="cb10-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb10-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">p =</span> <span class="fu">dbinom</span>(k, <span class="at">size =</span> numFlips, <span class="at">prob =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb11-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(binomDensity) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> p), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> numHeads, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Todavía podemos usar la simulación de Monte Carlo para darnos algo con lo que comparar:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-1" aria-hidden="true" tabindex="-1"></a>numSimulations <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb12-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-2" aria-hidden="true" tabindex="-1"></a>outcome <span class="ot">=</span> <span class="fu">replicate</span>(numSimulations, {</span>
+<span id="cb12-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  coinFlips <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="at">size =</span> numFlips,</span>
+<span id="cb12-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb12-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(coinFlips <span class="sc">==</span> <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb12-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb12-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(outcome)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">100.5</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> outcome), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">center =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> numHeads, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Como era de esperar, el número más probable de caras es 50, es decir, la mitad del número de lanzamientos de monedas. Pero vemos que otros números cercanos a 50 también son bastante probables. ¿Cómo cuantificamos si el valor observado, 59, se encuentra entre los valores que es probable que veamos en una moneda justa, o si su desviación del valor esperado ya es lo suficientemente grande como para que podamos concluir con suficiente confianza que la moneda está sesgada? ? Dividimos el conjunto de todos los k (0 a 100) en dos subconjuntos complementarios, la rechazo y la región de no rechazo.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb13-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb13-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-3" aria-hidden="true" tabindex="-1"></a>binomDensity <span class="ot">=</span> <span class="fu">arrange</span>(binomDensity, p) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">reject =</span> (<span class="fu">cumsum</span>(p) <span class="sc">&lt;=</span> alpha))</span>
+<span id="cb13-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(binomDensity) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> p, <span class="at">col =</span> reject), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb13-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;darkgrey&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> numHeads, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="capítulo-n-5---testeo-y-pruebas.html#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Acabamos de pasar por los pasos de una prueba binomial. De hecho, esta es una actividad tan frecuente en R que se ha incluido en una sola función y podemos comparar su salida con nuestros resultados.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> numHeads, <span class="at">n =</span> numFlips, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  numHeads and numFlips
+## number of successes = 59, number of trials = 100, p-value = 0.08863
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4871442 0.6873800
+## sample estimates:
+## probability of success 
+##                   0.59</code></pre>
+</div>
+<div id="los-cinco-pasos-de-la-prueba-de-hipótesis" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Los cinco pasos de la prueba de hipótesis<a href="capítulo-n-5---testeo-y-pruebas.html#los-cinco-pasos-de-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Diseñe un experimento o estudio adecuado, elija una función de resumen de datos y una estadística de prueba .</p></li>
+<li><p>Establezca una hipótesis nula , que es un modelo de realidad simple y computacionalmente manejable que le permite calcular la distribución nula , es decir, los posibles resultados de la estadística de prueba y sus probabilidades bajo el supuesto de que la hipótesis nula es verdadera.</p></li>
+<li><p>Fije la región de rechazo , es decir, un subconjunto de resultados posibles cuya probabilidad total es pequeña.</p></li>
+<li><p>Haz el experimento y recopila los datos; calcular el estadístico de prueba.</p></li>
+<li><p>Tomar una decisión: rechazar la hipótesis nula si el estadístico de prueba está en la región de rechazo.</p></li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb16-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="st">&#39;**Reject null hypothesis**&#39;</span>, <span class="st">&#39;**Do not reject**&#39;</span>),</span>
+<span id="cb16-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&#39;Type I error (false positive)&#39;</span>, <span class="st">&#39;True negative&#39;</span>),</span>
+<span id="cb16-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&#39;True positive&#39;</span>, <span class="st">&#39;Type II error (false negative)&#39;</span>))</span>
+<span id="cb16-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb16-4" aria-hidden="true" tabindex="-1"></a>            knitr<span class="sc">::</span><span class="fu">kable</span>(dat, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&#39;Test vs reality&#39;</span>, <span class="st">&#39;Null hypothesis is true&#39;</span>, <span class="st">&#39;$...$ is false&#39;</span>), <span class="at">caption =</span> <span class="st">&#39;Types of error in a statistical test.&#39;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-13">Table 8.1: </span>Types of error in a statistical test.</caption>
+<colgroup>
+<col width="30%" />
+<col width="34%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Test vs reality</th>
+<th align="left">Null hypothesis is true</th>
+<th align="left"><span class="math inline">\(...\)</span> is false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Reject null hypothesis</strong></td>
+<td align="left">Type I error (false positive)</td>
+<td align="left">True positive</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Do not reject</strong></td>
+<td align="left">True negative</td>
+<td align="left">Type II error (false negative)</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-1" aria-hidden="true" tabindex="-1"></a>.myttest <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb17-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  mx  <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
+<span id="cb17-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  my  <span class="ot">=</span> <span class="fu">mean</span>(y)</span>
+<span id="cb17-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  s12 <span class="ot">=</span> <span class="fu">sqrt</span>((<span class="fu">sum</span>((x<span class="sc">-</span>mx)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">sum</span>((y<span class="sc">-</span>my)<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">+</span><span class="fu">length</span>(y)<span class="sc">-</span><span class="dv">2</span>))</span>
+<span id="cb17-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  (mx <span class="sc">-</span> my) <span class="sc">/</span> s12 <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)<span class="sc">*</span><span class="fu">length</span>(y)<span class="sc">/</span>(<span class="fu">length</span>(x)<span class="sc">+</span><span class="fu">length</span>(y)))</span>
+<span id="cb17-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
+<span id="cb17-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-8" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">ceiling</span>(<span class="dv">30</span> <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>)))</span>
+<span id="cb17-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">ceiling</span>(<span class="dv">30</span> <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>)))</span>
+<span id="cb17-10"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">abs</span>(<span class="fu">.myttest</span>(x, y) <span class="sc">-</span> <span class="fu">t.test</span>(x, y, <span class="at">var.equal=</span><span class="cn">TRUE</span>)<span class="sc">$</span>statistic) <span class="sc">&lt;</span> <span class="fl">1e-9</span>)</span>
+<span id="cb17-11"><a href="capítulo-n-5---testeo-y-pruebas.html#cb17-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL
+## 
+## [[7]]
+## NULL
+## 
+## [[8]]
+## NULL
+## 
+## [[9]]
+## NULL
+## 
+## [[10]]
+## NULL
+## 
+## [[11]]
+## NULL
+## 
+## [[12]]
+## NULL
+## 
+## [[13]]
+## NULL
+## 
+## [[14]]
+## NULL
+## 
+## [[15]]
+## NULL
+## 
+## [[16]]
+## NULL
+## 
+## [[17]]
+## NULL
+## 
+## [[18]]
+## NULL
+## 
+## [[19]]
+## NULL
+## 
+## [[20]]
+## NULL
+## 
+## [[21]]
+## NULL
+## 
+## [[22]]
+## NULL
+## 
+## [[23]]
+## NULL
+## 
+## [[24]]
+## NULL
+## 
+## [[25]]
+## NULL
+## 
+## [[26]]
+## NULL
+## 
+## [[27]]
+## NULL
+## 
+## [[28]]
+## NULL
+## 
+## [[29]]
+## NULL
+## 
+## [[30]]
+## NULL
+## 
+## [[31]]
+## NULL
+## 
+## [[32]]
+## NULL
+## 
+## [[33]]
+## NULL
+## 
+## [[34]]
+## NULL
+## 
+## [[35]]
+## NULL
+## 
+## [[36]]
+## NULL
+## 
+## [[37]]
+## NULL
+## 
+## [[38]]
+## NULL
+## 
+## [[39]]
+## NULL
+## 
+## [[40]]
+## NULL
+## 
+## [[41]]
+## NULL
+## 
+## [[42]]
+## NULL
+## 
+## [[43]]
+## NULL
+## 
+## [[44]]
+## NULL
+## 
+## [[45]]
+## NULL
+## 
+## [[46]]
+## NULL
+## 
+## [[47]]
+## NULL
+## 
+## [[48]]
+## NULL
+## 
+## [[49]]
+## NULL
+## 
+## [[50]]
+## NULL
+## 
+## [[51]]
+## NULL
+## 
+## [[52]]
+## NULL
+## 
+## [[53]]
+## NULL
+## 
+## [[54]]
+## NULL
+## 
+## [[55]]
+## NULL
+## 
+## [[56]]
+## NULL
+## 
+## [[57]]
+## NULL
+## 
+## [[58]]
+## NULL
+## 
+## [[59]]
+## NULL
+## 
+## [[60]]
+## NULL
+## 
+## [[61]]
+## NULL
+## 
+## [[62]]
+## NULL
+## 
+## [[63]]
+## NULL
+## 
+## [[64]]
+## NULL
+## 
+## [[65]]
+## NULL
+## 
+## [[66]]
+## NULL
+## 
+## [[67]]
+## NULL
+## 
+## [[68]]
+## NULL
+## 
+## [[69]]
+## NULL
+## 
+## [[70]]
+## NULL
+## 
+## [[71]]
+## NULL
+## 
+## [[72]]
+## NULL
+## 
+## [[73]]
+## NULL
+## 
+## [[74]]
+## NULL
+## 
+## [[75]]
+## NULL
+## 
+## [[76]]
+## NULL
+## 
+## [[77]]
+## NULL
+## 
+## [[78]]
+## NULL
+## 
+## [[79]]
+## NULL
+## 
+## [[80]]
+## NULL
+## 
+## [[81]]
+## NULL
+## 
+## [[82]]
+## NULL
+## 
+## [[83]]
+## NULL
+## 
+## [[84]]
+## NULL
+## 
+## [[85]]
+## NULL
+## 
+## [[86]]
+## NULL
+## 
+## [[87]]
+## NULL
+## 
+## [[88]]
+## NULL
+## 
+## [[89]]
+## NULL
+## 
+## [[90]]
+## NULL
+## 
+## [[91]]
+## NULL
+## 
+## [[92]]
+## NULL
+## 
+## [[93]]
+## NULL
+## 
+## [[94]]
+## NULL
+## 
+## [[95]]
+## NULL
+## 
+## [[96]]
+## NULL
+## 
+## [[97]]
+## NULL
+## 
+## [[98]]
+## NULL
+## 
+## [[99]]
+## NULL
+## 
+## [[100]]
+## NULL</code></pre>
+</div>
+<div id="la-prueba-t" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> La prueba t<a href="capítulo-n-5---testeo-y-pruebas.html#la-prueba-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ggbeeswarm&quot;</span>)</span>
+<span id="cb19-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span>
+<span id="cb19-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, <span class="fu">aes</span>(<span class="at">y =</span> weight, <span class="at">x =</span> group, <span class="at">col =</span> group)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb20-1" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">=</span> <span class="fu">with</span>(PlantGrowth,</span>
+<span id="cb20-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb20-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">t.test</span>(weight[group <span class="sc">==</span><span class="st">&quot;ctrl&quot;</span>],</span>
+<span id="cb20-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                 weight[group <span class="sc">==</span><span class="st">&quot;trt2&quot;</span>],</span>
+<span id="cb20-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">var.equal =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb20-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb20-5" aria-hidden="true" tabindex="-1"></a>tt</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  weight[group == &quot;ctrl&quot;] and weight[group == &quot;trt2&quot;]
+## t = -2.134, df = 18, p-value = 0.04685
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.980338117 -0.007661883
+## sample estimates:
+## mean of x mean of y 
+##     5.032     5.526</code></pre>
+<p>Para calcular el valor p, el t.testfunción utiliza la teoría asintótica para la t -estadística; esta teoría establece que bajo la hipótesis nula de igualdad de medias en ambos grupos, el estadístico sigue una distribución matemática conocida, la denominada t -distribución con n 1 + n 2 grados de libertad.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-1" aria-hidden="true" tabindex="-1"></a>abs_t_null <span class="ot">=</span> <span class="fu">with</span>(</span>
+<span id="cb22-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(PlantGrowth, group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;ctrl&quot;</span>, <span class="st">&quot;trt2&quot;</span>)),</span>
+<span id="cb22-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replicate</span>(<span class="dv">10000</span>,</span>
+<span id="cb22-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">abs</span>(<span class="fu">t.test</span>(weight <span class="sc">~</span> <span class="fu">sample</span>(group))<span class="sc">$</span>statistic)))</span>
+<span id="cb22-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="st">`</span><span class="at">|t|</span><span class="st">`</span> <span class="ot">=</span> abs_t_null), <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">|t|</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>, <span class="at">boundary =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">abs</span>(tt<span class="sc">$</span>statistic), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(tt<span class="sc">$</span>statistic) <span class="sc">&lt;=</span> abs_t_null)</span></code></pre></div>
+<pre><code>## [1] 0.0489</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">rbind</span>(PlantGrowth, PlantGrowth),</span>
+<span id="cb25-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">t.test</span>(weight[group <span class="sc">==</span> <span class="st">&quot;ctrl&quot;</span>],</span>
+<span id="cb25-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb25-3" aria-hidden="true" tabindex="-1"></a>              weight[group <span class="sc">==</span> <span class="st">&quot;trt2&quot;</span>],</span>
+<span id="cb25-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">var.equal =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  weight[group == &quot;ctrl&quot;] and weight[group == &quot;trt2&quot;]
+## t = -3.1007, df = 38, p-value = 0.003629
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.8165284 -0.1714716
+## sample estimates:
+## mean of x mean of y 
+##     5.032     5.526</code></pre>
+</div>
+<div id="pruebas-múltiples" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Pruebas múltiples<a href="capítulo-n-5---testeo-y-pruebas.html#pruebas-múltiples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="st">&#39;**Rejected**&#39;</span>, <span class="st">&#39;**Not rejected**&#39;</span>, <span class="st">&#39;**Total**&#39;</span>),</span>
+<span id="cb27-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-2" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">&#39;$V$&#39;</span>, <span class="st">&#39;$U$&#39;</span>, <span class="st">&#39;$m_0$&#39;</span>),</span>
+<span id="cb27-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-3" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">&#39;$S$&#39;</span>, <span class="st">&#39;$T$&#39;</span>,<span class="st">&#39;$m-m_0$&#39;</span>),</span>
+<span id="cb27-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-4" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">&#39;$R$&#39;</span>, <span class="st">&#39;$m-R$&#39;</span>, <span class="st">&#39;$m$&#39;</span>))</span>
+<span id="cb27-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-5" aria-hidden="true" tabindex="-1"></a>            knitr<span class="sc">::</span><span class="fu">kable</span>(dat, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&#39;Test vs reality&#39;</span>, <span class="st">&#39;Null hypothesis is true&#39;</span>, <span class="st">&#39;$...$ is false&#39;</span>, <span class="st">&#39;Total&#39;</span>), <span class="at">caption =</span> <span class="st">&#39;Types of error in multiple testing. The letters designate the number of</span></span>
+<span id="cb27-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="st">    times each type of error occurs.&#39;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-18">Table 8.2: </span>Types of error in multiple testing. The letters designate the number of
+times each type of error occurs.</caption>
+<thead>
+<tr class="header">
+<th align="left">Test vs reality</th>
+<th align="left">Null hypothesis is true</th>
+<th align="left"><span class="math inline">\(...\)</span> is false</th>
+<th align="left">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Rejected</strong></td>
+<td align="left"><span class="math inline">\(V\)</span></td>
+<td align="left"><span class="math inline">\(S\)</span></td>
+<td align="left"><span class="math inline">\(R\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Not rejected</strong></td>
+<td align="left"><span class="math inline">\(U\)</span></td>
+<td align="left"><span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(m-R\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Total</strong></td>
+<td align="left"><span class="math inline">\(m_0\)</span></td>
+<td align="left"><span class="math inline">\(m-m_0\)</span></td>
+<td align="left"><span class="math inline">\(m\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="la-tasa-de-error-inteligente-de-la-familia" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> La tasa de error inteligente de la familia<a href="capítulo-n-5---testeo-y-pruebas.html#la-tasa-de-error-inteligente-de-la-familia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="fl">1e6</span>)<span class="sc">^</span><span class="fl">8e5</span></span></code></pre></div>
+<pre><code>## [1] 0.5506712</code></pre>
+<div id="corrección-de-bonferroni" class="section level3 hasAnchor" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Corrección de Bonferroni<a href="capítulo-n-5---testeo-y-pruebas.html#corrección-de-bonferroni" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Corrección de Bonferroni. La gráfica muestra para m = 10 4 en función de α .</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb30-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(</span>
+<span id="cb30-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">7e-6</span>, <span class="at">length.out =</span> <span class="dv">100</span>),</span>
+<span id="cb30-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p     =</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> alpha)<span class="sc">^</span>m),</span>
+<span id="cb30-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> p)) <span class="sc">+</span>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(alpha)) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Prob( no false rejection )&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+</div>
+<div id="la-tasa-de-descubrimiento-falso" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> La tasa de descubrimiento falso<a href="capítulo-n-5---testeo-y-pruebas.html#la-tasa-de-descubrimiento-falso" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;DESeq2&quot;</span>,<span class="st">&quot;airway&quot;</span>)</span>
+<span id="cb31-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;airway&quot;</span>)</span>
+<span id="cb31-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb31-3" aria-hidden="true" tabindex="-1"></a>aw   <span class="ot">=</span> <span class="fu">DESeqDataSet</span>(<span class="at">se =</span> airway, <span class="at">design =</span> <span class="sc">~</span> cell <span class="sc">+</span> dex)</span>
+<span id="cb31-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb31-4" aria-hidden="true" tabindex="-1"></a>aw   <span class="ot">=</span> <span class="fu">DESeq</span>(aw)</span>
+<span id="cb31-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb31-5" aria-hidden="true" tabindex="-1"></a>awde <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">results</span>(aw)) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pvalue))</span></code></pre></div>
+<div id="el-histograma-del-valor-p" class="section level3 hasAnchor" number="8.8.1">
+<h3><span class="header-section-number">8.8.1</span> El histograma del valor p<a href="capítulo-n-5---testeo-y-pruebas.html#el-histograma-del-valor-p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde, <span class="fu">aes</span>(<span class="at">x =</span> pvalue)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>, <span class="at">boundary =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Estimación visual de la FDR con el histograma de valor p. </p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> binw <span class="ot">=</span> <span class="fl">0.025</span></span>
+<span id="cb33-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-2" aria-hidden="true" tabindex="-1"></a>pi0 <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(awde<span class="sc">$</span>pvalue <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb33-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde,</span>
+<span id="cb33-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> pvalue)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binw, <span class="at">boundary =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> pi0 <span class="sc">*</span> binw <span class="sc">*</span> <span class="fu">nrow</span>(awde), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> alpha, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>emos que hay 4772 valores p en el primer contenedor.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb34-1" aria-hidden="true" tabindex="-1"></a>pi0 <span class="sc">*</span> alpha <span class="sc">/</span> <span class="fu">mean</span>(awde<span class="sc">$</span>pvalue <span class="sc">&lt;=</span> alpha)</span></code></pre></div>
+<pre><code>## [1] 0.1980092</code></pre>
+</div>
+<div id="el-algoritmo-de-benjamini-hochberg-para-controlar-el-fdr" class="section level3 hasAnchor" number="8.8.2">
+<h3><span class="header-section-number">8.8.2</span> El algoritmo de Benjamini-Hochberg para controlar el FDR<a href="capítulo-n-5---testeo-y-pruebas.html#el-algoritmo-de-benjamini-hochberg-para-controlar-el-fdr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb36-1" aria-hidden="true" tabindex="-1"></a>phi  <span class="ot">=</span> <span class="fl">0.10</span></span>
+<span id="cb36-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb36-2" aria-hidden="true" tabindex="-1"></a>awde <span class="ot">=</span> <span class="fu">mutate</span>(awde, <span class="at">rank =</span> <span class="fu">rank</span>(pvalue))</span>
+<span id="cb36-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb36-3" aria-hidden="true" tabindex="-1"></a>m    <span class="ot">=</span> <span class="fu">nrow</span>(awde)</span>
+<span id="cb36-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(awde, rank <span class="sc">&lt;=</span> <span class="dv">7000</span>), <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> pvalue)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> phi <span class="sc">/</span> m, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb37-1" aria-hidden="true" tabindex="-1"></a>kmax <span class="ot">=</span> <span class="fu">with</span>(<span class="fu">arrange</span>(awde, rank),</span>
+<span id="cb37-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb37-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">last</span>(<span class="fu">which</span>(pvalue <span class="sc">&lt;=</span> phi <span class="sc">*</span> rank <span class="sc">/</span> m)))</span>
+<span id="cb37-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb37-3" aria-hidden="true" tabindex="-1"></a>kmax</span></code></pre></div>
+<pre><code>## [1] 4099</code></pre>
+<p>El método encuentra el punto más a la derecha donde las líneas negra (nuestros valores p).</p>
+</div>
+</div>
+<div id="el-fdr-local" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> El FDR local<a href="capítulo-n-5---testeo-y-pruebas.html#el-fdr-local" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-1" aria-hidden="true" tabindex="-1"></a>awdef <span class="ot">=</span> awde <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(baseMean <span class="sc">&gt;=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(pvalue) <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">oneminusp =</span> <span class="dv">1</span> <span class="sc">-</span> pvalue,</span>
+<span id="cb39-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">N =</span> <span class="fu">n</span>() <span class="sc">-</span> <span class="fu">row_number</span>())</span>
+<span id="cb39-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-6" aria-hidden="true" tabindex="-1"></a>jj <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">nrow</span>(awdef) <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb39-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-7" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">=</span> <span class="fu">with</span>(awdef, <span class="fu">diff</span>(N[jj]) <span class="sc">/</span> <span class="fu">diff</span>(oneminusp[jj]))</span>
+<span id="cb39-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awdef) <span class="sc">+</span></span>
+<span id="cb39-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> oneminusp, <span class="at">y =</span> N), <span class="at">size =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
+<span id="cb39-10"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="dv">1</span><span class="sc">-</span>p[i])) <span class="sc">+</span></span>
+<span id="cb39-11"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">N</span>(p[i]))) <span class="sc">+</span></span>
+<span id="cb39-12"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> slope, <span class="at">col =</span> <span class="st">&quot;red3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb39-13"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> slope, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb39-14"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb39-15"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> slope, <span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">round</span>(slope)), </span>
+<span id="cb39-16"><a href="capítulo-n-5---testeo-y-pruebas.html#cb39-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.25</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-1" aria-hidden="true" tabindex="-1"></a>pi0 <span class="ot">=</span> <span class="fl">0.6</span></span>
+<span id="cb40-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">=</span> <span class="cf">function</span>(t, <span class="at">shape2 =</span> <span class="dv">7</span>) {</span>
+<span id="cb40-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-3" aria-hidden="true" tabindex="-1"></a>   rv <span class="ot">=</span> <span class="fu">dbeta</span>(t, <span class="dv">1</span>, shape2)</span>
+<span id="cb40-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-4" aria-hidden="true" tabindex="-1"></a>   rv <span class="sc">/</span> <span class="fu">sum</span>(rv) <span class="sc">*</span> (<span class="fu">length</span>(rv)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>pi0)</span>
+<span id="cb40-5"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-6"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-6" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">101</span>)</span>
+<span id="cb40-7"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-7" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">=</span> <span class="fl">0.1</span></span>
+<span id="cb40-8"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-8" aria-hidden="true" tabindex="-1"></a>f0  <span class="ot">=</span> <span class="fu">rep</span>(pi0, <span class="fu">length</span>(t))</span>
+<span id="cb40-9"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-9" aria-hidden="true" tabindex="-1"></a>f   <span class="ot">=</span> f0 <span class="sc">+</span> <span class="fu">f1</span>(t)</span>
+<span id="cb40-10"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-10" aria-hidden="true" tabindex="-1"></a>F0  <span class="ot">=</span> <span class="fu">cumsum</span>(f0) <span class="sc">/</span> (<span class="fu">length</span>(t)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb40-11"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-11" aria-hidden="true" tabindex="-1"></a>F   <span class="ot">=</span> <span class="fu">cumsum</span>(f)  <span class="sc">/</span> (<span class="fu">length</span>(t)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb40-12"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(F[<span class="fu">length</span>(F)] <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">1e-2</span>)</span>
+<span id="cb40-13"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-13" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">=</span> <span class="cf">function</span>(y, y0, ylim, yat, havepi0, <span class="at">colo =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">&quot;Paired&quot;</span>)) {</span>
+<span id="cb40-14"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">x =</span> t, <span class="at">y =</span> y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> ylim,</span>
+<span id="cb40-15"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxs =</span> <span class="st">&quot;i&quot;</span>, <span class="at">yaxs =</span> <span class="st">&quot;i&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="fu">deparse</span>(<span class="fu">substitute</span>(y)))</span>
+<span id="cb40-16"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb40-17"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> yat)</span>
+<span id="cb40-18"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-18" aria-hidden="true" tabindex="-1"></a>  xa  <span class="ot">=</span>  t[t<span class="sc">&lt;=</span>t0]</span>
+<span id="cb40-19"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-19" aria-hidden="true" tabindex="-1"></a>  xb  <span class="ot">=</span>  t[t<span class="sc">&gt;=</span>t0]</span>
+<span id="cb40-20"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-20" aria-hidden="true" tabindex="-1"></a>  y0a <span class="ot">=</span> y0[t<span class="sc">&lt;=</span>t0]</span>
+<span id="cb40-21"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-21" aria-hidden="true" tabindex="-1"></a>  y0b <span class="ot">=</span> y0[t<span class="sc">&gt;=</span>t0]</span>
+<span id="cb40-22"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-22" aria-hidden="true" tabindex="-1"></a>  ya  <span class="ot">=</span>  y[t<span class="sc">&lt;=</span>t0]</span>
+<span id="cb40-23"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(xa, <span class="fu">rev</span>(xa)), <span class="at">y =</span> <span class="fu">c</span>(y[t<span class="sc">&lt;=</span>t0], <span class="fu">rev</span>(y0a)), <span class="at">col =</span> colo[<span class="dv">2</span>])</span>
+<span id="cb40-24"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(xb, <span class="fu">rev</span>(xb)), <span class="at">y =</span> <span class="fu">c</span>(y[t<span class="sc">&gt;=</span>t0], <span class="fu">rev</span>(y0b)), <span class="at">col =</span> colo[<span class="dv">1</span>])</span>
+<span id="cb40-25"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(xa, <span class="fu">rev</span>(xa)), <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(xa)), <span class="fu">rev</span>(y0a)), <span class="at">col =</span> <span class="st">&quot;#c0c0c0&quot;</span>)</span>
+<span id="cb40-26"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(xb, <span class="fu">rev</span>(xb)), <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(xb)), <span class="fu">rev</span>(y0b)), <span class="at">col =</span> <span class="st">&quot;#f0f0f0&quot;</span>)</span>
+<span id="cb40-27"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">segments</span>(<span class="at">x0 =</span> <span class="fu">rep</span>(t0, <span class="dv">2</span>), <span class="at">x1 =</span> <span class="fu">rep</span>(t0, <span class="dv">2</span>), <span class="at">y0 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">last</span>(y0a)), <span class="at">y1 =</span> <span class="fu">c</span>(<span class="fu">last</span>(y0a), <span class="fu">last</span>(ya)),</span>
+<span id="cb40-28"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> colo[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb40-29"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(t0, <span class="dv">0</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.8</span>), <span class="at">labels =</span> <span class="fu">expression</span>(p), <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">NA</span>)</span>
+<span id="cb40-30"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (havepi0)</span>
+<span id="cb40-31"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">text</span>(<span class="dv">0</span>, pi0, <span class="at">adj =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">0.5</span>), <span class="at">labels =</span> <span class="fu">expression</span>(pi[<span class="dv">0</span>]), <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">xpd =</span> <span class="cn">NA</span>)</span>
+<span id="cb40-32"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-33"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-33" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>), <span class="at">mfcol =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb40-34"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-34" aria-hidden="true" tabindex="-1"></a><span class="fu">myplot</span>(f, f0, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, f[<span class="dv">1</span>]), <span class="at">yat =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>),       <span class="at">havepi0 =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-35"><a href="capítulo-n-5---testeo-y-pruebas.html#cb40-35" aria-hidden="true" tabindex="-1"></a><span class="fu">myplot</span>(F, F0, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),    <span class="at">yat =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="at">havepi0 =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Los paquetes qvalue y fdrtool ofrecen facilidades para ajustar estos modelos a los datos.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;fdrtool&quot;</span>)</span>
+<span id="cb41-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb41-2" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">=</span> <span class="fu">fdrtool</span>(awde<span class="sc">$</span>pvalue, <span class="at">statistic =</span> <span class="st">&quot;pvalue&quot;</span>)</span></code></pre></div>
+<pre><code>## Step 1... determine cutoff point
+## Step 2... estimate parameters of null distribution and eta0
+## Step 3... compute p-values and estimate empirical PDF/CDF
+## Step 4... compute q-values and local fdr
+## Step 5... prepare for plotting</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ft<span class="sc">$</span>param[,<span class="st">&quot;eta0&quot;</span>]</span></code></pre></div>
+<pre><code>##      eta0 
+## 0.8822922</code></pre>
+</div>
+<div id="filtrado-independiente-y-ponderación-de-hipótesis" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Filtrado independiente y ponderación de hipótesis<a href="capítulo-n-5---testeo-y-pruebas.html#filtrado-independiente-y-ponderación-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb45-1" aria-hidden="true" tabindex="-1"></a>awde<span class="sc">$</span>baseMean[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 708.6022</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb47-1" aria-hidden="true" tabindex="-1"></a>cts <span class="ot">=</span> <span class="fu">counts</span>(aw, <span class="at">normalized =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>, ]</span>
+<span id="cb47-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb47-2" aria-hidden="true" tabindex="-1"></a>cts</span></code></pre></div>
+<pre><code>## SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 SRR1039520 
+##   663.3142   499.9070   740.1528   608.9063   966.3137   748.3722   836.2487 
+## SRR1039521 
+##   605.6024</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cts)</span></code></pre></div>
+<pre><code>## [1] 708.6022</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(<span class="fu">mean</span>(cts)<span class="sc">-</span>awde<span class="sc">$</span>baseMean[<span class="dv">1</span>])<span class="sc">&lt;</span><span class="fl">1e-9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">asinh</span>(baseMean))) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rank</span>(baseMean), <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue))) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">60</span>) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div id="pregunta" class="section level3 hasAnchor" number="8.10.1">
+<h3><span class="header-section-number">8.10.1</span> Pregunta<a href="capítulo-n-5---testeo-y-pruebas.html#pregunta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En el diagrama de dispersión, ¿por qué usamos − log 10 para los valores de p? ¿Por qué la transformación de rango para el baseMean?</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb54-1" aria-hidden="true" tabindex="-1"></a>awde <span class="ot">=</span> <span class="fu">mutate</span>(awde, <span class="at">stratum =</span> <span class="fu">cut</span>(baseMean, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb54-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">signif</span>(<span class="fu">quantile</span>(baseMean,<span class="at">probs=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">7</span>)),<span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde, <span class="fu">aes</span>(<span class="at">x =</span> pvalue)) <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> stratum, <span class="at">nrow =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>, <span class="at">boundary =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(awde, <span class="fu">aes</span>(<span class="at">x =</span> pvalue, <span class="at">col =</span> stratum)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>(<span class="at">geom =</span> <span class="st">&quot;step&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>¿Podemos usar eso para una mejor corrección de pruebas múltiples? Resulta que esto es posible. Podemos utilizar filtrado independiente (Bourgon, Gentleman y Huber 2010 ) o ponderación de hipótesis independiente (IHW) (Ignatiadis et al. 2016 ).</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb57-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;IHW&quot;</span>)</span>
+<span id="cb57-3"><a href="capítulo-n-5---testeo-y-pruebas.html#cb57-3" aria-hidden="true" tabindex="-1"></a>ihw_res <span class="ot">=</span> <span class="fu">ihw</span>(awde<span class="sc">$</span>pvalue, awde<span class="sc">$</span>baseMean, <span class="at">alpha =</span> <span class="fl">0.1</span>)</span>
+<span id="cb57-4"><a href="capítulo-n-5---testeo-y-pruebas.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rejections</span>(ihw_res)</span></code></pre></div>
+<pre><code>## [1] 4892</code></pre>
+<p>Comparemos esto con lo que obtenemos del método ordinario (no ponderado) de Benjamini-Hochberg:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb59-1" aria-hidden="true" tabindex="-1"></a>padj_BH <span class="ot">=</span> <span class="fu">p.adjust</span>(awde<span class="sc">$</span>pvalue, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb59-2"><a href="capítulo-n-5---testeo-y-pruebas.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(padj_BH <span class="sc">&lt;</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## [1] 4099</code></pre>
+<p>Pesos de hipótesis determinados por el ihwfunción. Aquí, la configuración predeterminada de la función eligió 22 estratos, mientras que en nuestra exploración manual anterior.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="capítulo-n-5---testeo-y-pruebas.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ihw_res)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="blocks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objetivos-de-este-capítulo-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-C6-Testeo-Pruebas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

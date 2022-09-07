@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 CAPÍTULO N° 7 - Análisis multivariado | Guía de Bioestadistica</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 CAPÍTULO N° 7 - Análisis multivariado | Guía de Bioestadistica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 CAPÍTULO N° 7 - Análisis multivariado | Guía de Bioestadistica" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+
+
+<meta name="date" content="2022-09-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="capítulo-n-6---testeo-y-pruebas.html"/>
+<link rel="next" href="sharing-your-book.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdución</a></li>
+<li class="chapter" data-level="2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html"><i class="fa fa-check"></i><b>2</b> CAPÍTULO N° 2 - Modelamiento Estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-ejemplo-simple-de-modelado-estadístico"><i class="fa fa-check"></i><b>2.1</b> Un ejemplo simple de modelado estadístico</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estimación-del-parámetro-de-la-distribución-de-poisson"><i class="fa fa-check"></i><b>2.1.1</b> Estimación del parámetro de la distribución de Poisson</a></li>
+<li class="chapter" data-level="2.1.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#función-de-verosimilitud-de-λ"><i class="fa fa-check"></i><b>2.1.2</b> Función de verosimilitud de λ</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#distribuciones-binomiales-y-máxima-verosimilitud"><i class="fa fa-check"></i><b>2.2</b> Distribuciones binomiales y máxima verosimilitud</a></li>
+<li class="chapter" data-level="2.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#más-casillasdatos-multinomiales"><i class="fa fa-check"></i><b>2.3</b> Más casillas:datos multinomiales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#sesgo-de-nucleótidos"><i class="fa fa-check"></i><b>2.3.1</b> Sesgo de nucleótidos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-chi-cuadrado"><i class="fa fa-check"></i><b>2.4</b> La distribución Chi-Cuadrado</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#intermezzo-cuantiles-y-gráfico-cuantil-cuantil"><i class="fa fa-check"></i><b>2.4.1</b> Intermezzo: cuantiles y gráfico cuantil-cuantil</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#regla-de-chargaff"><i class="fa fa-check"></i><b>2.5</b> Regla de Chargaff</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#dos-variables-categóricas"><i class="fa fa-check"></i><b>2.5.1</b> Dos variables categóricas</a></li>
+<li class="chapter" data-level="2.5.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#daltonismo-y-sexo"><i class="fa fa-check"></i><b>2.5.2</b> <strong>Daltonismo y sexo</strong></a></li>
+<li class="chapter" data-level="2.5.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#un-multinomio-especial-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.3</b> Un multinomio especial: equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#comparación-visual-con-el-equilibrio-de-hardy-weinberg"><i class="fa fa-check"></i><b>2.5.4</b> Comparación visual con el equilibrio de Hardy-Weinberg</a></li>
+<li class="chapter" data-level="2.5.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#concatenación-de-varios-multinomios-motivos-de-secuencia-y-logos"><i class="fa fa-check"></i><b>2.5.5</b> Concatenación de varios multinomios: motivos de secuencia y logos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-de-dependencias-secuenciales-cadenas-de-markov"><i class="fa fa-check"></i><b>2.6</b> Modelado de dependencias secuenciales: cadenas de Markov</a></li>
+<li class="chapter" data-level="2.7" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pensamiento-bayesiano"><i class="fa fa-check"></i><b>2.7</b> Pensamiento bayesiano</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#haplotipos"><i class="fa fa-check"></i><b>2.7.1</b> Haplotipos</a></li>
+<li class="chapter" data-level="2.7.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#estudio-de-simulación-del-paradigma-bayesiano-para-el-binomio"><i class="fa fa-check"></i><b>2.7.2</b> Estudio de simulación del paradigma bayesiano para el binomio</a></li>
+<li class="chapter" data-level="2.7.3" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-de-y"><i class="fa fa-check"></i><b>2.7.3</b> La distribución de Y</a></li>
+<li class="chapter" data-level="2.7.4" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#la-distribución-posterior-también-es-una-beta."><i class="fa fa-check"></i><b>2.7.4</b> La distribución posterior también es una beta.</a></li>
+<li class="chapter" data-level="2.7.5" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#declaraciones-de-confianza-para-el-parámetro-de-proporción"><i class="fa fa-check"></i><b>2.7.5</b> Declaraciones de confianza para el parámetro de proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejemplo-aparición-de-un-patrón-de-nucleótidos-en-un-genoma"><i class="fa fa-check"></i><b>2.8</b> Ejemplo: aparición de un patrón de nucleótidos en un genoma</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#modelado-en-el-caso-de-dependencias"><i class="fa fa-check"></i><b>2.8.1</b> Modelado en el caso de dependencias</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#resumen-de-este-capítulo"><i class="fa fa-check"></i><b>2.9</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="2.10" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#ejercicios"><i class="fa fa-check"></i><b>2.10</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-1"><i class="fa fa-check"></i><b>2.10.1</b> Pregunta N° 1</a></li>
+<li class="chapter" data-level="2.10.2" data-path="capítulo-n-2---modelamiento-estadístico.html"><a href="capítulo-n-2---modelamiento-estadístico.html#pregunta-n-2"><i class="fa fa-check"></i><b>2.10.2</b> pregunta N° 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><i class="fa fa-check"></i><b>3</b> CAPÍTULO N° 3 - Gráficos de alta calidad en R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#objetivos-del-capítulo"><i class="fa fa-check"></i><b>3.1</b> Objetivos del capítulo</a></li>
+<li class="chapter" data-level="3.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazado-base-r"><i class="fa fa-check"></i><b>3.2</b> Trazado base R</a></li>
+<li class="chapter" data-level="3.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#un-conjunto-de-datos-de-ejemplo"><i class="fa fa-check"></i><b>3.3</b> Un conjunto de datos de ejemplo</a></li>
+<li class="chapter" data-level="3.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#ggplot2"><i class="fa fa-check"></i><b>3.4</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#estética"><i class="fa fa-check"></i><b>3.4.1</b> Estética</a></li>
+<li class="chapter" data-level="3.4.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#flujo-de-datos"><i class="fa fa-check"></i><b>3.4.2</b> Flujo de datos</a></li>
+<li class="chapter" data-level="3.4.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#guardar-cifras"><i class="fa fa-check"></i><b>3.4.3</b> Guardar cifras</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#la-gramática-de-los-gráficos"><i class="fa fa-check"></i><b>3.5</b> La gramática de los gráficos</a></li>
+<li class="chapter" data-level="3.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-1d"><i class="fa fa-check"></i><b>3.6</b> Visualización de datos en 1D</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-barras"><i class="fa fa-check"></i><b>3.6.1</b> Diagramas de barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-caja"><i class="fa fa-check"></i><b>3.6.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="3.6.3" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#violín"><i class="fa fa-check"></i><b>3.6.3</b> violín</a></li>
+<li class="chapter" data-level="3.6.4" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>3.6.4</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="3.6.5" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-ecdf"><i class="fa fa-check"></i><b>3.6.5</b> Gráficos ECDF</a></li>
+<li class="chapter" data-level="3.6.6" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#el-efecto-de-las-transformaciones-sobre-las-densidades"><i class="fa fa-check"></i><b>3.6.6</b> El efecto de las transformaciones sobre las densidades</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-datos-en-2d-diagramas-de-dispersión"><i class="fa fa-check"></i><b>3.7</b> Visualización de datos en 2D: diagramas de dispersión</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#representada-como-un-gráfico-de-contorno-de-la-estimación-de-densidad-2d."><i class="fa fa-check"></i><b>3.7.1</b> Representada como un gráfico de contorno de la estimación de densidad 2D.</a></li>
+<li class="chapter" data-level="3.7.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#trazar-formas"><i class="fa fa-check"></i><b>3.7.2</b> Trazar formas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#visualización-de-más-de-dos-dimensiones"><i class="fa fa-check"></i><b>3.8</b> Visualización de más de dos dimensiones</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#facetado"><i class="fa fa-check"></i><b>3.8.1</b> Facetado</a></li>
+<li class="chapter" data-level="3.8.2" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#gráficos-interactivos"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos interactivos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#color"><i class="fa fa-check"></i><b>3.9</b> Color</a></li>
+<li class="chapter" data-level="3.10" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#mapas-de-calor"><i class="fa fa-check"></i><b>3.10</b> Mapas de calor</a></li>
+<li class="chapter" data-level="3.11" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#transformaciones-de-datos"><i class="fa fa-check"></i><b>3.11</b> Transformaciones de datos</a></li>
+<li class="chapter" data-level="3.12" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#símbolos-matemáticos-y-otras-fuentes"><i class="fa fa-check"></i><b>3.12</b> Símbolos matemáticos y otras fuentes</a></li>
+<li class="chapter" data-level="3.13" data-path="capítulo-n-3---gráficos-de-alta-calidad-en-r.html"><a href="capítulo-n-3---gráficos-de-alta-calidad-en-r.html#datos-genómicos"><i class="fa fa-check"></i><b>3.13</b> Datos genómicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html"><i class="fa fa-check"></i><b>4</b> CAPÍTULO N° 4 - Modelos de mezcla</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#objetivos-de-este-capítulo"><i class="fa fa-check"></i><b>4.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-finitas"><i class="fa fa-check"></i><b>4.2</b> Mezclas finitas</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejemplos-sencillos-y-experimentos-informáticos"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplos sencillos y experimentos informáticos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#descubriendo-las-etiquetas-de-clase-ocultas"><i class="fa fa-check"></i><b>4.2.2</b> Descubriendo las etiquetas de clase ocultas</a></li>
+<li class="chapter" data-level="4.2.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#modelos-para-datos-inflados-a-cero"><i class="fa fa-check"></i><b>4.2.3</b> Modelos para datos inflados a cero</a></li>
+<li class="chapter" data-level="4.2.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#más-de-dos-componentes"><i class="fa fa-check"></i><b>4.2.4</b> Más de dos componentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#distribuciones-empíricas-y-bootstrap-no-paramétrico"><i class="fa fa-check"></i><b>4.3</b> Distribuciones empíricas y bootstrap no paramétrico</a></li>
+<li class="chapter" data-level="4.4" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas"><i class="fa fa-check"></i><b>4.4</b> Mezclas infinitas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezcla-infinita-de-normales"><i class="fa fa-check"></i><b>4.4.1</b> Mezcla infinita de normales</a></li>
+<li class="chapter" data-level="4.4.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#mezclas-infinitas-de-variables-de-poisson"><i class="fa fa-check"></i><b>4.4.2</b> Mezclas infinitas de variables de Poisson</a></li>
+<li class="chapter" data-level="4.4.3" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#transformaciones-estabilizadoras-de-varianza"><i class="fa fa-check"></i><b>4.4.3</b> Transformaciones estabilizadoras de varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#resumen-de-este-capítulo-1"><i class="fa fa-check"></i><b>4.5</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="4.6" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicios-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.1"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 4.1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="capítulo-n-4---modelos-de-mezcla.html"><a href="capítulo-n-4---modelos-de-mezcla.html#ejercicio-4.2"><i class="fa fa-check"></i><b>4.6.2</b> Ejercicio 4.2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html"><i class="fa fa-check"></i><b>5</b> CAPÍTULO N° 5 - Clustering</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#objetivos-de-este-capítulo-1"><i class="fa fa-check"></i><b>5.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#qué-son-los-datos-y-por-qué-los-agrupamos"><i class="fa fa-check"></i><b>5.2</b> ¿Qué son los datos y por qué los agrupamos?</a></li>
+<li class="chapter" data-level="5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cálculos-relacionados-con-distancias-en-r"><i class="fa fa-check"></i><b>5.3</b> 5.3.1 Cálculos relacionados con distancias en R</a></li>
+<li class="chapter" data-level="5.4" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#detección-de-mezcla-no-paramétrica"><i class="fa fa-check"></i><b>5.4</b> Detección de mezcla no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#k-métodos-k--significa-k--medoides-y-pam"><i class="fa fa-check"></i><b>5.4.1</b> K-métodos: k -significa, k -medoides y PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejemplos-de-agrupamiento-citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5</b> Ejemplos de agrupamiento: citometría de flujo y citometría de masas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#citometría-de-flujo-y-citometría-de-masas"><i class="fa fa-check"></i><b>5.5.1</b> Citometría de flujo y citometría de masas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#preprocesamiento-de-datos"><i class="fa fa-check"></i><b>5.5.2</b> Preprocesamiento de datos</a></li>
+<li class="chapter" data-level="5.5.3" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-basado-en-la-densidad"><i class="fa fa-check"></i><b>5.5.3</b> Agrupamiento basado en la densidad</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#agrupamiento-jerárquico"><i class="fa fa-check"></i><b>5.6</b> Agrupamiento jerárquico</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#cómo-calcular-des-similitudes-entre-clústeres-agregados"><i class="fa fa-check"></i><b>5.6.1</b> ¿Cómo calcular (des) similitudes entre clústeres agregados?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-y-elección-del-número-de-clústeres"><i class="fa fa-check"></i><b>5.7</b> Validación y elección del número de clústeres</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#uso-de-la-estadística-de-la-brecha"><i class="fa fa-check"></i><b>5.7.1</b> Uso de la estadística de la brecha</a></li>
+<li class="chapter" data-level="5.7.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#validación-de-clúster-mediante-bootstrap"><i class="fa fa-check"></i><b>5.7.2</b> Validación de clúster mediante bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#el-agrupamiento-como-medio-para-eliminar-el-ruido"><i class="fa fa-check"></i><b>5.8</b> El agrupamiento como medio para eliminar el ruido</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#observaciones-ruidosas-con-diferentes-frecuencias-de-línea-de-base"><i class="fa fa-check"></i><b>5.8.1</b> Observaciones ruidosas con diferentes frecuencias de línea de base</a></li>
+<li class="chapter" data-level="5.8.2" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#inferir-variantes-de-secuencia"><i class="fa fa-check"></i><b>5.8.2</b> Inferir variantes de secuencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="capítulo-n-5---clustering.html"><a href="capítulo-n-5---clustering.html#ejercicios-2"><i class="fa fa-check"></i><b>5.9</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>6</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>6.1</b> Footnotes</a></li>
+<li class="chapter" data-level="6.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>6.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>7</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>7.1</b> Equations</a></li>
+<li class="chapter" data-level="7.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>7.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="7.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>7.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html"><i class="fa fa-check"></i><b>8</b> CAPÍTULO N° 6 - Testeo y Pruebas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#objetivos-de-este-capítulo-2"><i class="fa fa-check"></i><b>8.1</b> Objetivos de este Capítulo</a></li>
+<li class="chapter" data-level="8.2" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#librerias"><i class="fa fa-check"></i><b>8.2</b> Librerias</a></li>
+<li class="chapter" data-level="8.3" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#un-ejemplo-lanzamiento-de-una-moneda"><i class="fa fa-check"></i><b>8.3</b> Un ejemplo: lanzamiento de una moneda</a></li>
+<li class="chapter" data-level="8.4" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#los-cinco-pasos-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>8.4</b> Los cinco pasos de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="8.5" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-prueba-t"><i class="fa fa-check"></i><b>8.5</b> La prueba t</a></li>
+<li class="chapter" data-level="8.6" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#pruebas-múltiples"><i class="fa fa-check"></i><b>8.6</b> Pruebas múltiples</a></li>
+<li class="chapter" data-level="8.7" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-tasa-de-error-inteligente-de-la-familia"><i class="fa fa-check"></i><b>8.7</b> La tasa de error inteligente de la familia</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#corrección-de-bonferroni"><i class="fa fa-check"></i><b>8.7.1</b> Corrección de Bonferroni</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#la-tasa-de-descubrimiento-falso"><i class="fa fa-check"></i><b>8.8</b> La tasa de descubrimiento falso</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-histograma-del-valor-p"><i class="fa fa-check"></i><b>8.8.1</b> El histograma del valor p</a></li>
+<li class="chapter" data-level="8.8.2" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-algoritmo-de-benjamini-hochberg-para-controlar-el-fdr"><i class="fa fa-check"></i><b>8.8.2</b> El algoritmo de Benjamini-Hochberg para controlar el FDR</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#el-fdr-local"><i class="fa fa-check"></i><b>8.9</b> El FDR local</a></li>
+<li class="chapter" data-level="8.10" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#filtrado-independiente-y-ponderación-de-hipótesis"><i class="fa fa-check"></i><b>8.10</b> Filtrado independiente y ponderación de hipótesis</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="capítulo-n-6---testeo-y-pruebas.html"><a href="capítulo-n-6---testeo-y-pruebas.html#pregunta"><i class="fa fa-check"></i><b>8.10.1</b> Pregunta</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html"><i class="fa fa-check"></i><b>9</b> CAPÍTULO N° 7 - Análisis multivariado</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#objetivos-de-este-capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Objetivos de este capítulo</a></li>
+<li class="chapter" data-level="9.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#qué-son-los-datos-matrices-y-su-motivación."><i class="fa fa-check"></i><b>9.2</b> ¿Qué son los datos? Matrices y su motivación.</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#resúmenes-y-preparación-de-datos-de-baja-dimensión"><i class="fa fa-check"></i><b>9.2.1</b> Resúmenes y preparación de datos de baja dimensión</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#reducción-de-dimensiones"><i class="fa fa-check"></i><b>9.3</b> Reducción de dimensiones</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#proyecciones-de-menor-dimensión"><i class="fa fa-check"></i><b>9.3.1</b> Proyecciones de menor dimensión</a></li>
+<li class="chapter" data-level="9.3.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-resumimos-los-datos-bidimensionales-en-una-línea"><i class="fa fa-check"></i><b>9.3.2</b> ¿Cómo resumimos los datos bidimensionales en una línea?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#el-funcionamiento-interno-de-pca-reducción-de-rango"><i class="fa fa-check"></i><b>9.4</b> El funcionamiento interno de PCA: reducción de rango</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#matrices-de-rango-uno"><i class="fa fa-check"></i><b>9.4.1</b> Matrices de rango uno</a></li>
+<li class="chapter" data-level="9.4.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-encontramos-tal-descomposición-de-una-manera-única"><i class="fa fa-check"></i><b>9.4.2</b> ¿Cómo encontramos tal descomposición de una manera única?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#trazado-de-las-observaciones-en-el-plano-principal"><i class="fa fa-check"></i><b>9.5</b> Trazado de las observaciones en el plano principal</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#pca-de-los-datos-de-las-tortugas"><i class="fa fa-check"></i><b>9.5.1</b> PCA de los datos de las tortugas</a></li>
+<li class="chapter" data-level="9.5.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#un-análisis-completo-los-atletas-de-decatlón"><i class="fa fa-check"></i><b>9.5.2</b> Un análisis completo: los atletas de decatlón</a></li>
+<li class="chapter" data-level="9.5.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#cómo-elegir-k-el-número-de-dimensiones"><i class="fa fa-check"></i><b>9.5.3</b> Cómo elegir k , el número de dimensiones ?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#pca-como-herramienta-exploratoria-uso-de-información-adicional."><i class="fa fa-check"></i><b>9.6</b> PCA como herramienta exploratoria: uso de información adicional.</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#análisis-de-datos-de-espectroscopia-de-masas"><i class="fa fa-check"></i><b>9.6.1</b> Análisis de datos de espectroscopia de masas</a></li>
+<li class="chapter" data-level="9.6.2" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#biplots-y-escalado"><i class="fa fa-check"></i><b>9.6.2</b> Biplots y escalado</a></li>
+<li class="chapter" data-level="9.6.3" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#un-ejemplo-de-pca-ponderado"><i class="fa fa-check"></i><b>9.6.3</b> Un ejemplo de PCA ponderado</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#resumen-de-este-capítulo-2"><i class="fa fa-check"></i><b>9.7</b> Resumen de este capítulo</a></li>
+<li class="chapter" data-level="9.8" data-path="capítulo-n-7---análisis-multivariado.html"><a href="capítulo-n-7---análisis-multivariado.html#ejercicios-3"><i class="fa fa-check"></i><b>9.8</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guía de Bioestadistica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="capítulo-n-7---análisis-multivariado" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> CAPÍTULO N° 7 - Análisis multivariado<a href="capítulo-n-7---análisis-multivariado.html#capítulo-n-7---análisis-multivariado" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivos-de-este-capítulo-3" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Objetivos de este capítulo<a href="capítulo-n-7---análisis-multivariado.html#objetivos-de-este-capítulo-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Vea ejemplos de matrices que surgen en el estudio de datos biológicos.</p></li>
+<li><p>Realice la reducción de dimensiones para comprender las correlaciones entre las variables.</p></li>
+<li><p>Preprocesar, volver a escalar y centrar los datos antes de iniciar un análisis multivariable.</p></li>
+<li><p>Construya nuevas variables, llamadas componentes principales (PC), que sean más útiles que las medidas originales.</p></li>
+<li><p>Vea lo que está “bajo el capó” de PCA: la descomposición de valores singulares de una matriz.</p></li>
+<li><p>Visualiza lo que logra esta descomposición y aprende a elegir el número de componentes principales.</p></li>
+<li><p>Realice un análisis PCA completo de principio a fin.</p></li>
+<li><p>El factor del proyecto covaria en el mapa PCA para permitir una interpretación más útil de los resultados.</p></li>
+</ul>
+</div>
+<div id="qué-son-los-datos-matrices-y-su-motivación." class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> ¿Qué son los datos? Matrices y su motivación.<a href="capítulo-n-7---análisis-multivariado.html#qué-son-los-datos-matrices-y-su-motivación." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se tienen un conjunto de ejemplos de matrices utilizadas para representar tablas de medidas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="capítulo-n-7---análisis-multivariado.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PAQUETES </span></span>
+<span id="cb1-2"><a href="capítulo-n-7---análisis-multivariado.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-3"><a href="capítulo-n-7---análisis-multivariado.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(ggplot2,dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="capítulo-n-7---análisis-multivariado.html#cb2-1" aria-hidden="true" tabindex="-1"></a>turtles <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;../data/PaintedTurtles.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a href="capítulo-n-7---análisis-multivariado.html#cb2-2" aria-hidden="true" tabindex="-1"></a>turtles[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ]</span></code></pre></div>
+<pre><code>##   sex length width height
+## 1   f     98    81     38
+## 2   f    103    84     38
+## 3   f    103    86     42
+## 4   f    105    86     40</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="capítulo-n-7---análisis-multivariado.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;ade4&quot;</span>)</span>
+<span id="cb4-2"><a href="capítulo-n-7---análisis-multivariado.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;olympic&quot;</span>)</span>
+<span id="cb4-3"><a href="capítulo-n-7---análisis-multivariado.html#cb4-3" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">=</span> <span class="fu">data.frame</span>(olympic<span class="sc">$</span>tab)</span>
+<span id="cb4-4"><a href="capítulo-n-7---análisis-multivariado.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(athletes) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;m100&quot;</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;highj&quot;</span>, <span class="st">&quot;m400&quot;</span>, <span class="st">&quot;m110&quot;</span>,</span>
+<span id="cb4-5"><a href="capítulo-n-7---análisis-multivariado.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;disc&quot;</span>, <span class="st">&quot;pole&quot;</span>, <span class="st">&quot;javel&quot;</span>, <span class="st">&quot;m1500&quot;</span>)</span>
+<span id="cb4-6"><a href="capítulo-n-7---análisis-multivariado.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(athletes,<span class="at">file =</span> <span class="st">&quot;../data/athletes.RData&quot;</span>)</span></code></pre></div>
+<p>Atletas: Esta matriz es un ejemplo interesante del mundo del deporte. Informa las actuaciones de 33 atletas en las diez disciplinas del decatlón.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="capítulo-n-7---análisis-multivariado.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/athletes.RData&quot;</span>)</span>
+<span id="cb5-2"><a href="capítulo-n-7---análisis-multivariado.html#cb5-2" aria-hidden="true" tabindex="-1"></a>athletes[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code></pre></div>
+<pre><code>##    m100 long weight highj  m400  m110  disc pole javel  m1500
+## 1 11.25 7.43  15.48  2.27 48.90 15.13 49.28  4.7 61.32 268.95
+## 2 10.87 7.45  14.97  1.97 47.71 14.46 44.36  5.1 61.76 273.02
+## 3 11.18 7.44  14.20  1.97 48.29 14.81 43.66  5.2 64.16 263.20</code></pre>
+<p><strong>Tipos de células</strong>: Holmes et al. ( 2005 ) estudiaron los perfiles de expresión génica de poblaciones de células T ordenadas de diferentes sujetos. Las columnas son un subconjunto de medidas de expresión génica, corresponden a 156 genes que muestran expresión diferencial entre tipos de células.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="capítulo-n-7---análisis-multivariado.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/Msig3transp.RData&quot;</span>)</span>
+<span id="cb7-2"><a href="capítulo-n-7---análisis-multivariado.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Msig3transp,<span class="dv">2</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code></pre></div>
+<pre><code>##              X3968 X14831 X13492 X5108 X16348  X585
+## HEA26_EFFE_1 -2.61  -1.19  -0.06 -0.15   0.52 -0.02
+## HEA26_MEM_1  -2.26  -0.47   0.28  0.54  -0.37  0.11
+## HEA26_NAI_1  -0.27   0.82   0.81  0.72  -0.90  0.75
+## MEL36_EFFE_1 -2.24  -1.08  -0.24 -0.18   0.64  0.01
+## MEL36_MEM_1  -2.68  -0.15   0.25  0.95  -0.20  0.17</code></pre>
+<p>Abundancia de especies bacterianas: las matrices de conteo se utilizan en estudios de ecología microbiana. Aquí las columnas representan diferentes especies (o unidades taxonómicas operativas, OTU) de bacterias, que se identifican mediante etiquetas numéricas. Las filas están etiquetadas de acuerdo con las muestras en las que se midieron, y los números (enteros) representan el número de veces que se observó cada una de las OTU en cada una de las muestras.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="capítulo-n-7---análisis-multivariado.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(phyloseq)</span>
+<span id="cb9-2"><a href="capítulo-n-7---análisis-multivariado.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GlobalPatterns&quot;</span>, <span class="at">package =</span> <span class="st">&quot;phyloseq&quot;</span>)</span>
+<span id="cb9-3"><a href="capítulo-n-7---análisis-multivariado.html#cb9-3" aria-hidden="true" tabindex="-1"></a>GPOTUs <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">t</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(GlobalPatterns)))</span>
+<span id="cb9-4"><a href="capítulo-n-7---análisis-multivariado.html#cb9-4" aria-hidden="true" tabindex="-1"></a>GPOTUs[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">13</span>]</span></code></pre></div>
+<pre><code>## OTU Table:          [8 taxa and 4 samples]
+##                      taxa are columns
+##         246140 143239 244960 255340 144887 141782 215972 31759
+## CL3          0      7      0    153      3      9      0     0
+## CC1          0      1      0    194      5     35      3     1
+## SV1          0      0      0      0      0      0      0     0
+## M31Fcsw      0      0      0      0      0      0      0     0</code></pre>
+<p><strong>ARNm</strong>: los datos del transcriptoma de ARN-Seq informan el número de lecturas de secuencia que coinciden con cada gen 107 en cada una de varias muestras biológicas.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="capítulo-n-7---análisis-multivariado.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;SummarizedExperiment&quot;</span>)</span>
+<span id="cb11-2"><a href="capítulo-n-7---análisis-multivariado.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;airway&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airway&quot;</span>)</span>
+<span id="cb11-3"><a href="capítulo-n-7---análisis-multivariado.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(airway)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>##                 SRR1039508 SRR1039509 SRR1039512 SRR1039513
+## ENSG00000000003        679        448        873        408
+## ENSG00000000005          0          0          0          0
+## ENSG00000000419        467        515        621        365</code></pre>
+<p><strong>Perfiles proteómicos</strong>: Aquí, las columnas son de espectroscopia de masas o moléculas identificadas a través de su m / z -razones; las entradas en la matriz son las intensidades medidas.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="capítulo-n-7---análisis-multivariado.html#cb13-1" aria-hidden="true" tabindex="-1"></a>metab <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">as.matrix</span>(<span class="fu">read.csv</span>(<span class="st">&quot;../data/metabolites.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>)))</span>
+<span id="cb13-2"><a href="capítulo-n-7---análisis-multivariado.html#cb13-2" aria-hidden="true" tabindex="-1"></a>metab[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>##          146.0985388 148.7053275 310.1505057 132.4512963
+## KOGCHUM1    29932.36    17055.70     1132.82    785.5129
+## KOGCHUM2    94067.61    74631.69    28240.85   5232.0499
+## KOGCHUM3   146411.33   147788.71    64950.49  10283.0037
+## WTGCHUM1   229912.57   384932.56   220730.39  26115.2007</code></pre>
+<div id="resúmenes-y-preparación-de-datos-de-baja-dimensión" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Resúmenes y preparación de datos de baja dimensión<a href="capítulo-n-7---análisis-multivariado.html#resúmenes-y-preparación-de-datos-de-baja-dimensión" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="capítulo-n-7---análisis-multivariado.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(turtles[, <span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
+<pre><code>##           length     width    height
+## length 1.0000000 0.9783116 0.9646946
+## width  0.9783116 1.0000000 0.9605705
+## height 0.9646946 0.9605705 1.0000000</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="capítulo-n-7---análisis-multivariado.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb17-2"><a href="capítulo-n-7---análisis-multivariado.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb17-3"><a href="capítulo-n-7---análisis-multivariado.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GGally&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="capítulo-n-7---análisis-multivariado.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb20-2"><a href="capítulo-n-7---análisis-multivariado.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(turtles[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="capítulo-n-7---análisis-multivariado.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;pheatmap&quot;</span>)</span>
+<span id="cb21-2"><a href="capítulo-n-7---análisis-multivariado.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">cor</span>(athletes), <span class="at">cell.width =</span> <span class="dv">10</span>, <span class="at">cell.height =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="capítulo-n-7---análisis-multivariado.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(turtles[,<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>, sd)</span></code></pre></div>
+<pre><code>##    length     width    height 
+## 20.481602 12.675838  8.392837</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="capítulo-n-7---análisis-multivariado.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(turtles[,<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>, mean)</span></code></pre></div>
+<pre><code>##    length     width    height 
+## 124.68750  95.43750  46.33333</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="capítulo-n-7---análisis-multivariado.html#cb26-1" aria-hidden="true" tabindex="-1"></a>scaledTurtles <span class="ot">=</span> <span class="fu">scale</span>(turtles[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb26-2"><a href="capítulo-n-7---análisis-multivariado.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(scaledTurtles, <span class="dv">2</span>, mean)</span></code></pre></div>
+<pre><code>##        length         width        height 
+## -1.432050e-18  1.940383e-17 -2.870967e-16</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="capítulo-n-7---análisis-multivariado.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(scaledTurtles, <span class="dv">2</span>, sd)</span></code></pre></div>
+<pre><code>## length  width height 
+##      1      1      1</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="capítulo-n-7---análisis-multivariado.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(scaledTurtles, <span class="at">sex =</span> turtles[, <span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="capítulo-n-7---análisis-multivariado.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> width, <span class="at">y =</span> height, <span class="at">group =</span> sex)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="capítulo-n-7---análisis-multivariado.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex)) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="reducción-de-dimensiones" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Reducción de dimensiones<a href="capítulo-n-7---análisis-multivariado.html#reducción-de-dimensiones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="capítulo-n-7---análisis-multivariado.html#cb31-1" aria-hidden="true" tabindex="-1"></a>x1<span class="ot">=</span><span class="dv">1</span>;x2<span class="ot">=</span><span class="dv">3</span>;y1<span class="ot">=</span><span class="dv">1</span>;y2<span class="ot">=</span><span class="dv">2</span>;ax<span class="ot">=</span><span class="fl">2.5</span>;ay<span class="ot">=</span><span class="dv">3</span>;</span>
+<span id="cb31-2"><a href="capítulo-n-7---análisis-multivariado.html#cb31-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">c</span>(x1,x2,ax),<span class="at">y=</span><span class="fu">c</span>(y1,y2,ay))</span>
+<span id="cb31-3"><a href="capítulo-n-7---análisis-multivariado.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y))<span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="capítulo-n-7---análisis-multivariado.html#cb31-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_abline</span>(<span class="at">intercept=</span><span class="fl">0.5</span>,<span class="at">slope=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">size=</span><span class="fl">1.3</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))<span class="sc">+</span></span>
+<span id="cb31-5"><a href="capítulo-n-7---análisis-multivariado.html#cb31-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_segment</span>(<span class="at">x=</span>x1,<span class="at">y=</span>y1,<span class="at">xend=</span>x2<span class="fl">-0.5</span>,<span class="at">yend=</span>y2<span class="fl">-0.25</span>,<span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;cm&quot;</span>)),<span class="at">color=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="capítulo-n-7---análisis-multivariado.html#cb31-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_segment</span>(<span class="at">x=</span>ax,<span class="at">y=</span>ay,<span class="at">xend=</span>x2,<span class="at">yend=</span>y2,<span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;cm&quot;</span>)),<span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb31-7"><a href="capítulo-n-7---análisis-multivariado.html#cb31-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">linetype =</span> <span class="dv">5</span>, <span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> ax<span class="fl">+0.2</span>, <span class="at">y =</span> ay<span class="fl">+0.15</span>, <span class="at">label =</span> <span class="st">&quot;A&quot;</span>, <span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="capítulo-n-7---análisis-multivariado.html#cb31-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> x2, <span class="at">y =</span> y2<span class="fl">-0.5</span>, <span class="at">label =</span> <span class="st">&quot;proj_v(A)&quot;</span>, <span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="capítulo-n-7---análisis-multivariado.html#cb31-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> x1<span class="fl">+0.75</span>, <span class="at">y =</span> y1<span class="fl">+0.24</span>, <span class="at">label =</span> <span class="st">&quot;v&quot;</span>, <span class="at">size=</span><span class="dv">6</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-10"><a href="capítulo-n-7---análisis-multivariado.html#cb31-10" aria-hidden="true" tabindex="-1"></a>       <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> x1<span class="fl">-0.2</span>, <span class="at">y =</span> y1<span class="sc">+</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&quot;O&quot;</span>, <span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="capítulo-n-7---análisis-multivariado.html#cb31-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">coord_fixed</span>() <span class="sc">+</span>  <span class="fu">theme_void</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="proyecciones-de-menor-dimensión" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Proyecciones de menor dimensión<a href="capítulo-n-7---análisis-multivariado.html#proyecciones-de-menor-dimensión" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="capítulo-n-7---análisis-multivariado.html#cb32-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">scale</span>(athletes))</span>
+<span id="cb32-2"><a href="capítulo-n-7---análisis-multivariado.html#cb32-2" aria-hidden="true" tabindex="-1"></a>ath_gg <span class="ot">=</span> <span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> disc)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="capítulo-n-7---análisis-multivariado.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">21</span>)</span>
+<span id="cb32-4"><a href="capítulo-n-7---análisis-multivariado.html#cb32-4" aria-hidden="true" tabindex="-1"></a>ath_gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">0</span>), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="capítulo-n-7---análisis-multivariado.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> weight, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="cómo-resumimos-los-datos-bidimensionales-en-una-línea" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> ¿Cómo resumimos los datos bidimensionales en una línea?<a href="capítulo-n-7---análisis-multivariado.html#cómo-resumimos-los-datos-bidimensionales-en-una-línea" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="regresión-de-una-variable-sobre-la-otra" class="section level4 hasAnchor" number="9.3.2.1">
+<h4><span class="header-section-number">9.3.2.1</span> Regresión de una variable sobre la otra<a href="capítulo-n-7---análisis-multivariado.html#regresión-de-una-variable-sobre-la-otra" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Si ha visto regresión lineal, ya sabe cómo calcular líneas que resumen diagramas de dispersión; La regresión lineal es un supervisado que da preferencia minimizando la suma residual de cuadrados en una dirección: la de la variable respuesta.</p>
+<p><strong>Regresión de la variable disco sobre el peso</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="capítulo-n-7---análisis-multivariado.html#cb33-1" aria-hidden="true" tabindex="-1"></a>reg1 <span class="ot">=</span> <span class="fu">lm</span>(disc <span class="sc">~</span> weight, <span class="at">data =</span> athletes)</span>
+<span id="cb33-2"><a href="capítulo-n-7---análisis-multivariado.html#cb33-2" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">=</span> reg1<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="co"># intercept</span></span>
+<span id="cb33-3"><a href="capítulo-n-7---análisis-multivariado.html#cb33-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">=</span> reg1<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="co"># slope</span></span>
+<span id="cb33-4"><a href="capítulo-n-7---análisis-multivariado.html#cb33-4" aria-hidden="true" tabindex="-1"></a>pline1 <span class="ot">=</span> ath_gg <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> a1, <span class="at">slope =</span> b1,</span>
+<span id="cb33-5"><a href="capítulo-n-7---análisis-multivariado.html#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb33-6"><a href="capítulo-n-7---análisis-multivariado.html#cb33-6" aria-hidden="true" tabindex="-1"></a>pline1 <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> weight, <span class="at">yend =</span> reg1<span class="sc">$</span>fitted),</span>
+<span id="cb33-7"><a href="capítulo-n-7---análisis-multivariado.html#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">&quot;cm&quot;</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><strong>Regresión del peso sobre el disco</strong></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="capítulo-n-7---análisis-multivariado.html#cb34-1" aria-hidden="true" tabindex="-1"></a>reg2 <span class="ot">=</span> <span class="fu">lm</span>(weight <span class="sc">~</span> disc, <span class="at">data =</span> athletes)</span>
+<span id="cb34-2"><a href="capítulo-n-7---análisis-multivariado.html#cb34-2" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">=</span> reg2<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="co"># intercept</span></span>
+<span id="cb34-3"><a href="capítulo-n-7---análisis-multivariado.html#cb34-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">=</span> reg2<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="co"># slope</span></span>
+<span id="cb34-4"><a href="capítulo-n-7---análisis-multivariado.html#cb34-4" aria-hidden="true" tabindex="-1"></a>pline2 <span class="ot">=</span> ath_gg <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span>a2<span class="sc">/</span>b2, <span class="at">slope =</span> <span class="dv">1</span><span class="sc">/</span>b2,</span>
+<span id="cb34-5"><a href="capítulo-n-7---análisis-multivariado.html#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb34-6"><a href="capítulo-n-7---análisis-multivariado.html#cb34-6" aria-hidden="true" tabindex="-1"></a>pline2 <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend=</span>reg2<span class="sc">$</span>fitted, <span class="at">yend=</span>disc),</span>
+<span id="cb34-7"><a href="capítulo-n-7---análisis-multivariado.html#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">&quot;cm&quot;</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="capítulo-n-7---análisis-multivariado.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(athletes<span class="sc">$</span>weight) <span class="sc">+</span> <span class="fu">var</span>(reg1<span class="sc">$</span>fitted)</span></code></pre></div>
+<pre><code>## [1] 1.650204</code></pre>
+<p><strong>Una línea que minimiza las distancias en ambas direcciones</strong></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="capítulo-n-7---análisis-multivariado.html#cb37-1" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">=</span> <span class="fu">cbind</span>(athletes<span class="sc">$</span>disc, athletes<span class="sc">$</span>weight)</span>
+<span id="cb37-2"><a href="capítulo-n-7---análisis-multivariado.html#cb37-2" aria-hidden="true" tabindex="-1"></a>svda <span class="ot">=</span> <span class="fu">svd</span>(xy)</span>
+<span id="cb37-3"><a href="capítulo-n-7---análisis-multivariado.html#cb37-3" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">=</span> xy <span class="sc">%*%</span> svda<span class="sc">$</span>v[, <span class="dv">1</span>] <span class="sc">%*%</span> <span class="fu">t</span>(svda<span class="sc">$</span>v[, <span class="dv">1</span>])</span>
+<span id="cb37-4"><a href="capítulo-n-7---análisis-multivariado.html#cb37-4" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">=</span> svda<span class="sc">$</span>v[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">/</span> svda<span class="sc">$</span>v[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb37-5"><a href="capítulo-n-7---análisis-multivariado.html#cb37-5" aria-hidden="true" tabindex="-1"></a>ap <span class="ot">=</span> <span class="fu">mean</span>(pc[, <span class="dv">2</span>]) <span class="sc">-</span> bp <span class="sc">*</span> <span class="fu">mean</span>(pc[, <span class="dv">1</span>])</span>
+<span id="cb37-6"><a href="capítulo-n-7---análisis-multivariado.html#cb37-6" aria-hidden="true" tabindex="-1"></a>ath_gg <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="at">xend =</span> pc[, <span class="dv">1</span>], <span class="at">yend =</span> pc[, <span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="capítulo-n-7---análisis-multivariado.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ap, <span class="at">slope =</span> bp, <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="capítulo-n-7---análisis-multivariado.html#cb38-1" aria-hidden="true" tabindex="-1"></a>pline1 <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> weight, <span class="at">yend =</span> reg1<span class="sc">$</span>fitted), <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="capítulo-n-7---análisis-multivariado.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="sc">-</span>a2<span class="sc">/</span>b2, <span class="at">slope =</span> <span class="dv">1</span><span class="sc">/</span>b2, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="capítulo-n-7---análisis-multivariado.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> reg2<span class="sc">$</span>fitted, <span class="at">yend =</span> disc), <span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="capítulo-n-7---análisis-multivariado.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ap, <span class="at">slope =</span> bp, <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="capítulo-n-7---análisis-multivariado.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">xend =</span> pc[, <span class="dv">1</span>], <span class="at">yend =</span> pc[, <span class="dv">2</span>], <span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="capítulo-n-7---análisis-multivariado.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(pc, <span class="dv">2</span>, var)</span></code></pre></div>
+<pre><code>## [1] 0.9031761 0.9031761</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="capítulo-n-7---análisis-multivariado.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">apply</span>(pc, <span class="dv">2</span>, var))</span></code></pre></div>
+<pre><code>## [1] 1.806352</code></pre>
+</div>
+</div>
+</div>
+<div id="el-funcionamiento-interno-de-pca-reducción-de-rango" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> El funcionamiento interno de PCA: reducción de rango<a href="capítulo-n-7---análisis-multivariado.html#el-funcionamiento-interno-de-pca-reducción-de-rango" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="matrices-de-rango-uno" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Matrices de rango uno<a href="capítulo-n-7---análisis-multivariado.html#matrices-de-rango-uno" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="capítulo-n-7---análisis-multivariado.html#cb43-1" aria-hidden="true" tabindex="-1"></a>.savedopt <span class="ot">=</span> <span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb43-2"><a href="capítulo-n-7---análisis-multivariado.html#cb43-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">780</span>,  <span class="dv">75</span>, <span class="dv">540</span>,</span>
+<span id="cb43-3"><a href="capítulo-n-7---análisis-multivariado.html#cb43-3" aria-hidden="true" tabindex="-1"></a>             <span class="dv">936</span>,  <span class="dv">90</span>, <span class="dv">648</span>,</span>
+<span id="cb43-4"><a href="capítulo-n-7---análisis-multivariado.html#cb43-4" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1300</span>, <span class="dv">125</span>, <span class="dv">900</span>,</span>
+<span id="cb43-5"><a href="capítulo-n-7---análisis-multivariado.html#cb43-5" aria-hidden="true" tabindex="-1"></a>             <span class="dv">728</span>,  <span class="dv">70</span>, <span class="dv">504</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb43-6"><a href="capítulo-n-7---análisis-multivariado.html#cb43-6" aria-hidden="true" tabindex="-1"></a>u <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.8196</span>, <span class="fl">0.0788</span>, <span class="fl">0.5674</span>)</span>
+<span id="cb43-7"><a href="capítulo-n-7---análisis-multivariado.html#cb43-7" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.4053</span>, <span class="fl">0.4863</span>, <span class="fl">0.6754</span>, <span class="fl">0.3782</span>)</span>
+<span id="cb43-8"><a href="capítulo-n-7---análisis-multivariado.html#cb43-8" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fl">2348.2</span></span>
+<span id="cb43-9"><a href="capítulo-n-7---análisis-multivariado.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(u<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="capítulo-n-7---análisis-multivariado.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(v<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="capítulo-n-7---análisis-multivariado.html#cb47-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="sc">*</span> u <span class="sc">%*%</span> <span class="fu">t</span>(v)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]  780  936 1300  728
+## [2,]   75   90  125   70
+## [3,]  540  648  900  504</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="capítulo-n-7---análisis-multivariado.html#cb49-1" aria-hidden="true" tabindex="-1"></a>X <span class="sc">-</span> s1 <span class="sc">*</span> u <span class="sc">%*%</span> <span class="fu">t</span>(v)</span></code></pre></div>
+<pre><code>##          [,1]   [,2]   [,3]   [,4]
+## [1,] -0.03419 0.0745 0.1355 0.1221
+## [2,]  0.00403 0.0159 0.0252 0.0186
+## [3,] -0.00903 0.0691 0.1182 0.0982</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="capítulo-n-7---análisis-multivariado.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(.savedopt)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="capítulo-n-7---análisis-multivariado.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(X)<span class="sc">$</span>u[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 0.81963482 0.07881104 0.56743949</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="capítulo-n-7---análisis-multivariado.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(X)<span class="sc">$</span>v[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 0.4052574 0.4863089 0.6754290 0.3782403</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="capítulo-n-7---análisis-multivariado.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">svd</span>(X)<span class="sc">$</span>u[, <span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="capítulo-n-7---análisis-multivariado.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">svd</span>(X)<span class="sc">$</span>v[, <span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="capítulo-n-7---análisis-multivariado.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(X)<span class="sc">$</span>d</span></code></pre></div>
+<pre><code>## [1] 2.348244e+03 2.141733e-13 6.912584e-15</code></pre>
+</div>
+<div id="cómo-encontramos-tal-descomposición-de-una-manera-única" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> ¿Cómo encontramos tal descomposición de una manera única?<a href="capítulo-n-7---análisis-multivariado.html#cómo-encontramos-tal-descomposición-de-una-manera-única" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="capítulo-n-7---análisis-multivariado.html#cb62-1" aria-hidden="true" tabindex="-1"></a>Xtwo <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">12.5</span>, <span class="fl">35.0</span>, <span class="fl">25.0</span>, <span class="dv">25</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">26</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">21</span>, <span class="dv">49</span>, <span class="dv">32</span>,</span>
+<span id="cb62-2"><a href="capítulo-n-7---análisis-multivariado.html#cb62-2" aria-hidden="true" tabindex="-1"></a>       <span class="dv">18</span>, <span class="dv">28</span>, <span class="dv">52</span>, <span class="dv">36</span>, <span class="dv">18</span>, <span class="fl">10.5</span>, <span class="fl">64.5</span>, <span class="dv">36</span>), <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-3"><a href="capítulo-n-7---análisis-multivariado.html#cb62-3" aria-hidden="true" tabindex="-1"></a>USV <span class="ot">=</span> <span class="fu">svd</span>(Xtwo)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="capítulo-n-7---análisis-multivariado.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(USV)</span></code></pre></div>
+<pre><code>## [1] &quot;d&quot; &quot;u&quot; &quot;v&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="capítulo-n-7---análisis-multivariado.html#cb65-1" aria-hidden="true" tabindex="-1"></a>USV<span class="sc">$</span>d</span></code></pre></div>
+<pre><code>## [1] 1.350624e+02 2.805191e+01 3.103005e-15 1.849559e-15</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="capítulo-n-7---análisis-multivariado.html#cb67-1" aria-hidden="true" tabindex="-1"></a>Xtwo <span class="sc">-</span> USV<span class="sc">$</span>d[<span class="dv">1</span>] <span class="sc">*</span> USV<span class="sc">$</span>u[, <span class="dv">1</span>] <span class="sc">%*%</span> <span class="fu">t</span>(USV<span class="sc">$</span>v[, <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>##             [,1]       [,2]        [,3]        [,4]
+## [1,]  0.87481760  19.045230 -10.1044650  1.74963521
+## [2,]  0.08079747   1.759002  -0.9332405  0.16159494
+## [3,] -0.04700978  -1.023427   0.5429803 -0.09401956
+## [4,]  0.16159494   3.518005  -1.8664809  0.32318987
+## [5,] -0.69632883 -15.159437   8.0428540 -1.39265765</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="capítulo-n-7---análisis-multivariado.html#cb69-1" aria-hidden="true" tabindex="-1"></a>Xtwo <span class="sc">-</span> USV<span class="sc">$</span>d[<span class="dv">1</span>] <span class="sc">*</span> USV<span class="sc">$</span>u[, <span class="dv">1</span>] <span class="sc">%*%</span> <span class="fu">t</span>(USV<span class="sc">$</span>v[, <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb69-2"><a href="capítulo-n-7---análisis-multivariado.html#cb69-2" aria-hidden="true" tabindex="-1"></a>       USV<span class="sc">$</span>d[<span class="dv">2</span>] <span class="sc">*</span> USV<span class="sc">$</span>u[, <span class="dv">2</span>] <span class="sc">%*%</span> <span class="fu">t</span>(USV<span class="sc">$</span>v[, <span class="dv">2</span>])</span></code></pre></div>
+<pre><code>##              [,1]          [,2]         [,3]         [,4]
+## [1,] 7.216450e-15 -1.065814e-14 8.881784e-15 4.884981e-15
+## [2,] 2.040035e-15 -5.995204e-15 1.054712e-14 3.219647e-15
+## [3,] 2.865763e-15 -9.547918e-15 1.554312e-15 6.231127e-15
+## [4,] 4.385381e-15 -5.773160e-15 1.776357e-14 7.049916e-15
+## [5,] 5.107026e-15 -1.776357e-15 1.776357e-14 1.776357e-14</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="capítulo-n-7---análisis-multivariado.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(</span>
+<span id="cb71-2"><a href="capítulo-n-7---análisis-multivariado.html#cb71-2" aria-hidden="true" tabindex="-1"></a>Xtwo <span class="sc">-</span> USV<span class="sc">$</span>d[<span class="dv">1</span>] <span class="sc">*</span> USV<span class="sc">$</span>u[, <span class="dv">1</span>] <span class="sc">%*%</span> <span class="fu">t</span>(USV<span class="sc">$</span>v[, <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb71-3"><a href="capítulo-n-7---análisis-multivariado.html#cb71-3" aria-hidden="true" tabindex="-1"></a>       USV<span class="sc">$</span>d[<span class="dv">2</span>] <span class="sc">*</span> USV<span class="sc">$</span>u[, <span class="dv">2</span>] <span class="sc">%*%</span> <span class="fu">t</span>(USV<span class="sc">$</span>v[, <span class="dv">2</span>]))) <span class="sc">&lt;</span> <span class="fl">1e-12</span>,</span>
+<span id="cb71-4"><a href="capítulo-n-7---análisis-multivariado.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(USV<span class="sc">$</span>d[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>])) <span class="sc">&lt;</span> <span class="fl">1e-13</span>)</span></code></pre></div>
+<p>Compruebe la ortonormalidad calculando el producto cruz de la U y V matrices:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="capítulo-n-7---análisis-multivariado.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(USV<span class="sc">$</span>u) <span class="sc">%*%</span> USV<span class="sc">$</span>u</span></code></pre></div>
+<pre><code>##               [,1]          [,2]          [,3]          [,4]
+## [1,]  1.000000e+00 -1.665335e-16  0.000000e+00 -8.326673e-17
+## [2,] -1.665335e-16  1.000000e+00  1.665335e-16 -5.551115e-17
+## [3,]  0.000000e+00  1.665335e-16  1.000000e+00 -5.551115e-17
+## [4,] -8.326673e-17 -5.551115e-17 -5.551115e-17  1.000000e+00</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="capítulo-n-7---análisis-multivariado.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(USV<span class="sc">$</span>v) <span class="sc">%*%</span> USV<span class="sc">$</span>v</span></code></pre></div>
+<pre><code>##               [,1]          [,2]          [,3]          [,4]
+## [1,]  1.000000e+00  8.326673e-17  1.387779e-17 -5.551115e-17
+## [2,]  8.326673e-17  1.000000e+00 -3.642919e-17 -6.938894e-17
+## [3,]  1.387779e-17 -3.642919e-17  1.000000e+00  2.775558e-17
+## [4,] -5.551115e-17 -6.938894e-17  2.775558e-17  1.000000e+00</code></pre>
+<p>Se usará la reescalada matriz turtles a una descomposición de valor singular.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="capítulo-n-7---análisis-multivariado.html#cb76-1" aria-hidden="true" tabindex="-1"></a>turtles.svd <span class="ot">=</span> <span class="fu">svd</span>(scaledTurtles)</span>
+<span id="cb76-2"><a href="capítulo-n-7---análisis-multivariado.html#cb76-2" aria-hidden="true" tabindex="-1"></a>turtles.svd<span class="sc">$</span>d</span></code></pre></div>
+<pre><code>## [1] 11.746475  1.419035  1.003329</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="capítulo-n-7---análisis-multivariado.html#cb78-1" aria-hidden="true" tabindex="-1"></a>turtles.svd<span class="sc">$</span>v</span></code></pre></div>
+<pre><code>##           [,1]       [,2]        [,3]
+## [1,] 0.5787981 -0.3250273 -0.74789704
+## [2,] 0.5779840 -0.4834699  0.65741263
+## [3,] 0.5752628  0.8127817  0.09197088</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="capítulo-n-7---análisis-multivariado.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(turtles.svd<span class="sc">$</span>u)</span></code></pre></div>
+<pre><code>## [1] 48  3</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="capítulo-n-7---análisis-multivariado.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(turtles.svd<span class="sc">$</span>v[,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="capítulo-n-7---análisis-multivariado.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(turtles.svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">47</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="capítulo-n-7---análisis-multivariado.html#cb86-1" aria-hidden="true" tabindex="-1"></a>US <span class="ot">=</span> turtles.svd<span class="sc">$</span>u[,<span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>] <span class="sc">%*%</span> turtles.svd<span class="sc">$</span>d[<span class="dv">1</span>]</span>
+<span id="cb86-2"><a href="capítulo-n-7---análisis-multivariado.html#cb86-2" aria-hidden="true" tabindex="-1"></a>XV <span class="ot">=</span> scaledTurtles <span class="sc">%*%</span> turtles.svd<span class="sc">$</span>v[, <span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb86-3"><a href="capítulo-n-7---análisis-multivariado.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(US<span class="sc">-</span>XV))</span></code></pre></div>
+<pre><code>## [1] 6.661338e-16</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="capítulo-n-7---análisis-multivariado.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(US<span class="sc">-</span>XV)) <span class="sc">&lt;</span> <span class="fl">1e-9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="capítulo-n-7---análisis-multivariado.html#cb89-1" aria-hidden="true" tabindex="-1"></a>svda<span class="sc">$</span>v[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] -0.7071068 -0.7071068</code></pre>
+</div>
+</div>
+<div id="trazado-de-las-observaciones-en-el-plano-principal" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Trazado de las observaciones en el plano principal<a href="capítulo-n-7---análisis-multivariado.html#trazado-de-las-observaciones-en-el-plano-principal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Qué parte de la salida de las svd nos lleva a los primeros coeficientes de PC, también conocidos como cargas ?</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="capítulo-n-7---análisis-multivariado.html#cb91-1" aria-hidden="true" tabindex="-1"></a>ppdf <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">PC1n =</span> <span class="sc">-</span>svda<span class="sc">$</span>u[, <span class="dv">1</span>] <span class="sc">*</span> svda<span class="sc">$</span>d[<span class="dv">1</span>],</span>
+<span id="cb91-2"><a href="capítulo-n-7---análisis-multivariado.html#cb91-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">PC2n =</span>  svda<span class="sc">$</span>u[, <span class="dv">2</span>] <span class="sc">*</span> svda<span class="sc">$</span>d[<span class="dv">2</span>])</span>
+<span id="cb91-3"><a href="capítulo-n-7---análisis-multivariado.html#cb91-3" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">=</span> <span class="fu">ggplot</span>(ppdf, <span class="fu">aes</span>(<span class="at">x =</span> PC1n, <span class="at">y =</span> PC2n)) <span class="sc">+</span> </span>
+<span id="cb91-4"><a href="capítulo-n-7---análisis-multivariado.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb91-5"><a href="capítulo-n-7---análisis-multivariado.html#cb91-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb91-6"><a href="capítulo-n-7---análisis-multivariado.html#cb91-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;PC1 &quot;</span>)<span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;PC2&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">2.7</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span>
+<span id="cb91-7"><a href="capítulo-n-7---análisis-multivariado.html#cb91-7" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1n, <span class="at">y =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb91-8"><a href="capítulo-n-7---análisis-multivariado.html#cb91-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> PC1n, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="capítulo-n-7---análisis-multivariado.html#cb92-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> PC2n), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb92-2"><a href="capítulo-n-7---análisis-multivariado.html#cb92-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">yend =</span> PC2n, <span class="at">xend =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb92-3"><a href="capítulo-n-7---análisis-multivariado.html#cb92-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-2.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="capítulo-n-7---análisis-multivariado.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(ppdf<span class="sc">$</span>PC2n<span class="sc">^</span><span class="dv">2</span>) </span></code></pre></div>
+<pre><code>## [1] 6.196729</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="capítulo-n-7---análisis-multivariado.html#cb95-1" aria-hidden="true" tabindex="-1"></a>svda<span class="sc">$</span>d[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 6.196729</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="capítulo-n-7---análisis-multivariado.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ppdf<span class="sc">$</span>PC2n) </span></code></pre></div>
+<pre><code>## [1] 5.426218e-16</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="capítulo-n-7---análisis-multivariado.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(ppdf<span class="sc">$</span>PC2n) <span class="sc">*</span> (<span class="fu">nrow</span>(ppdf)<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 6.196729</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="capítulo-n-7---análisis-multivariado.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(ppdf<span class="sc">$</span>PC1n) </span></code></pre></div>
+<pre><code>## [1] 1.806352</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="capítulo-n-7---análisis-multivariado.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(ppdf<span class="sc">$</span>PC2n) </span></code></pre></div>
+<pre><code>## [1] 0.1936478</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="capítulo-n-7---análisis-multivariado.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(ppdf<span class="sc">$</span>PC1n) <span class="sc">/</span> <span class="fu">sd</span>(ppdf<span class="sc">$</span>PC2n)</span></code></pre></div>
+<pre><code>## [1] 3.054182</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="capítulo-n-7---análisis-multivariado.html#cb107-1" aria-hidden="true" tabindex="-1"></a>svda<span class="sc">$</span>d[<span class="dv">1</span>] <span class="sc">/</span> svda<span class="sc">$</span>d[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 3.054182</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="capítulo-n-7---análisis-multivariado.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">sd</span>(ppdf<span class="sc">$</span>PC1n) <span class="sc">/</span> <span class="fu">sd</span>(ppdf<span class="sc">$</span>PC2n) <span class="sc">-</span> svda<span class="sc">$</span>d[<span class="dv">1</span>] <span class="sc">/</span> svda<span class="sc">$</span>d[<span class="dv">2</span>] <span class="sc">&lt;</span> <span class="fl">1e-9</span>)</span></code></pre></div>
+<div id="pca-de-los-datos-de-las-tortugas" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> PCA de los datos de las tortugas<a href="capítulo-n-7---análisis-multivariado.html#pca-de-los-datos-de-las-tortugas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ahora queremos hacer un análisis PCA completo de los datos de las tortugas. Recuerde, ya vimos las estadísticas de resumen para los datos de 1 y 2 dimensiones. Ahora vamos a responder a la pregunta sobre la dimensionalidad “verdadera” de estos datos reescalados. En el siguiente código, usamos la función princomp. Su valor de retorno es una lista de toda la información importante necesaria para trazar e interpretar un PCA.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="capítulo-n-7---análisis-multivariado.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(scaledTurtles)</span></code></pre></div>
+<pre><code>##           length     width    height
+## length 1.0000000 0.9783116 0.9646946
+## width  0.9783116 1.0000000 0.9605705
+## height 0.9646946 0.9605705 1.0000000</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="capítulo-n-7---análisis-multivariado.html#cb112-1" aria-hidden="true" tabindex="-1"></a>pcaturtles <span class="ot">=</span> <span class="fu">princomp</span>(scaledTurtles)</span>
+<span id="cb112-2"><a href="capítulo-n-7---análisis-multivariado.html#cb112-2" aria-hidden="true" tabindex="-1"></a>pcaturtles</span></code></pre></div>
+<pre><code>## Call:
+## princomp(x = scaledTurtles)
+## 
+## Standard deviations:
+##    Comp.1    Comp.2    Comp.3 
+## 1.6954576 0.2048201 0.1448180 
+## 
+##  3  variables and  48 observations.</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="capítulo-n-7---análisis-multivariado.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: package &#39;factoextra&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="capítulo-n-7---análisis-multivariado.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pcaturtles, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">bar_width =</span> <span class="fl">0.4</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="capítulo-n-7---análisis-multivariado.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(scaledTurtles)<span class="sc">$</span>v[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 0.5787981 0.5779840 0.5752628</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="capítulo-n-7---análisis-multivariado.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(turtles[, <span class="sc">-</span><span class="dv">1</span>])<span class="sc">$</span>rotation[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##    length     width    height 
+## 0.8068646 0.4947448 0.3227958</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="capítulo-n-7---análisis-multivariado.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">princomp</span>(scaledTurtles)<span class="sc">$</span>loadings[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##    length     width    height 
+## 0.5787981 0.5779840 0.5752628</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="capítulo-n-7---análisis-multivariado.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dudi.pca</span>(turtles[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">nf =</span> <span class="dv">2</span>, <span class="at">scannf =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>c1[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] -0.5787981 -0.5779840 -0.5752628</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="capítulo-n-7---análisis-multivariado.html#cb126-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">princomp</span>(scaledTurtles)</span>
+<span id="cb126-2"><a href="capítulo-n-7---análisis-multivariado.html#cb126-2" aria-hidden="true" tabindex="-1"></a>PC1 <span class="ot">=</span> scaledTurtles <span class="sc">%*%</span> res<span class="sc">$</span>loadings[,<span class="dv">1</span>]</span>
+<span id="cb126-3"><a href="capítulo-n-7---análisis-multivariado.html#cb126-3" aria-hidden="true" tabindex="-1"></a>sd1 <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(res<span class="sc">$</span>scores[, <span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<p><strong>Ahora vamos a combinar ambas puntuaciones de PC</strong></p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="capítulo-n-7---análisis-multivariado.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_biplot</span>(pcaturtles, <span class="at">label =</span> <span class="st">&quot;var&quot;</span>, <span class="at">habillage =</span> turtles[, <span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb127-2"><a href="capítulo-n-7---análisis-multivariado.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="capítulo-n-7---análisis-multivariado.html#cb128-1" aria-hidden="true" tabindex="-1"></a>pcadudit <span class="ot">=</span> <span class="fu">dudi.pca</span>(scaledTurtles, <span class="at">nf =</span> <span class="dv">2</span>, <span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb128-2"><a href="capítulo-n-7---análisis-multivariado.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(pcadudit<span class="sc">$</span>li, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">48</span>)</span></code></pre></div>
+<pre><code>##      Axis1      Axis2 
+## 2.93573765 0.04284387</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="capítulo-n-7---análisis-multivariado.html#cb130-1" aria-hidden="true" tabindex="-1"></a>pcadudit<span class="sc">$</span>eig</span></code></pre></div>
+<pre><code>## [1] 2.93573765 0.04284387 0.02141848</code></pre>
+<p>Ahora observamos las relaciones entre las variables, tanto las antiguas como las nuevas, dibujando lo que se conoce como el círculo de correlación. La relación de aspecto es 1 aquí y las variables están representadas por flechas como se muestra.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="capítulo-n-7---análisis-multivariado.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pcaturtles, <span class="at">col.circle =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb132-2"><a href="capítulo-n-7---análisis-multivariado.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="fl">1.2</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="fl">1.2</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Explique las relaciones entre el número de filas de nuestra matriz de datos de tortugas y los siguientes números:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="capítulo-n-7---análisis-multivariado.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(scaledTurtles)<span class="sc">$</span>d<span class="sc">/</span>pcaturtles<span class="sc">$</span>sdev</span></code></pre></div>
+<pre><code>##   Comp.1   Comp.2   Comp.3 
+## 6.928203 6.928203 6.928203</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="capítulo-n-7---análisis-multivariado.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">47</span>)</span></code></pre></div>
+<pre><code>## [1] 6.855655</code></pre>
+</div>
+<div id="un-análisis-completo-los-atletas-de-decatlón" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> Un análisis completo: los atletas de decatlón<a href="capítulo-n-7---análisis-multivariado.html#un-análisis-completo-los-atletas-de-decatlón" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="capítulo-n-7---análisis-multivariado.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(athletes) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        m100 long weight highj m400 m110 disc pole javel m1500
+## m100    1.0 -0.5   -0.2  -0.1  0.6  0.6  0.0 -0.4  -0.1   0.3
+## long   -0.5  1.0    0.1   0.3 -0.5 -0.5  0.0  0.3   0.2  -0.4
+## weight -0.2  0.1    1.0   0.1  0.1 -0.3  0.8  0.5   0.6   0.3
+## highj  -0.1  0.3    0.1   1.0 -0.1 -0.3  0.1  0.2   0.1  -0.1
+## m400    0.6 -0.5    0.1  -0.1  1.0  0.5  0.1 -0.3   0.1   0.6
+## m110    0.6 -0.5   -0.3  -0.3  0.5  1.0 -0.1 -0.5  -0.1   0.1
+## disc    0.0  0.0    0.8   0.1  0.1 -0.1  1.0  0.3   0.4   0.4
+## pole   -0.4  0.3    0.5   0.2 -0.3 -0.5  0.3  1.0   0.3   0.0
+## javel  -0.1  0.2    0.6   0.1  0.1 -0.1  0.4  0.3   1.0   0.1
+## m1500   0.3 -0.4    0.3  -0.1  0.6  0.1  0.4  0.0   0.1   1.0</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="capítulo-n-7---análisis-multivariado.html#cb139-1" aria-hidden="true" tabindex="-1"></a>pca.ath <span class="ot">=</span> <span class="fu">dudi.pca</span>(athletes, <span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb139-2"><a href="capítulo-n-7---análisis-multivariado.html#cb139-2" aria-hidden="true" tabindex="-1"></a>pca.ath<span class="sc">$</span>eig</span></code></pre></div>
+<pre><code>##  [1] 3.4182381 2.6063931 0.9432964 0.8780212 0.5566267 0.4912275 0.4305952
+##  [8] 0.3067981 0.2669494 0.1018542</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="capítulo-n-7---análisis-multivariado.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca.ath, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">bar_width =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="capítulo-n-7---análisis-multivariado.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pca.ath, <span class="at">col.circle =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="capítulo-n-7---análisis-multivariado.html#cb143-1" aria-hidden="true" tabindex="-1"></a>athletes[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">10</span>)] <span class="ot">=</span> <span class="sc">-</span>athletes[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">10</span>)]</span>
+<span id="cb143-2"><a href="capítulo-n-7---análisis-multivariado.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(athletes) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        m100 long weight highj m400 m110 disc pole javel m1500
+## m100    1.0  0.5    0.2   0.1  0.6  0.6  0.0  0.4   0.1   0.3
+## long    0.5  1.0    0.1   0.3  0.5  0.5  0.0  0.3   0.2   0.4
+## weight  0.2  0.1    1.0   0.1 -0.1  0.3  0.8  0.5   0.6  -0.3
+## highj   0.1  0.3    0.1   1.0  0.1  0.3  0.1  0.2   0.1   0.1
+## m400    0.6  0.5   -0.1   0.1  1.0  0.5 -0.1  0.3  -0.1   0.6
+## m110    0.6  0.5    0.3   0.3  0.5  1.0  0.1  0.5   0.1   0.1
+## disc    0.0  0.0    0.8   0.1 -0.1  0.1  1.0  0.3   0.4  -0.4
+## pole    0.4  0.3    0.5   0.2  0.3  0.5  0.3  1.0   0.3   0.0
+## javel   0.1  0.2    0.6   0.1 -0.1  0.1  0.4  0.3   1.0  -0.1
+## m1500   0.3  0.4   -0.3   0.1  0.6  0.1 -0.4  0.0  -0.1   1.0</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="capítulo-n-7---análisis-multivariado.html#cb145-1" aria-hidden="true" tabindex="-1"></a>pcan.ath <span class="ot">=</span> <span class="fu">dudi.pca</span>(athletes, <span class="at">nf =</span> <span class="dv">2</span>, <span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-2"><a href="capítulo-n-7---análisis-multivariado.html#cb145-2" aria-hidden="true" tabindex="-1"></a>pcan.ath<span class="sc">$</span>eig</span></code></pre></div>
+<pre><code>##  [1] 3.4182381 2.6063931 0.9432964 0.8780212 0.5566267 0.4912275 0.4305952
+##  [8] 0.3067981 0.2669494 0.1018542</code></pre>
+<p>Círculo de correlación de las variables originales.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="capítulo-n-7---análisis-multivariado.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pcan.ath, <span class="at">col.circle=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="capítulo-n-7---análisis-multivariado.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(pcan.ath) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>,<span class="fl">5.7</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Si observamos a los propios atletas tal como se muestran, notamos un ligero efecto de ordenación. ¿Ves una relación entre la calidad de los atletas y su número?</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="capítulo-n-7---análisis-multivariado.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;olympic&quot;</span>, <span class="at">package =</span> <span class="st">&quot;ade4&quot;</span>)</span>
+<span id="cb149-2"><a href="capítulo-n-7---análisis-multivariado.html#cb149-2" aria-hidden="true" tabindex="-1"></a>olympic<span class="sc">$</span>score</span></code></pre></div>
+<pre><code>##  [1] 8488 8399 8328 8306 8286 8272 8216 8189 8180 8167 8143 8114 8093 8083 8036
+## [16] 8021 7869 7860 7859 7781 7753 7745 7743 7623 7579 7517 7505 7422 7310 7237
+## [31] 7231 7016 6907</code></pre>
+<p>Ahora se hace el diagrama de dispersión comparando la puntuación del primer componente principal de los atletas con esta puntuación de los datos, se puede ver una fuerte correlación entre las dos variables.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="capítulo-n-7---análisis-multivariado.html#cb151-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">pc1 =</span> pcan.ath<span class="sc">$</span>li[, <span class="dv">1</span>], <span class="at">score =</span> olympic<span class="sc">$</span>score, <span class="at">id =</span> <span class="fu">rownames</span>(athletes)),</span>
+<span id="cb151-2"><a href="capítulo-n-7---análisis-multivariado.html#cb151-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">aes</span>(<span class="at">x =</span> score, <span class="at">y =</span> pc1, <span class="at">label =</span> id)) <span class="sc">+</span> <span class="fu">geom_text</span>()</span>
+<span id="cb151-3"><a href="capítulo-n-7---análisis-multivariado.html#cb151-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+<div id="cómo-elegir-k-el-número-de-dimensiones" class="section level3 hasAnchor" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Cómo elegir k , el número de dimensiones ?<a href="capítulo-n-7---análisis-multivariado.html#cómo-elegir-k-el-número-de-dimensiones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="capítulo-n-7---análisis-multivariado.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/screep7.RData&quot;</span>)</span>
+<span id="cb152-2"><a href="capítulo-n-7---análisis-multivariado.html#cb152-2" aria-hidden="true" tabindex="-1"></a>pcaS7 <span class="ot">=</span> <span class="fu">dudi.pca</span>(screep7, <span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb152-3"><a href="capítulo-n-7---análisis-multivariado.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pcaS7,<span class="at">geom=</span><span class="st">&quot;bar&quot;</span>,<span class="at">bar_width=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="capítulo-n-7---análisis-multivariado.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pcaS7,<span class="at">geom=</span><span class="st">&quot;bar&quot;</span>,<span class="at">width=</span><span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="capítulo-n-7---análisis-multivariado.html#cb154-1" aria-hidden="true" tabindex="-1"></a>p7<span class="ot">=</span><span class="fu">prcomp</span>(screep7,<span class="at">scale=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb154-2"><a href="capítulo-n-7---análisis-multivariado.html#cb154-2" aria-hidden="true" tabindex="-1"></a>p7<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 3.40593761 1.04022404 0.94772691 0.90206914 0.46357752 0.16585209 0.07461269</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="capítulo-n-7---análisis-multivariado.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p7)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-3.png" width="672" /></p>
+</div>
+</div>
+<div id="pca-como-herramienta-exploratoria-uso-de-información-adicional." class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> PCA como herramienta exploratoria: uso de información adicional.<a href="capítulo-n-7---análisis-multivariado.html#pca-como-herramienta-exploratoria-uso-de-información-adicional." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="capítulo-n-7---análisis-multivariado.html#cb157-1" aria-hidden="true" tabindex="-1"></a>pcaMsig3 <span class="ot">=</span> <span class="fu">dudi.pca</span>(Msig3transp, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb157-2"><a href="capítulo-n-7---análisis-multivariado.html#cb157-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">4</span>)</span>
+<span id="cb157-3"><a href="capítulo-n-7---análisis-multivariado.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_screeplot</span>(pcaMsig3) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p>A continuación, tenemos que enfrentar el último escenario, y usamos substrgimnasia para extraer los tipos de células y mostrar el screeplot.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="capítulo-n-7---análisis-multivariado.html#cb158-1" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">=</span> <span class="fu">rownames</span>(Msig3transp)</span>
+<span id="cb158-2"><a href="capítulo-n-7---análisis-multivariado.html#cb158-2" aria-hidden="true" tabindex="-1"></a>celltypes <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">substr</span>(ids, <span class="dv">7</span>, <span class="dv">9</span>))</span>
+<span id="cb158-3"><a href="capítulo-n-7---análisis-multivariado.html#cb158-3" aria-hidden="true" tabindex="-1"></a>status <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">substr</span>(ids, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb158-4"><a href="capítulo-n-7---análisis-multivariado.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(celltypes)</span></code></pre></div>
+<pre><code>## celltypes
+## EFF MEM NAI 
+##  10   9  11</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="capítulo-n-7---análisis-multivariado.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(pcaMsig3<span class="sc">$</span>li, <span class="fu">tibble</span>(<span class="at">Cluster =</span> celltypes, <span class="at">sample =</span> ids)) <span class="sc">%&gt;%</span></span>
+<span id="cb160-2"><a href="capítulo-n-7---análisis-multivariado.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Axis1, <span class="at">y =</span> Axis2)) <span class="sc">+</span></span>
+<span id="cb160-3"><a href="capítulo-n-7---análisis-multivariado.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Cluster), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb160-4"><a href="capítulo-n-7---análisis-multivariado.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb160-5"><a href="capítulo-n-7---análisis-multivariado.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb160-6"><a href="capítulo-n-7---análisis-multivariado.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Cluster&quot;</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>PCA de la expresión génica para un subconjunto de 156 genes involucrados en las especificidades de cada uno de los tres tipos de células T independientes: efectoras, ingenuas y de memoria.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="capítulo-n-7---análisis-multivariado.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;xcms&quot;</span>, <span class="st">&quot;faahKO&quot;</span>)</span>
+<span id="cb161-2"><a href="capítulo-n-7---análisis-multivariado.html#cb161-2" aria-hidden="true" tabindex="-1"></a>cdfpath <span class="ot">=</span> <span class="fu">system.file</span>(<span class="st">&quot;cdf&quot;</span>, <span class="at">package =</span> <span class="st">&quot;faahKO&quot;</span>)</span>
+<span id="cb161-3"><a href="capítulo-n-7---análisis-multivariado.html#cb161-3" aria-hidden="true" tabindex="-1"></a>cdffiles <span class="ot">=</span> <span class="fu">list.files</span>(cdfpath, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">full =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb161-4"><a href="capítulo-n-7---análisis-multivariado.html#cb161-4" aria-hidden="true" tabindex="-1"></a>xset <span class="ot">=</span> <span class="fu">xcmsSet</span>(cdffiles)</span>
+<span id="cb161-5"><a href="capítulo-n-7---análisis-multivariado.html#cb161-5" aria-hidden="true" tabindex="-1"></a>xset2 <span class="ot">=</span> <span class="fu">group</span>(xset)</span>
+<span id="cb161-6"><a href="capítulo-n-7---análisis-multivariado.html#cb161-6" aria-hidden="true" tabindex="-1"></a>xset2 <span class="ot">=</span> <span class="fu">retcor</span>(xset2)</span>
+<span id="cb161-7"><a href="capítulo-n-7---análisis-multivariado.html#cb161-7" aria-hidden="true" tabindex="-1"></a>xset2 <span class="ot">=</span> <span class="fu">group</span>(xset2, <span class="at">bw =</span> <span class="dv">10</span>)</span>
+<span id="cb161-8"><a href="capítulo-n-7---análisis-multivariado.html#cb161-8" aria-hidden="true" tabindex="-1"></a>xset3 <span class="ot">=</span> <span class="fu">fillPeaks</span>(xset2)</span>
+<span id="cb161-9"><a href="capítulo-n-7---análisis-multivariado.html#cb161-9" aria-hidden="true" tabindex="-1"></a>gt <span class="ot">=</span> <span class="fu">groups</span>(xset3)</span>
+<span id="cb161-10"><a href="capítulo-n-7---análisis-multivariado.html#cb161-10" aria-hidden="true" tabindex="-1"></a>mat1 <span class="ot">=</span> <span class="fu">groupval</span>(xset3, <span class="at">value =</span> <span class="st">&quot;into&quot;</span>)</span></code></pre></div>
+<div id="análisis-de-datos-de-espectroscopia-de-masas" class="section level3 hasAnchor" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Análisis de datos de espectroscopia de masas<a href="capítulo-n-7---análisis-multivariado.html#análisis-de-datos-de-espectroscopia-de-masas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="capítulo-n-7---análisis-multivariado.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/mat1xcms.RData&quot;</span>)</span>
+<span id="cb162-2"><a href="capítulo-n-7---análisis-multivariado.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mat1)</span></code></pre></div>
+<pre><code>## [1] 399  12</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="capítulo-n-7---análisis-multivariado.html#cb164-1" aria-hidden="true" tabindex="-1"></a>pcamat1 <span class="ot">=</span> <span class="fu">dudi.pca</span>(<span class="fu">t</span>(mat1), <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">3</span>)</span>
+<span id="cb164-2"><a href="capítulo-n-7---análisis-multivariado.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pcamat1, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="at">bar_width =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="capítulo-n-7---análisis-multivariado.html#cb165-1" aria-hidden="true" tabindex="-1"></a>dfmat1 <span class="ot">=</span> <span class="fu">cbind</span>(pcamat1<span class="sc">$</span>li, <span class="fu">tibble</span>(</span>
+<span id="cb165-2"><a href="capítulo-n-7---análisis-multivariado.html#cb165-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">rownames</span>(pcamat1<span class="sc">$</span>li),</span>
+<span id="cb165-3"><a href="capítulo-n-7---análisis-multivariado.html#cb165-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">substr</span>(label, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb165-4"><a href="capítulo-n-7---análisis-multivariado.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">factor</span>(<span class="fu">substr</span>(label, <span class="dv">1</span>, <span class="dv">2</span>))))</span>
+<span id="cb165-5"><a href="capítulo-n-7---análisis-multivariado.html#cb165-5" aria-hidden="true" tabindex="-1"></a>pcsplot <span class="ot">=</span> <span class="fu">ggplot</span>(dfmat1,</span>
+<span id="cb165-6"><a href="capítulo-n-7---análisis-multivariado.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>Axis1, <span class="at">y=</span>Axis2, <span class="at">label=</span>label, <span class="at">group=</span>number, <span class="at">colour=</span>type)) <span class="sc">+</span></span>
+<span id="cb165-7"><a href="capítulo-n-7---análisis-multivariado.html#cb165-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_text</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">18</span>,<span class="dv">19</span>))</span>
+<span id="cb165-8"><a href="capítulo-n-7---análisis-multivariado.html#cb165-8" aria-hidden="true" tabindex="-1"></a>pcsplot <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb165-9"><a href="capítulo-n-7---análisis-multivariado.html#cb165-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+El primer plano principal para el mat1datos. Explica el 59% de la varianza.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="capítulo-n-7---análisis-multivariado.html#cb166-1" aria-hidden="true" tabindex="-1"></a>pcsplot <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+</div>
+<div id="biplots-y-escalado" class="section level3 hasAnchor" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> Biplots y escalado<a href="capítulo-n-7---análisis-multivariado.html#biplots-y-escalado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="capítulo-n-7---análisis-multivariado.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;pheatmap&quot;</span>)</span>
+<span id="cb167-2"><a href="capítulo-n-7---análisis-multivariado.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/wine.RData&quot;</span>)</span>
+<span id="cb167-3"><a href="capítulo-n-7---análisis-multivariado.html#cb167-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/wineClass.RData&quot;</span>)</span>
+<span id="cb167-4"><a href="capítulo-n-7---análisis-multivariado.html#cb167-4" aria-hidden="true" tabindex="-1"></a>wine[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span></code></pre></div>
+<pre><code>##   Alcohol MalicAcid  Ash AlcAsh  Mg Phenols Flav
+## 1   14.23      1.71 2.43   15.6 127    2.80 3.06
+## 2   13.20      1.78 2.14   11.2 100    2.65 2.76</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="capítulo-n-7---análisis-multivariado.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">cor</span>(wine), <span class="at">treeheight_row =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="capítulo-n-7---análisis-multivariado.html#cb170-1" aria-hidden="true" tabindex="-1"></a>winePCAd <span class="ot">=</span> <span class="fu">dudi.pca</span>(wine, <span class="at">scannf=</span><span class="cn">FALSE</span>)</span>
+<span id="cb170-2"><a href="capítulo-n-7---análisis-multivariado.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(wine.class)</span></code></pre></div>
+<pre><code>## wine.class
+##     barolo grignolino    barbera 
+##         59         71         48</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="capítulo-n-7---análisis-multivariado.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_biplot</span>(winePCAd, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">habillage =</span> wine.class,</span>
+<span id="cb172-2"><a href="capítulo-n-7---análisis-multivariado.html#cb172-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">col.var =</span> <span class="st">&quot;violet&quot;</span>, <span class="at">addEllipses =</span> <span class="cn">TRUE</span>, <span class="at">ellipse.level =</span> <span class="fl">0.69</span>) <span class="sc">+</span></span>
+<span id="cb172-3"><a href="capítulo-n-7---análisis-multivariado.html#cb172-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p>Un biplot es una representación simultánea tanto del espacio de observaciones como del espacio de variables.</p>
+</div>
+<div id="un-ejemplo-de-pca-ponderado" class="section level3 hasAnchor" number="9.6.3">
+<h3><span class="header-section-number">9.6.3</span> Un ejemplo de PCA ponderado<a href="capítulo-n-7---análisis-multivariado.html#un-ejemplo-de-pca-ponderado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="capítulo-n-7---análisis-multivariado.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;x&quot;</span>, <span class="at">package =</span> <span class="st">&quot;Hiiragi2013&quot;</span>)</span>
+<span id="cb173-2"><a href="capítulo-n-7---análisis-multivariado.html#cb173-2" aria-hidden="true" tabindex="-1"></a>xwt <span class="ot">=</span> x[, x<span class="sc">$</span>genotype <span class="sc">==</span> <span class="st">&quot;WT&quot;</span>]</span>
+<span id="cb173-3"><a href="capítulo-n-7---análisis-multivariado.html#cb173-3" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">=</span> <span class="fu">order</span>(<span class="fu">rowVars</span>(Biobase<span class="sc">::</span><span class="fu">exprs</span>(xwt)), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
+<span id="cb173-4"><a href="capítulo-n-7---análisis-multivariado.html#cb173-4" aria-hidden="true" tabindex="-1"></a>xwt <span class="ot">=</span> xwt[sel, ]</span>
+<span id="cb173-5"><a href="capítulo-n-7---análisis-multivariado.html#cb173-5" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(xwt<span class="sc">$</span>sampleGroup)</span>
+<span id="cb173-6"><a href="capítulo-n-7---análisis-multivariado.html#cb173-6" aria-hidden="true" tabindex="-1"></a>tab</span></code></pre></div>
+<pre><code>## 
+##      E3.25 E3.5 (EPI)  E3.5 (PE) E4.5 (EPI)  E4.5 (PE) 
+##         36         11         11          4          4</code></pre>
+<p>Screeplot del PCA ponderado de los datos de Hiiragi. La caída después del segundo valor propio sugiere que un PCA bidimensional es apropiado.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="capítulo-n-7---análisis-multivariado.html#cb175-1" aria-hidden="true" tabindex="-1"></a>xwt<span class="sc">$</span>weight <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">as.numeric</span>(tab[xwt<span class="sc">$</span>sampleGroup])</span>
+<span id="cb175-2"><a href="capítulo-n-7---análisis-multivariado.html#cb175-2" aria-hidden="true" tabindex="-1"></a>pcaMouse <span class="ot">=</span> <span class="fu">dudi.pca</span>(<span class="fu">as.data.frame</span>(<span class="fu">t</span>(Biobase<span class="sc">::</span><span class="fu">exprs</span>(xwt))),</span>
+<span id="cb175-3"><a href="capítulo-n-7---análisis-multivariado.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.w =</span> xwt<span class="sc">$</span>weight,</span>
+<span id="cb175-4"><a href="capítulo-n-7---análisis-multivariado.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>, <span class="at">nf =</span> <span class="dv">2</span>, <span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb175-5"><a href="capítulo-n-7---análisis-multivariado.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pcaMouse) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>Salida de PCA ponderada en los datos de Hiiragi. Las muestras están coloreadas según sus grupos.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="capítulo-n-7---análisis-multivariado.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(pcaMouse, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">col.ind =</span> xwt<span class="sc">$</span>sampleGroup) <span class="sc">+</span></span>
+<span id="cb176-2"><a href="capítulo-n-7---análisis-multivariado.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+</div>
+</div>
+<div id="resumen-de-este-capítulo-2" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Resumen de este capítulo<a href="capítulo-n-7---análisis-multivariado.html#resumen-de-este-capítulo-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matrices de preprocesamiento Los análisis de datos multivariados requieren un preprocesamiento “consciente”. Después de consultar todas las medias, varianzas e histogramas unidimensionales, vimos cómo reescalar y volver a centrar los datos.</p>
+<p>Proyectar sobre nuevas variables Vimos cómo podemos hacer proyecciones en dimensiones más bajas (planos y 3D son las más utilizadas) de datos de dimensiones muy altas sin perder demasiada información. PCA busca nuevos more informativevariables que son combinaciones lineales de las originales (antiguas).</p>
+<p>Descomposición de matriz PCA se basa en encontrar descomposiciones de la matriz X
+llamada SVD, esta descomposición proporciona una aproximación de rango inferior y es equivalente al análisis propio de X t X . Los cuadrados de los valores singulares son iguales a los valores propios ya las varianzas de las nuevas variables. Trazamos sistemáticamente estos valores antes de decidir cuántos ejes son necesarios para reproducir la señal en los datos.</p>
+<p>Representaciones biplot El espacio de observaciones es naturalmente un espacio p-dimensional (las p variables originales proporcionan las coordenadas). El espacio de variables es n-dimensional. Ambas descomposiciones que hemos estudiado (valores singulares/valores propios y vectores singulares/vectores propios) proporcionan nuevas coordenadas para estos dos espacios, a veces llamamos a uno el dual del otro. Podemos trazar la proyección tanto de las observaciones como de las variables en los mismos vectores propios. Esto proporciona un biplot que puede ser útil para interpretar la salida de PCA.</p>
+<p>Proyección de otras variables de grupo La interpretación de PCA también puede verse facilitada por datos redundantes o contiguos sobre las observaciones.</p>
+</div>
+<div id="ejercicios-3" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Ejercicios<a href="capítulo-n-7---análisis-multivariado.html#ejercicios-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cree una primera matriz a de datos bivariados altamente correlacionados.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="capítulo-n-7---análisis-multivariado.html#cb177-1" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">=</span> <span class="dv">1</span>; mu2 <span class="ot">=</span> <span class="dv">2</span>; s1<span class="ot">=</span><span class="fl">2.5</span>; s2<span class="ot">=</span><span class="fl">0.8</span>; rho<span class="ot">=</span><span class="fl">0.9</span>;</span>
+<span id="cb177-2"><a href="capítulo-n-7---análisis-multivariado.html#cb177-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(s1<span class="sc">^</span><span class="dv">2</span>, s1<span class="sc">*</span>s2<span class="sc">*</span>rho, s1<span class="sc">*</span>s2<span class="sc">*</span>rho, s2<span class="sc">^</span><span class="dv">2</span>),<span class="dv">2</span>)</span>
+<span id="cb177-3"><a href="capítulo-n-7---análisis-multivariado.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb177-4"><a href="capítulo-n-7---análisis-multivariado.html#cb177-4" aria-hidden="true" tabindex="-1"></a>sim2d <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">mvrnorm</span>(<span class="dv">50</span>, <span class="at">mu =</span> <span class="fu">c</span>(mu1,mu2), <span class="at">Sigma =</span> sigma))</span>
+<span id="cb177-5"><a href="capítulo-n-7---análisis-multivariado.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(<span class="fu">scale</span>(sim2d))<span class="sc">$</span>d</span></code></pre></div>
+<pre><code>## [1] 9.729295 1.827788</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="capítulo-n-7---análisis-multivariado.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svd</span>(<span class="fu">scale</span>(sim2d))<span class="sc">$</span>v[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] -0.7071068 -0.7071068</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="capítulo-n-7---análisis-multivariado.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(sim2d),<span class="fu">aes</span>(<span class="at">x=</span>X1,<span class="at">y=</span>X2)) <span class="sc">+</span></span>
+<span id="cb181-2"><a href="capítulo-n-7---análisis-multivariado.html#cb181-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="capítulo-n-7---análisis-multivariado.html#cb182-1" aria-hidden="true" tabindex="-1"></a>respc<span class="ot">=</span><span class="fu">princomp</span>(sim2d)</span>
+<span id="cb182-2"><a href="capítulo-n-7---análisis-multivariado.html#cb182-2" aria-hidden="true" tabindex="-1"></a>dfpc <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">pc1=</span>respc<span class="sc">$</span>scores[,<span class="dv">1</span>],</span>
+<span id="cb182-3"><a href="capítulo-n-7---análisis-multivariado.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="at">pc2 =</span> respc<span class="sc">$</span>scores[,<span class="dv">2</span>])</span>
+<span id="cb182-4"><a href="capítulo-n-7---análisis-multivariado.html#cb182-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(dfpc,<span class="fu">aes</span>(<span class="at">x=</span>pc1,<span class="at">y=</span>pc2)) <span class="sc">+</span></span>
+<span id="cb182-5"><a href="capítulo-n-7---análisis-multivariado.html#cb182-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">coord_fixed</span>(<span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-2.png" width="672" /></p>
+<p>Los datos originales que se muestran en el diagrama de dispersión (A) y el gráfico obtenido usando la rotación de componentes principales (B).</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="capítulo-n-6---testeo-y-pruebas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sharing-your-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-C7-Analisis_Multivariado.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
